@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN/EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">		
+		<property name="url">
+			<value>jdbc:mysql://localhost:3306/app_labacrm</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>root</value>
+		</property>
+		
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="mappingResources">
+			<list>
+				<!-- CRM -->
+				<value>
+					<![CDATA[com/CRM/data/BizUser.hbm.xml]]>
+				</value>
+				<value>
+					<![CDATA[com/CRM/data/VIPUser.hbm.xml]]>
+				</value>
+				<value>
+					<![CDATA[com/CRM/data/VIPScore.hbm.xml]]>
+				</value>
+				<value>
+					<![CDATA[com/CRM/data/ScoreRole.hbm.xml]]>
+				</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- CRM -->
+	<bean id="crmBizUserDao" class="com.CRM.data.dao.BizUserDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="crmVIPUserDao" class="com.CRM.data.dao.VIPUserDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="crmVIPScoreDao" class="com.CRM.data.dao.VIPScoreDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="crmScoreRoleDao" class="com.CRM.data.dao.ScoreRoleDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+</beans>

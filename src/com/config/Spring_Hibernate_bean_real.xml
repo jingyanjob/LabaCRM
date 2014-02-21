@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN/EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="url">
+			<value>
+			<![CDATA[jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_labacrm]]>
+			</value>
+		</property>
+		<property name="username"><value>mn5o0lx0ox</value>
+		</property>
+		<property name="password">
+			<value>3mjm103yz30j54xjm1hkm11hhl2jk34lk44lj5ll</value>
+		</property>
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<!-- 
+		<property name="initialSize" value="5"></property>
+		<property name="maxActive" value="20"></property>
+		<property name="maxIdle" value="5"></property>
+		<property value="true" name="testWhileIdle"/> 
+		<property value="15000" name="timeBetweenEvictionRunsMillis"/>-->
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="mappingResources">
+			<list>
+				<!-- CRM -->
+				<value>
+					<![CDATA[com/CRM/data/BizUser.hbm.xml]]>
+				</value>
+				<value>
+					<![CDATA[com/CRM/data/VIPUser.hbm.xml]]>
+				</value>
+				<value>
+					<![CDATA[com/CRM/data/VIPScore.hbm.xml]]>
+				</value>
+				<value>
+					<![CDATA[com/CRM/data/ScoreRole.hbm.xml]]>
+				</value>
+				<value>
+					<![CDATA[com/CRM/data/Reservation.hbm.xml]]>
+				</value>
+				<value>
+					<![CDATA[com/CRM/data/SalesCase.hbm.xml]]>
+				</value>
+				<value>
+					<![CDATA[com/CRM/data/SalesCaseMonthRep.hbm.xml]]>
+				</value>
+				<value>
+					<![CDATA[com/CRM/data/Product.hbm.xml]]>
+				</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+	</bean>
+    <bean id="hibernateTemplate"
+          class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory"> 
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+	<!-- CRM  -->
+	<bean id="crmBizUserDao" class="com.CRM.data.dao.BizUserDao" >
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+	<bean id="crmVIPUserDao" class="com.CRM.data.dao.VIPUserDao" >
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+	<bean id="crmVIPScoreDao" class="com.CRM.data.dao.VIPScoreDao" >
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+		<bean id="crmScoreRoleDao" class="com.CRM.data.dao.ScoreRoleDao" >
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+	<bean id="crmReservationDao" class="com.CRM.data.dao.ReservationDao" >
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+	<bean id="crmSalesCaseDao" class="com.CRM.data.dao.SalesCaseDao" >
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+	<bean id="crmSalesCaseMRepDao" class="com.CRM.data.dao.SalesCaseMRepDao" >
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+	<bean id="crmProductDao" class="com.CRM.data.dao.ProductDao" >
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+</beans>

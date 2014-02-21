@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.CRM.data.ScoreRole" table="scorerole">
+		<id name="id" column="id">
+			<generator class="increment" />
+		</id>
+		<property name="uid" column="uid" />
+		<property name="perrepostscore" column="prs" />
+		<property name="percommentscore" column="pcs" />
+		<property name="perdaymaxscore" column="pdms" />
+		<property name="updatetime" column="updatetime" />
+	</class>
+</hibernate-mapping>

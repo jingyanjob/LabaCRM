@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.CRM.data.Product" table="product">
+		<id name="id" column="id">
+			<generator class="increment" />
+		</id>
+		<property name="buid" column="buid" />
+		<property name="category" column="category" />
+		<property name="productname" column="productname" />
+		<property name="productdesc" column="productdesc" />
+		<property name="imgurl" column="imgurl" />
+		<property name="active" column="active" />
+		<property name="price" column="price" />
+		<property name="incutoff" column="incutoff" />
+		<property name="updatetime" column="updatetime" />
+	</class>
+</hibernate-mapping>

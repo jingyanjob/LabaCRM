@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.CRM.data.VIPUser" table="vipuser">
+		<id name="id" column="id">
+			<generator class="increment" />
+		</id>
+		<property name="uid" column="uid" />
+		<property name="buid" column="buid" />
+		<property name="username" column="username" />
+		<property name="sourcesite" column="sourcesite" />
+		<property name="updatetime" column="updatetime" />
+		<property name="province" column="province" />
+		<property name="city" column="city" />
+		<property name="location" column="location" />
+		<property name="description" column="description" />
+		<property name="url" column="url" />
+		<property name="profileImageUrl" column="piurl" />
+		<property name="gender" column="gender" />
+		<property name="friendsCount" column="friends" />
+		<property name="followersCount" column="follows" />
+		<property name="verifiedType" column="verifiedt" />
+		<property name="biFollowersCount" column="bifollows" />
+	</class>
+</hibernate-mapping>

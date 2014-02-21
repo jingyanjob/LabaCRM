@@ -1,0 +1,91 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a href="javascript:alert('11')">
+<img src="img/labacrm121.jpg" style="border:0px solid" />
+test
+</a>
+
+
+<div style='width:99%;font:25px;align:center;border: 1px solid #eeeeee;margin: 200px 200px 200px;"'>正在进行新用户初始化，预计在几分钟内完成，请等待！
+<div id="chkdiv" style="background-color:#eeeeee;margin: 2px 2px 00px;">
+<input type="checkbox" value="1" checked="checked"/>test1
+<input type="checkbox" value="2"/>test2
+<input type="checkbox" value="3"/>test3
+<input type="checkbox" value="4"/>test4
+
+<input type="button" onclick="getCheckBoxValue('chkdiv')" value="12345"/>
+<input type="button" onclick="checkAll('chkdiv')" value="67890"/>
+<input type="button" onclick="unCheckAll('chkdiv')" value="55555"/>
+<select id="selecttest" onChange="selectx()">
+	<option value=1>1xxxxxxxx</option>
+	<option value=2>2xxxxxxxxxx</option>
+	<option value=3>4xxxxxxxxxxxxxxxx</option>
+</select>
+<input id="v123" name="v123"/><input id="v123" name="v123"/><input id="v123" name="v123"/>
+</div>
+</div>
+
+<input id=newdatedd onclick="getdate()"/>
+<script type="text/javascript">
+	function getdate(){
+		var date = new Date();
+		var dynamicTuancode = date.getFullYear()+""+date.getMonth()+""
+				+date.getDay()+""+date.getHours()+""+date.getMinutes()+""+date.getSeconds();
+		document.getElementById("newdatedd").value = dynamicTuancode;
+	}
+
+	function showdiv(){
+		
+	}
+	function selectx(){
+		alert(document.getElementById("selecttest").value);
+	}
+	function setv(){
+		document.getElementsByName("v123").item(0).value = "1234";
+		document.getElementsByName("v123").item(0).value = "12324";
+		document.getElementsByName("v123").item(2).value = "1234";
+	}
+	setv();
+	function getCheckBoxValue(divid){
+	 	if(window.confirm("delete")){
+	 		return;
+	 	}
+	 	var div = document.getElementById(divid);
+		var i = div.childNodes.length;
+		for(var n=0; n<i;n++){
+			var item = div.childNodes.item(n);
+			if(item.type == "checkbox" && item.checked){
+				alert(item.value);
+			}
+		}
+	}
+	function checkAll(divid){
+		var div = document.getElementById(divid);
+		var i = div.childNodes.length;
+		for(var n=0; n<i;n++){
+			var item = div.childNodes.item(n);
+			if(item.type == "checkbox" && !item.checked){
+				item.checked = true;
+			}
+		}
+	}
+	function unCheckAll(divid){
+		var div = document.getElementById(divid);
+		var i = div.childNodes.length;
+		for(var n=0; n<i;n++){
+			var item = div.childNodes.item(n);
+			if(item.type == "checkbox" && item.checked){
+				item.checked = false;
+			}
+		}
+	}
+</script>
+</body>
+</html>

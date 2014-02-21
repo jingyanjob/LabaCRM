@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.CRM.data.SalesCase" table="salescase">
+		<id name="id" column="id">
+			<generator class="increment" />
+		</id>
+		<property name="buid" column="buid" />
+		<property name="beuid" column="beuid" />
+		<property name="username" column="username" />
+		<property name="sourcesite" column="sourcesite" />
+		<property name="content" column="content" />
+		<property name="imgurl" column="imgurl" />
+		<property name="casestart" column="casestart" />
+		<property name="caseend" column="caseend" />
+		<property name="productids" column="productids" />
+		<property name="disprice" column="disprice" />
+		<property name="oriprice" column="oriprice" />
+		<property name="tuancode" column="tuancode" />
+		<property name="vipuidlist" column="vipuidlist" />
+		<property name="vipunamelist" column="vipunamelist" />
+		<property name="updatetime" column="updatetime" />
+	</class>
+</hibernate-mapping>
