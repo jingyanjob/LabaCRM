@@ -28,6 +28,7 @@
 	        out.println("<div style='width:99%;align:center;font:25px;'>正在进行用户系统初始化，将很快完成：1. 正在导入新会员......</div>");
 	        BizUserMgr bum = new BizUserMgr();
 	 	    bum.init(at, expire, uid);
+	 	    
 	 	   %>
 		 <script>
 	        	function _back(){
