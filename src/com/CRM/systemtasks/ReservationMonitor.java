@@ -36,7 +36,7 @@ public class ReservationMonitor {
 			for(int i=0; i<coms.size();i++){
 				//筛选预定列表
 				String _text = coms.get(i).getText().split("//@")[0];
-				if((_text.indexOf("预定") != -1 || _text.indexOf("预订") != -1 )
+				if((_text.indexOf("预定") != -1 || _text.indexOf("预订") != -1 || _text.indexOf("yuding") != -1 )
 						&& coms.get(i).getText().indexOf("#预订成功#") <0
 					){
 					comsf.add(coms.get(i));
@@ -65,7 +65,7 @@ public class ReservationMonitor {
 			for(int i=0; i<reposts.size();i++){
 				//筛选预定列表
 				String _text = reposts.get(i).getText().split("//@")[0];
-				if((_text.indexOf("预定") != -1 || _text.indexOf("预订") != -1 )
+				if((_text.indexOf("预定") != -1 || _text.indexOf("预订") != -1 || _text.indexOf("yuding") != -1)
 						&& reposts.get(i).getText().indexOf("#预订成功#") <0
 					){
 					repostsf.add(reposts.get(i));
@@ -116,12 +116,15 @@ public class ReservationMonitor {
 		String busername = bu.getUsername();
 		if(com != null){
 			rac.setCreatedAt(com.getCreatedAt());
+			rac.setText(com.getText().split("//@")[0].replaceAll("@"+busername,""));
 			rac.setText(com.getText().split("//@")[0].replaceAll(busername,""));
 			rac.setUser(com.getUser());
-			rac.setId(String.valueOf(com.getStatus().getId()));//评论的微博ID
+			rac.setId(String.valueOf(com.getStatus().getId()));
 			rac.setCid(String.valueOf(com.getId()));
-		}else if(status != null){
+		}
+		if(status != null){
 			rac.setCreatedAt(status.getCreatedAt());
+			rac.setText(status.getText().split("//@")[0].replaceAll("@"+busername,""));
 			rac.setText(status.getText().split("//@")[0].replaceAll(busername,""));
 			rac.setUser(status.getUser());
 			rac.setId(status.getId());

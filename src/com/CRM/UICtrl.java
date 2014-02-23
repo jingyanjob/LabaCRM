@@ -1,10 +1,8 @@
 package com.CRM;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,17 +11,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
-
 import weibo4j.http.AccessToken;
 import weibo4j.model.WeiboException;
-
 import com.CRM.data.BizUser;
 import com.CRM.data.Product;
 import com.CRM.data.Reservation;
@@ -39,13 +34,7 @@ import com.CRM.systemtasks.ReservationMonitor;
 import com.sina.sae.storage.SaeStorage;
 import com.xp.cache.CacheFactory;
 import com.xp.util.XPUtil;
-
 public class UICtrl extends MultiActionController implements java.io.Serializable {
-	/*
-	 * { "people": [ { "firstName": "Brett", "lastName":"McLaughlin", "email": "aaaa" }, 
-	 * { "firstName": "Jason", "lastName":"Hunter", "email": "bbbb"}, 
-	 * { "firstName": "Elliotte", "lastName":"Harold", "email": "cccc" } ]}
-	 */
 	public static String jason_lbig = "{\"";
 	public static String jason_rbig0 = "\"}";
 	public static String jason_rbig1 = "]}";
@@ -508,9 +497,7 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 					String[] vs = scs[i].getVipunamelist().split(GlobalStaticData.spliter);
 					StringBuffer sb = new StringBuffer();
 					int rown = 6;
-					
 					for(int j=0; j<vs.length;j++){
-						
 						sb.append(vs[j]+" &nbsp; ");
 					}
 					scs[i].setVipunamelist(sb.toString());

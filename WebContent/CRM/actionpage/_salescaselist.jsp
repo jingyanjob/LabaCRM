@@ -27,8 +27,9 @@
 					</tr>
 					<tr>
 						<td style="height:25px" align=center>
-								<a href="javascript:scPublishAgain();">再发一次</a>
+							<%--<a href="javascript:scPublishAgain();">再发一次</a>
 								&nbsp;&nbsp;&nbsp;
+								--%>
 								<a href="javascript:deleteSalesCase();">删除</a>
 								&nbsp;&nbsp;&nbsp;
 								<a href="javascript:closeSc__();">关闭</a>
@@ -44,16 +45,16 @@
 		</tr>
 	</table>  
 </div>
-	<div style="width:600px;height:360px;">
-	
 	<c:forEach items="${scs}" var="sc">
-	<table style="width: 580px;border:1px solid #DDDDDD;" cellpadding="0" >
+	<div style="border:1px solid #cccccc;">
+	
+	<table style="width: 580px;" cellpadding="1" style="padding: 3 3 3;">
 		<tr>
-			<td style="background-color:#DDDDDD;height:35px">
+			<td style="background-color:#eeeeee;height:35px">
 				<a href="javascript:showSCDetail('<c:out value="${sc.id}"/>'
 						,'<c:out value="${sc.vipunamelist}"/>'
 						,'<c:out value="${sc.content}"/>'
-						,'<c:out value="${sc.prodids}"/>')">
+						,'<c:out value="${sc.productids}"/>')">
 				时间：<c:out value="${sc.updatetime}"></c:out>
 				内容预览：<c:out value="${sc.contentshort}"></c:out>
 				</a>
@@ -77,8 +78,9 @@
 			</td>
 		</tr>--%>
 	</table>
+	
+	</div>
 	</c:forEach>
-</div>
 	<script>
 		function closeSc__(){
 			 $("#salescaseshowdiv").hide();

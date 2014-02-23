@@ -38,6 +38,11 @@ public class ProductEngine {
 	public Product[] getActiveProducts(String buid){
 		int number = 0;//35;
 		Product[] prods = pd.getProducts(buid, number);
+		if(prods == null){
+			prods = new Product[1];
+			prods[0] = new Product();
+			prods[0].setProductname("您还没有任何菜品，应该马上动手制作自己的菜单啦");
+		}
 		return prods;
 	}
 	public Product getProduct(int id){

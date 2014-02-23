@@ -5,11 +5,15 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.CRM.GlobalStaticData;
+
 import weibo4j.Comments;
 import weibo4j.Friendships;
+import weibo4j.Oauth;
 import weibo4j.Timeline;
 import weibo4j.Users;
 import weibo4j.Weibo;
+import weibo4j.http.AccessToken;
 import weibo4j.http.ImageItem;
 import weibo4j.model.Comment;
 import weibo4j.model.Paging;
@@ -42,7 +46,7 @@ public class WeiboTask {
 		try {
 			boolean isFinished = false;
 			long turns = 0;
-			int size = 200;
+			int size = GlobalStaticData.vipBatchSize;
 			
 			while(!isFinished){
 				l = fm.getFriendsByID(uid, size,  Long.valueOf(turns).intValue());
@@ -69,7 +73,7 @@ public class WeiboTask {
 		try {
 			boolean isFinished = false;
 			long turns = 0;
-			int size = 200;
+			int size = GlobalStaticData.vipBatchSize;
 			
 			while(!isFinished){
 				l = fm.getFollowersById(uid, size,  Long.valueOf(turns).intValue());
@@ -180,5 +184,16 @@ public class WeiboTask {
 			e.printStackTrace();
 		}
 		return s;
+	}
+	public static void main(String[] str) throws WeiboException{
+		Oauth oauth = new Oauth();
+		AccessToken atoken = oauth.getAccessTokenByCode("ee233a654d47186d23e4df7d326ae5b9");
+        System.out.println("code"+atoken);
+//		
+//		String at = "2.0058jF6B0Cd61ee8b59f5822sFLouB";
+//		String uid = "1286907550";
+//		WeiboTask wt = new WeiboTask();
+//		wt.init(at);
+//		System.out.println(wt.getUser(at, uid).getName());
 	}
 }

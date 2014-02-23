@@ -82,16 +82,15 @@ public class SalesEngine {
 			scs[0].setContentshort("您还没有发起过营销活动，赶快新建一个营销方案并进行微推广啦.");
 			scs[0].setVipunamelist("");
 			scs[0].setContent("您还没有发起过营销活动，赶快新建一个营销方案并进行微推广啦.");
-			scs[0].setImgurl("");//
-			
-			
-		}
-		for(int i=0; i<scs.length;i++){
-			if(scs[i].getContent().length()>16){
-				String temp = scs[i].getContent().substring(0, 16) + "...";
-				scs[i].setContentshort(temp);
-			}else{
-				scs[i].setContentshort(scs[i].getContent());
+			scs[0].setImgurl("");//			
+		}else{
+			for(int i=0; i<scs.length;i++){
+				if(scs[i].getContent().length()>16){
+					String temp = scs[i].getContent().substring(0, 16) + "...";
+					scs[i].setContentshort(temp);
+				}else{
+					scs[i].setContentshort(scs[i].getContent());
+				}
 			}
 		}
 		return scs;

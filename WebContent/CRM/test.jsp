@@ -21,6 +21,12 @@ test
 <input type="checkbox" value="4"/>test4
 
 <input type="button" onclick="getCheckBoxValue('chkdiv')" value="12345"/>
+<input type="button" onclick="testdivd()" value="aaaacccc"/>
+<br />
+<div style="display:none;border: 1px #bbbbbb solid; width:500px; height: 400px; position:absolute; background-color: #eeeeee" id="testdivd">
+<input type="button" onclick="ctestdivd()" value="aaaacccc"/>
+
+</div>
 <input type="button" onclick="checkAll('chkdiv')" value="67890"/>
 <input type="button" onclick="unCheckAll('chkdiv')" value="55555"/>
 <select id="selecttest" onChange="selectx()">
@@ -34,6 +40,12 @@ test
 
 <input id=newdatedd onclick="getdate()"/>
 <script type="text/javascript">
+	function testdivd(){
+		document.getElementById("testdivd").style.display = "block";
+	}
+	function ctestdivd(){
+		document.getElementById("testdivd").style.display = "none";
+	}
 	function getdate(){
 		var date = new Date();
 		var dynamicTuancode = date.getFullYear()+""+date.getMonth()+""

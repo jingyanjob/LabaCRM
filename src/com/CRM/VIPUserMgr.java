@@ -76,6 +76,12 @@ public class VIPUserMgr {
 	}
 	
 	public VIPUser[] getVUsers(String bId){
+		VIPUser[] vs = vud.getVIPUser(bId);
+		if(vs == null){
+			vs = new VIPUser[1];
+			vs[0] = new VIPUser();
+			vs[0].setUsername("您还没有一个会员，如您的微博 有粉丝、关注，请试试关闭当前窗口重新打开本网站，谢谢；");
+		}
 		return vud.getVIPUser(bId);
 	}
 	/**

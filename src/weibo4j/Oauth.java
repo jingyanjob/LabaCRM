@@ -76,9 +76,9 @@ public class Oauth {
 	/*----------------------------Oauth接口--------------------------------------*/
 
 	public AccessToken getAccessTokenByCode(String code) throws WeiboException {
-		System.out.println("paramsss- cid" +  WeiboConfig.getValue("client_ID -")  + 
-				"c_sec -" +WeiboConfig.getValue("client_SERCRET") +
-				"uri - " + WeiboConfig.getValue("redirect_URI")
+		System.out.println("paramsss- cccccccccccccid" +  WeiboConfig.getValue("client_ID")  + 
+				" c_sec -" +WeiboConfig.getValue("client_SERCRET") +
+				" uri - " + WeiboConfig.getValue("redirect_URI")
 		);
 		AccessToken atoken = new AccessToken(Weibo.client.post( 
 				WeiboConfig.getValue("accessTokenURL"),
@@ -87,10 +87,11 @@ public class Oauth {
 								.getValue("client_ID")),
 						new PostParameter("client_secret", WeiboConfig
 								.getValue("client_SERCRET")),
-						new PostParameter("grant_type", "authorization_code"),
+						new PostParameter("grant_type", "authorization_code"),//
 						new PostParameter("code", code),
 						new PostParameter("redirect_uri", WeiboConfig
 								.getValue("redirect_URI")) }, false));
+		System.out.println("paramsss- uuuuuuuuuuuuid" + atoken.getUid());
 		return atoken;
 	}
 

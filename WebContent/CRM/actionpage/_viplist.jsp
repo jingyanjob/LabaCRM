@@ -12,14 +12,16 @@
 <script type="text/javascript" src="js/masonry.js"></script>
 </head>
 <body>
-<div style="width:600px" id="vipuselistdiv">
+<div style="100%" id="vipuselistdiv">
 	<c:forEach items="${vips}" var="vip">
-		<div style="margin: 3px 3px 3px 0; background-color:#dddddd;padding: 1px; float: left; height: 100px; font-size:12px; text-align: center;">
+		<div style="border:1px solid #cccccc;margin: 3px 3px 3px 0; background-color:#eeeeee;padding: 1px; float: left; height: 100px; font-size:12px; text-align: center;">
 			<img src="${vip.profileImageUrl}" style="max-height:70px;" id="vip${vip.id}" />
 			<br />
-			<a href="http://www.weibo.com/u/${vip.uid}" target="_new"><c:out value="${vip.username}"></c:out></a>
-			<br />
-			<c:out value="${vip.location}"></c:out>
+			<div style="border:1px solid #cccccc;background-color:white;">
+				<a href="http://www.weibo.com/u/${vip.uid}" target="_new"><c:out value="${vip.username}"></c:out></a>
+				<br />
+				<c:out value="${vip.location}"></c:out>
+			</div>
 		</div>
 	</c:forEach>
 </div>

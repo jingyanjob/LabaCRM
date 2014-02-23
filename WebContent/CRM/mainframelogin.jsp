@@ -35,7 +35,7 @@
 			style="width: 88%; margin-left: 6%; margin-right: 6%;">
 			<table width="100%" cellpadding="0" cellspacing="0">
 				<tr>
-					<td align="left"><img style="" src="img/logofullwsite.png">
+					<td align="left"><img style="" src="img/logofull.png">
 					</td>
 					<td align="right">
 						<div id="newbuinit"></div>
@@ -52,21 +52,31 @@
 			Object sinaatstr = session.getAttribute("sinaatstr");
 		//	Object isnewbu = session.getAttribute("isnewbu");
 			User u = new User();
+			
 			if (request.getServerName().equals("localhost")) {
 				//for local test
 			} else {
 				if (uid != null) {
 					VIPUserMgr vum = new VIPUserMgr();
 					if (session.getAttribute("user") == null) {
-						WeiboTask us = new WeiboTask();
-						u = us.getUser(sinaatstr.toString(), uid.toString());
+						WeiboTask wt = new WeiboTask();
+						u = wt.getUser(sinaatstr.toString(), uid.toString());
 						session.setAttribute("user", u);
 						session.setAttribute("location", u.getLocation());
 					} else {
 						u = (User) session.getAttribute("user");
 						session.setAttribute("location", u.getLocation());
 					}
-					
+					out.print("<script> function newbuinit(){"
+								+ "document.getElementById(\"newbuinit\").innerHTML=\"进行系统初始化进行中,将很快完成，请稍后: 1. 正在导入新会员......\";"
+								+ "}newbuinit();</script>");
+					BizUser bu = new BizUser();
+					bu.setUid(uid.toString());
+					bu.setAtoken(sinaatstr.toString());
+					String re = BUInitTask.run(bu);
+					out.print("<script> function newbuinitend(){"
+								+ "document.getElementById(\"newbuinit\").innerHTML=\"初始化完成， 共导入VIP客户 "
+								+ re + " 人\";" + "}newbuinitend();</script>");
 					/*out.print("<script> function newbuinit(){"
 								+ "document.getElementById(\"newbuinit\").innerHTML=\"进行系统初始化进行中,将很快完成，请稍后: 1. 正在导入新会员......\";"
 								+ "}newbuinit();</script>");

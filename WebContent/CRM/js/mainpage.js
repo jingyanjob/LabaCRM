@@ -4,7 +4,7 @@ var currentUID = "";
 var currentATStr = "";
 var second = 1000;
 var minute = 60 * second;
-var reserChkTime = 5 * minute;
+var reserChkTime = 10 * minute;
 //vip search and select
 var currentVIPUserId = "";
 var currentVIPUserScore = 0;
@@ -113,7 +113,7 @@ $(document).ready(function() {
 	}
 	setLocation_();
 	$("#getclientmsgbtn").click(function() {//for testing use
-	    getClientMsg();
+		getReservation();
 	});
 	
 	$(function() {
@@ -276,8 +276,8 @@ function selectedVU(name, score, uid){
 	function initSalesCase(){
 		$("#finalsalestarget").html("");
 		var date = new Date();
-		var dynamicTuancode = date.getFullYear()+""+ (date.getMonth()+1)+""
-			+date.getDay()+""+date.getHours()+""+date.getMinutes()+""+date.getSeconds();
+		var dynamicTuancode = date.getFullYear()+"" + (date.getMonth()+1)+""
+			+ date.getDay() +""+date.getHours()+""+date.getMinutes()+""+date.getSeconds();
 		document.getElementById("tuancode").value = dynamicTuancode;
 	}
 	function dynsalestarget(){
@@ -528,16 +528,15 @@ function selectedVU(name, score, uid){
 	    });
 	}
 	function showProductDetail(id, name , desc, imgurl){
-		productidforpublish = id;
-		$("#productshowimg").html("<img style='width:250px' src=" + imgurl+" />");
-		$("#productshowname").html( "菜名："+name );
-		$("#productshowdesc").html( "介绍："+desc );
+		productidforpublish = "productshow" + id;
+	//	$("#productshowimg").html("<img style='width:250px' src=" + imgurl+" />");
+	//	$("#productshowname").html( "菜名："+name );
+	//	$("#productshowdesc").html( "介绍："+desc );
 		//$("#productshowdiv" ).css("event.clientX");
 		
 	//	document.getElementById("productshowdiv").style.top = window.event.clientY - 150;
 	//	document.getElementById("productshowdiv").style.left = window.event.clientx - 200;
-		
-		$("#productshowdiv" ).show();
+		$(productidforpublish).show();
 	}
 	function deleteProduct(){
 		if(!deleteConfirm()){

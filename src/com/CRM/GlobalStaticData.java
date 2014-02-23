@@ -15,6 +15,7 @@ public class GlobalStaticData {
 	public static int perDayMaxScore = 200;
 	public static String spliter = "#@";
 	public static String spliter1 = "@#";
+	public static int vipBatchSize = 200;//初始化、更新vip用户时 ，每次请求微博粉丝\关注的列表个数
 	
 	public static String vsChangebyBU_wbid = "10000";// 商家手动修改vip 积分时候的weibo id
 	

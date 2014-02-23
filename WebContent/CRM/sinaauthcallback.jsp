@@ -16,18 +16,22 @@
 <% 
     // 获得HTTP请求中的 oauth_verifier 参数 
 	String code=request.getParameter("code");
+	int retry = 0;
     try{
 	    if(code != null){
 	        Oauth oauth = new Oauth();
+	       // out.println("code"+code);
 	        AccessToken atoken = oauth.getAccessTokenByCode(code);
+	      //  out.println("code"+atoken);
 	        String uid = atoken.getUid();
 	        String at = atoken.getAccessToken();
-	        String expire = atoken.getUid();
+	      //  out.println(uid + " - "+ at);
+	        String expire = atoken.getExpireIn();
 	        session.setAttribute("uid", uid);//atoken.getUid());
-	        session.setAttribute("sinaatstr",at);//atoken.getAccessToken());
-	        out.println("<div style='width:99%;align:center;font:25px;'>正在进行用户系统初始化，将很快完成：1. 正在导入新会员......</div>");
-	        BizUserMgr bum = new BizUserMgr();
-	 	    bum.init(at, expire, uid);
+	       session.setAttribute("sinaatstr",at);//atoken.getAccessToken());
+	       out.println("<div style='width:99%;align:center;font:25px;'>正在进行用户系统初始化，将很快完成：1. 正在导入新会员......</div>");
+	       BizUserMgr bum = new BizUserMgr();
+	 	   bum.init(at, expire, uid);
 	 	   %>
 		 <script>
 	        	function _back(){
@@ -42,8 +46,41 @@
 	    } 
     }catch(Exception e){
     	out.println("ERROR HERE:");
-    	out.println(e.getMessage() + e.getCause().getLocalizedMessage() + e.getStackTrace().toString()); 
+    	out.println(e.getMessage() + e.getCause().getLocalizedMessage() 
+    			+ e.getStackTrace().toString()); 
+    	e.printStackTrace();
     	// out.println( " <meta   http-equiv= 'refresh'   content='0' url='"+url+"'> "); 
+    }finally{
+		if(retry < 2){
+			retry++;
+			 if(code != null){
+			        Oauth oauth = new Oauth();
+			        out.println("code"+code);
+			        AccessToken atoken = oauth.getAccessTokenByCode(code);
+			       // out.println("code"+atoken);
+			        String uid = atoken.getUid();
+			        String at = atoken.getAccessToken();
+			       // out.println(uid + " - "+ at);
+			        String expire = atoken.getExpireIn();
+			        session.setAttribute("uid", uid);//atoken.getUid());
+			       session.setAttribute("sinaatstr",at);//atoken.getAccessToken());
+			       out.println("<div style='width:99%;align:center;font:25px;'>正在进行用户系统初始化，将很快完成：1. 正在导入新会员......</div>");
+			       BizUserMgr bum = new BizUserMgr();
+			 	   bum.init(at, expire, uid);
+			 	   %>
+				 <script>
+			        	function _back(){
+			        		window.open("/CRM/mainframelogin.jsp","_self");
+			        	}
+			        	 _back();
+			        </script>
+			 	      <%
+				    //   response.sendRedirect(url); may missing the session if use response.sendRedirect
+			    }else{
+			        out.println("code String error"); 
+			    } 
+    	}
+		
     }
 %>
 </body>

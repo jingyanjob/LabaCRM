@@ -48,9 +48,11 @@
 					<tr>
 						<td>
 							<div style="width: 100%" id="refreshresStatus">
-								<font size=2>网站每几分钟自动刷新，如需立刻刷新，请点击：</font><input type=button
+								<font size=2>网站每分钟会自动刷新，确保您不会错过任何新预订；</font>
+								<%--
+								<input type=button
 									id="getclientmsgbtn" onclick="getReservation();" value="刷新预定列表"
-									title="网站每5分钟会自动更新预定信息，除特殊情况，无需点击这里更新"></input>
+									title="网站每5分钟会自动更新预定信息，除特殊情况，无需点击这里更新"></input>  --%>
 							</div>
 						</td>
 					</tr>
@@ -58,8 +60,7 @@
 				</table>
 			</div>
 		</div>
-		<div id="tabs-2"
-			style="min-height: 400px;  overflow-y: scroll;">
+		<div id="tabs-2" style="min-height: 400px;  overflow-y: scroll;">
 			<div id="t2-tabs" style="min-height: 400px; max-height: 800px; ">
 				<ul style="min-height: 400px; max-height: 600px; ">
 					<li><a href="#t2-tabs-1" onclick="initVipUserSearch()"> 会员积分 </a></li>
@@ -85,7 +86,7 @@
 					</table>
 					<div id="vipusersearchstatus"></div>
 				</div>
-				<div id="t2-tabs-2" style="max-height: 400px;">数据加载中....</div>
+				<div id="t2-tabs-2" style="max-height: 400px;max-width:700px">数据加载中....</div>
 				<div id="t2-tabs-3">
 					新会员关键字 <input id="vipsearchinput" /> <input type=button
 						value="开始搜索" onclick="searhVIPinWeibo();"></input> <br />
@@ -111,8 +112,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td>团购说明 <textarea rows="4" id="salescontent" cols="73">
-							</textarea>
+							<td>团购说明 <textarea rows="4" id="salescontent" cols="73"></textarea>
 							</td>
 						</tr>
 						<tr>
@@ -175,7 +175,7 @@
 		<div id="tabs-4"
 			style="min-height: 400px;overflow-y: scroll;">
 			<div id="t4-tabs" style="min-height: 400px; max-height: 800px; ">
-				<ul style="height: 99%; ">
+				<ul style="min-height:400px; ">
 					<li><a href="#t4-tabs-1" onclick="initProduct()"> 添加菜品 </a></li>
 					<li><a href="#t4-tabs-2" onclick="productList()"> 菜单和发布 </a></li>
 					<%-- li><a href="#t4-tabs-3"> 菜单发布 </a></li>--%>
