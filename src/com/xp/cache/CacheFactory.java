@@ -40,17 +40,13 @@ public class CacheFactory {
 	public static void popItem(String buid, String id, int type) {
 		if(caches.containsKey(buid)){
 			caches.get(buid).popUp(type, id);
-			System.out.println("========================== pupup + " + id);
 		}
 	}
 	public synchronized static BUCacheData getCache(String buid) {
 		init();
-		System.out.println("=========start cache========= + " + buid);
 		if(caches.containsKey(buid)){
-			System.out.println("==========get cache================ + " + buid);
 			return (BUCacheData)caches.get(buid);
 		}else{
-			System.out.println("============init cache============== + " + buid);
 			BUCacheData bc = new BUCacheData(buid, currentn);
 			bc.setVips(vum.getVUsers(buid));
 			bc.setProducts(pe.getActiveProducts(buid));

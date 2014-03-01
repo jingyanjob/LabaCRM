@@ -3,9 +3,8 @@
 <%@ page language="java" import="weibo4j.*" %> 
 <%@ page language="java" import="weibo4j.http.*" %> 
 <%@ page language="java" import="weibo4j.util.*" %> 
-<%@page import="com.CRM.BizUserMgr"%>
 <%@page import="com.CRM.data.BizUser"%>
-<%@page import="com.CRM.data.ScoreRole"%>
+<%@page import="weibo4j.model.WeiboException"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,26 +13,20 @@
 </head>
 <body>
 <% 
-    // 获得HTTP请求中的 oauth_verifier 参数 
 	String code=request.getParameter("code");
-	int retry = 0;
     try{
 	    if(code != null){
 	        Oauth oauth = new Oauth();
-	       // out.println("code"+code);
 	        AccessToken atoken = oauth.getAccessTokenByCode(code);
-	      //  out.println("code"+atoken);
 	        String uid = atoken.getUid();
 	        String at = atoken.getAccessToken();
-	      //  out.println(uid + " - "+ at);
 	        String expire = atoken.getExpireIn();
 	        session.setAttribute("uid", uid);//atoken.getUid());
-	       session.setAttribute("sinaatstr",at);//atoken.getAccessToken());
-	       out.println("<div style='width:99%;align:center;font:25px;'>正在进行用户系统初始化，将很快完成：1. 正在导入新会员......</div>");
-	       BizUserMgr bum = new BizUserMgr();
-	 	   bum.init(at, expire, uid);
+	        session.setAttribute("sinaatstr",at);//atoken.getAccessToken());
+	        session.setAttribute("expire",expire);//atoken.getAccessToken());
+	        out.println("<div style='width:99%;align:center;font:25px;'>正在进行用户系统初始化，将很快完成：1. 正在导入新会员.......</div>");
 	 	   %>
-		 <script>
+		 	<script>
 	        	function _back(){
 	        		window.open("/CRM/mainframelogin.jsp","_self");
 	        	}
@@ -42,45 +35,29 @@
 	 	      <%
 		    //   response.sendRedirect(url); may missing the session if use response.sendRedirect
 	    }else{
-	        out.println("code String error"); 
+	    	Object uid = session.getAttribute("uid");
+	    	if(uid != null){
+	    		 %>
+	 		 	<script>
+	 	        	function _back(){
+	 	        		window.open("/CRM/mainframelogin.jsp","_self");
+	 	        	}
+	 	        	 _back();
+	 	        </script>
+	 	 	      <%
+	    	}else{
+	    		out.println("呀，出错了，已经通知管理员，您也可以几分钟后再次尝试登陆，对此给您带来的不变，我们深感歉意。"); 
+	    	}
 	    } 
-    }catch(Exception e){
-    	out.println("ERROR HERE:");
-    	out.println(e.getMessage() + e.getCause().getLocalizedMessage() 
-    			+ e.getStackTrace().toString()); 
-    	e.printStackTrace();
-    	// out.println( " <meta   http-equiv= 'refresh'   content='0' url='"+url+"'> "); 
+    }catch(WeiboException e){
+    	//out.println("ERROR HERE:");
+    	out.println("呀，出错了，已经通知管理员，您也可以几分钟后再次尝试登陆，对此给您带来的不变，我们深感歉意"); 
+    	//out.println(e.getMessage() + e.getCause().getLocalizedMessage() + e.getStackTrace().toString()); 
+    	//out.println(e.getStatusCode() + " ---------- " + e.getError() + " ++++ " + e.getErrorCode()); 
+    	//e.printStackTrace();
     }finally{
-		if(retry < 2){
-			retry++;
-			 if(code != null){
-			        Oauth oauth = new Oauth();
-			        out.println("code"+code);
-			        AccessToken atoken = oauth.getAccessTokenByCode(code);
-			       // out.println("code"+atoken);
-			        String uid = atoken.getUid();
-			        String at = atoken.getAccessToken();
-			       // out.println(uid + " - "+ at);
-			        String expire = atoken.getExpireIn();
-			        session.setAttribute("uid", uid);//atoken.getUid());
-			       session.setAttribute("sinaatstr",at);//atoken.getAccessToken());
-			       out.println("<div style='width:99%;align:center;font:25px;'>正在进行用户系统初始化，将很快完成：1. 正在导入新会员......</div>");
-			       BizUserMgr bum = new BizUserMgr();
-			 	   bum.init(at, expire, uid);
-			 	   %>
-				 <script>
-			        	function _back(){
-			        		window.open("/CRM/mainframelogin.jsp","_self");
-			        	}
-			        	 _back();
-			        </script>
-			 	      <%
-				    //   response.sendRedirect(url); may missing the session if use response.sendRedirect
-			    }else{
-			        out.println("code String error"); 
-			    } 
-    	}
-		
+	      // out.print("<script>function _back(){");
+	      //  out.print("window.open('/CRM/mainframelogin.jsp?code="+code+"' + ,'_self');} _back();</script>");
     }
 %>
 </body>

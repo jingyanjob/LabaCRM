@@ -54,6 +54,9 @@
 				<value>
 					<![CDATA[com/CRM/data/Product.hbm.xml]]>
 				</value>
+				<value>
+					<![CDATA[com/CRM/data/TuanUse.hbm.xml]]>
+				</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -107,6 +110,11 @@
 		</property>
 	</bean>
 	<bean id="crmProductDao" class="com.CRM.data.dao.ProductDao" >
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+	<bean id="crmTuanuserDao" class="com.CRM.data.dao.TuanUseDao" >
 		<property name="hibernateTemplate">
 			<ref bean="hibernateTemplate"/>
 		</property>

@@ -9,81 +9,103 @@
 <title></title>
 </head>
 <body>
-
-<div id="salescaseshowdiv" title="营销方案详情" style="width:600px;position:absolute; top:20px; left:80px; background-color: #EEeeee;" >
+<div style="width:690px;" id="tuanlistdiv">
+				<div style="border: 1px solid #eeeeee; width:98%;position:absolute; tope:100px; left:120px;" id="usetuaninlist">
+					<center>
+						团购代码 
+						<br/>
+						<input id="tuancodeuse"/>
+						<br/>
+						消费者名称/微博 
+						<br/>
+						<input id="tuanuseruse"/>
+						<br/>
+						<input type="button" onclick="useTuan()" value="确定"/> &nbsp;&nbsp;
+						<input type="button" onclick="closTuanFromList()" value="取消"/>
+						</center>
+						<br/><br/>
+						<div id="tuanusemsg"></div>
+					</div>
+<c:forEach items="${scs}" var="sc">
+	<div style="border:1px solid #cccccc;margin: 3 3 3;width: 190px;background-color:#eeeeee;">
+			<center>
+				
+				结束时间:<c:out value="${sc.caseendshort}"></c:out> 
+				<br />
+				团购代码:<c:out value="${sc.tuancode}"/>
+				<br />
+				团购价:<c:out value="${sc.disprice}"/>元
+				<br />
+				说明:<c:out value="${sc.contentshort}"></c:out>
+				<a href="javascript:showSCDetail('<c:out value="${sc.id}"/>'
+						,'<c:out value="${sc.vipunamelist}"/>'
+						,'<c:out value="${sc.content}"/>'
+						,'<c:out value="${sc.productids}"/>')" style="text-transform:none;text-decoration:none;">
+					查看详情
+				</a>
+				&nbsp; &nbsp;
+				<a href="javascript:">使用团购</a>
+			</center>
+	</div>
+	
+	
+	<div id="salescaseshowdiv${sc.id}" title="营销方案详情" style="width:600px;min-height:150px;border: 1px solid green;position:absolute; background-color: white;display:none;" >
 	<table  height="100%">
 		<tr>
 			<td width="600px">
 				<table height="100%" width="100%"> 
 					<tr>
-						<td style="height:40px" align=left>
-							<div id="scshownamelist" ></div>
+						<td align=left style="background-color: #eeeeee;">
+							结束时间<c:out value="${sc.caseendshort}"/>  &nbsp; &nbsp;
+							团购代码 <c:out value="${sc.tuancode}"/> &nbsp; &nbsp;
+							团购价 <c:out value="${sc.disprice}"/>元
 						</td>
 					</tr>
 					<tr>
-						<td align=left style="width:400px">
-							<div id="scshowcontent"></div>
+						<td align=left >
+							团购说明：<c:out value="${sc.content}"/>
 						</td>
 					</tr>
 					<tr>
-						<td style="height:25px" align=center>
-							<%--<a href="javascript:scPublishAgain();">再发一次</a>
+						<td align=left >
+							团购菜单：
+							<c:forEach items="${sc.products}" var="prod">
+								<c:out value="${prod.productname}"/>-
+								<c:out value="${prod.price}"/>元  ,
+							</c:forEach>
+						</td>
+					</tr>
+					<%-- tr>
+						<td align=left style="border-top: 1px solid #bbbbbb;">
+							<div style="max-height: 80px;overflow-y:scroll">
+								<span><c:out value="${sc.vipunamelist}"/></span>							
+							</div>
+						</td>
+					</tr>--%>
+					<tr>
+						<td height=“25px” align=center style="background-color: #eeeeee;">
+							<a href="javascript:scPublishAgain();">发到微博</a>
 								&nbsp;&nbsp;&nbsp;
-								--%>
 								<a href="javascript:deleteSalesCase();">删除</a>
 								&nbsp;&nbsp;&nbsp;
-								<a href="javascript:closeSc__();">关闭</a>
+								<a href="javascript:closeSc__('salescaseshowdiv${sc.id}');">关闭</a>
 						</td>
 					</tr>
 					<tr>
-						<td>
-							<div id="scpublishstatus"></div>
+						<td height=”20px“ id="scpublishstatus">
 						</td>
 					</tr>
 				</table>
 			</td>
 		</tr>
 	</table>  
-</div>
-	<c:forEach items="${scs}" var="sc">
-	<div style="border:1px solid #cccccc;">
-	
-	<table style="width: 580px;" cellpadding="1" style="padding: 3 3 3;">
-		<tr>
-			<td style="background-color:#eeeeee;height:35px">
-				<a href="javascript:showSCDetail('<c:out value="${sc.id}"/>'
-						,'<c:out value="${sc.vipunamelist}"/>'
-						,'<c:out value="${sc.content}"/>'
-						,'<c:out value="${sc.productids}"/>')">
-				时间：<c:out value="${sc.updatetime}"></c:out>
-				内容预览：<c:out value="${sc.contentshort}"></c:out>
-				</a>
-			</td>
-		</tr>
-		<%-- tr>
-			<td style="display:none;" id="<c:out value="${sc.id}"/>">
-				<table  cellpadding="0" width="100%">
-					<tr>
-						<td style="height:60px; overflow:scroll;">
-							营销目标客户：<c:out value="${sc.vipunamelist}"></c:out>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							内容：<c:out value="${sc.content}"></c:out>
-							<img style="max-height:150px;border: 0px solid ;" src="http://100train-img.stor.sinaapp.com/<c:out value="${sc.buid}"></c:out>/sales/<c:out value="${sc.imgurl}"></c:out>"/>
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>--%>
-	</table>
-	
 	</div>
-	</c:forEach>
+</c:forEach>
+</div>
 	<script>
-		function closeSc__(){
-			 $("#salescaseshowdiv").hide();
+		function closeSc__(id){
+			document.getElementById(id).style.display = "none";
+			 //$("#salescaseshowdiv").hide();
 		}
 		function showSalesCaseListItem(id){
 			if(document.getElementById(id).style.display == "none"){

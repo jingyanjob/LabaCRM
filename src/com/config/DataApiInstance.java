@@ -8,6 +8,7 @@ import com.CRM.data.dao.ReservationDao;
 import com.CRM.data.dao.SalesCaseDao;
 import com.CRM.data.dao.SalesCaseMRepDao;
 import com.CRM.data.dao.ScoreRoleDao;
+import com.CRM.data.dao.TuanUseDao;
 import com.CRM.data.dao.VIPScoreDao;
 import com.CRM.data.dao.VIPUserDao;
 import org.springframework.context.ApplicationContext;
@@ -56,5 +57,9 @@ public class DataApiInstance {
 	public static synchronized ProductDao instanceSProductDao () throws Exception{
 		intiDAI();
 		return (ProductDao) context.getBean(StringLib.crmProductDao);
+	}
+	public static synchronized TuanUseDao instanceTuanUserDao () throws Exception{
+		intiDAI();
+		return (TuanUseDao) context.getBean(StringLib.crmTuanuserDao);
 	}
 }

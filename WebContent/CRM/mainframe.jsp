@@ -29,31 +29,31 @@
 			<table cellpadding="0" cellspacing="0" width="950px">
 				<tr>
 					<td align=right>
-						请点击登录：
-						<a href="https://api.weibo.com/oauth2/authorize?client_id=595918520&redirect_uri=http://labacrm.com/CRM/sinaauthcallback.jsp&response_type=code" style="text-decoration: none; border: none;" target="_self"> <img style="border: none;" src="http://tjs.sjs.sinajs.cn/t3/style/images/common/card/widget_connect.gif" />
+						请点击登录： 
+						<a href="https://api.weibo.com/oauth2/authorize?client_id=595918520&response_type=code&redirect_uri=http://labacrm.com/CRM/sinaauthcallback.jsp" style="text-decoration: none; border: none;" target="_self"> <img style="border: none;" src="http://tjs.sjs.sinajs.cn/t3/style/images/common/card/widget_connect.gif" />
 						</a>
 					</td>
 					<td align="left">
-						<img style="width:700px" src="img/mainpage.png">
+						<img style="width:700px" src="img/mainpage.jpg">
 					</td>
 				</tr>
 			</table>
 			<br /><br />
 		</div><%
 								//AccessToken atoken = (AccessToken)session.getAttribute("sinaaccessToken");
-								Object uid = session.getAttribute("uid");
-								Object sinaatstr = session.getAttribute("sinaatstr");
-								Object isnewbu = session.getAttribute("isnewbu");
-								User u = new User();
+							Object uid = session.getAttribute("uid");
+								//Object sinaatstr = session.getAttribute("sinaatstr");
+								//Object isnewbu = session.getAttribute("isnewbu");
+								//User u = new User();
 							if(request.getServerName().equals("localhost")){
 							}else{
 								if (uid != null) {
 									%>
 									 	<script>
-								        	function _back(){
-								        		window.open("/CRM/mainframelogin.jsp","_self");
+								        	function _gotoLogin(){
+								        		window.open("/CRM/sinaauthcallback.jsp","_self");
 								        	}
-								        	 _back();
+								        	 _gotoLogin();
 								        </script>
 								 	<%
 							 	} else {
@@ -70,11 +70,12 @@
 							}
 							%>
 	<script type="text/javascript">
+	/*
 		WB2.anyWhere(function(W) {
 			W.widget.hoverCard({
 				id : "businesscard"
 			});
-		});
+		});*/
 	</script>
 	
 	<div class="splitLine" ></div>

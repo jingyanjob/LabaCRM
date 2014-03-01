@@ -39,4 +39,6 @@ public class StringLib {
 	public static String crmSalesCaseDao = "crmSalesCaseDao";
 	public static String crmSalesCaseMRepDao = "crmSalesCaseMRepDao";
 	public static String crmProductDao = "crmProductDao";
+	public static String crmTuanuserDao = "crmTuanuserDao";
+	
 }

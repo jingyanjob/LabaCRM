@@ -186,14 +186,14 @@ public class WeiboTask {
 		return s;
 	}
 	public static void main(String[] str) throws WeiboException{
-		Oauth oauth = new Oauth();
-		AccessToken atoken = oauth.getAccessTokenByCode("ee233a654d47186d23e4df7d326ae5b9");
-        System.out.println("code"+atoken);
-//		
-//		String at = "2.0058jF6B0Cd61ee8b59f5822sFLouB";
-//		String uid = "1286907550";
-//		WeiboTask wt = new WeiboTask();
-//		wt.init(at);
-//		System.out.println(wt.getUser(at, uid).getName());
+//		Oauth oauth = new Oauth();
+//		AccessToken atoken = oauth.getAccessTokenByCode("ee233a654d47186d23e4df7d326ae5b9");
+//        System.out.println("code"+atoken);
+		
+		String at = "2.0058jF6B0Cd61ee8b59f5822sFLouB";
+		String uid = "1286907550";
+		WeiboTask wt = new WeiboTask();
+		wt.init(at);
+		System.out.println(wt.getUser(at, uid).getName());
 	}
 }

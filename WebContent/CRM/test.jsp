@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="javascript:alert('11')">
+<a href="javascript:alert('11')" style="text-transform:none;text-decoration:none;">
 <img src="img/labacrm121.jpg" style="border:0px solid" />
 test
 </a>
@@ -38,18 +38,32 @@ test
 </div>
 </div>
 
-<input id=newdatedd onclick="getdate()"/>
+<input id=newdatedd onclick="getdate()" value='getdate'/>
 <script type="text/javascript">
 	function testdivd(){
 		document.getElementById("testdivd").style.display = "block";
+		var maxh = window.screen.height - 200;
+		var hh;
+		alert(maxh);
+		if(maxh > 1000){
+			hh = "700px";
+		}
+		if( 800 < maxh && maxh <= 1000){
+			hh = 500;
+		}
+		if(maxh<800){
+			hh = 300;
+		}
+		document.getElementById("testdivd").style.height = hh;
 	}
+	
 	function ctestdivd(){
 		document.getElementById("testdivd").style.display = "none";
 	}
 	function getdate(){
 		var date = new Date();
-		var dynamicTuancode = date.getFullYear()+""+date.getMonth()+""
-				+date.getDay()+""+date.getHours()+""+date.getMinutes()+""+date.getSeconds();
+		var dynamicTuancode = date.getFullYear()+"" + (date.getMonth()+1)+""
+			+ date.getDate() +""+date.getHours()+""+date.getMinutes()+""+date.getSeconds();
 		document.getElementById("newdatedd").value = dynamicTuancode;
 	}
 

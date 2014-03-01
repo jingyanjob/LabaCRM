@@ -61,7 +61,7 @@ public class HttpClient implements java.io.Serializable {
 	private String proxyAuthUser = Configuration.getProxyUser();
 	private String proxyAuthPassword = Configuration.getProxyPassword();
 	private String token;
-
+	private boolean iniOk = false;
 	public String getProxyHost() {
 		return proxyHost;
 	}
@@ -134,21 +134,21 @@ public class HttpClient implements java.io.Serializable {
 	public HttpClient() {
 		// change timeout to 2s avoid block thread-pool (Tim)
 		this(150, 2000, 2000, 1024 * 1024);
+		System.out.println("HttpClient HttpClient HttpClient======= +0  " );
 	}
 
 	public HttpClient(int maxConPerHost, int conTimeOutMs, int soTimeOutMs,
 			int maxSize) {
+		System.out.println("HttpClient HttpClient HttpClient======= +1  ");
 		connectionManager = new MultiThreadedHttpConnectionManager();
 		HttpConnectionManagerParams params = connectionManager.getParams();
 		params.setDefaultMaxConnectionsPerHost(maxConPerHost);
 		params.setConnectionTimeout(conTimeOutMs);
 		params.setSoTimeout(soTimeOutMs);
-
 		HttpClientParams clientParams = new HttpClientParams();
 		// 忽略cookie 避免 Cookie rejected 警告
 		clientParams.setCookiePolicy(CookiePolicy.IGNORE_COOKIES);
-		client = new org.apache.commons.httpclient.HttpClient(clientParams,
-				connectionManager);
+		client = new org.apache.commons.httpclient.HttpClient(clientParams,	connectionManager);
 		Protocol myhttps = new Protocol("https", new MySSLSocketFactory(), 443);
 		Protocol.registerProtocol("https", myhttps);
 		this.maxSize = maxSize;
@@ -165,6 +165,8 @@ public class HttpClient implements java.io.Serializable {
 				log("Proxy AuthPassword: " + proxyAuthPassword);
 			}
 		}
+		iniOk = true;
+		System.out.println("HttpClient HttpClient HttpClient======= +2  " + client.getState().toString());
 	}
 
 	/**
@@ -292,6 +294,8 @@ public class HttpClient implements java.io.Serializable {
 		log("Request:");
 		log("POST" + url);
 		PostMethod postMethod = new PostMethod(url);
+		//postMethod.releaseConnection();
+
 		for (int i = 0; i < params.length; i++) {
 			postMethod.addParameter(params[i].getName(), params[i].getValue());
 		}
@@ -374,10 +378,14 @@ public class HttpClient implements java.io.Serializable {
 
 	public Response httpRequest(HttpMethod method, Boolean WithTokenHeader)
 			throws WeiboException {
+		//method.
+		if(!this.iniOk){
+			//this = new HttpClient(150, 2000, 2000, 1024 * 1024);
+		}
 		InetAddress ipaddr;
 		int responseCode = -1;
 		try {
-			ipaddr = InetAddress.getLocalHost();
+			ipaddr = InetAddress.getLocalHost();//////////////////
 			List<Header> headers = new ArrayList<Header>();
 			if (WithTokenHeader) {
 				if (token == null) {
@@ -394,7 +402,15 @@ public class HttpClient implements java.io.Serializable {
 			
 			method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
 					new DefaultHttpMethodRetryHandler(3, false));
-			client.executeMethod(method);
+			try{
+				client.executeMethod(method);  ///////////////////////
+			}catch(IOException ioe){
+				HttpClientParams clientParams = new HttpClientParams();
+				// 忽略cookie 避免 Cookie rejected 警告
+				clientParams.setCookiePolicy(CookiePolicy.IGNORE_COOKIES);
+				client = new org.apache.commons.httpclient.HttpClient(clientParams,	connectionManager);
+				client.executeMethod(method);  ///////////////////////
+			}
 			Header[] resHeader = method.getResponseHeaders();
 			responseCode = method.getStatusCode();
 			log("Response:");
@@ -404,12 +420,10 @@ public class HttpClient implements java.io.Serializable {
 				log(header.getName() + ":" + header.getValue());
 			}
 			Response response = new Response();
-			response.setResponseAsString(method.getResponseBodyAsString());
+			response.setResponseAsString(method.getResponseBodyAsString());////////////////
 			log(response.toString() + "\n");
 
-			if (responseCode != OK)
-
-			{
+			if (responseCode != OK){
 				try {
 					throw new WeiboException(getCause(responseCode),
 							response.asJSONObject(), method.getStatusCode());
@@ -419,9 +433,9 @@ public class HttpClient implements java.io.Serializable {
 			}
 			return response;
 
-		} catch (IOException ioe) {
+		}catch (IOException ioe) {
 			throw new WeiboException(ioe.getMessage(), ioe, responseCode);
-		} finally {
+		}  finally {
 			method.releaseConnection();
 		}
 

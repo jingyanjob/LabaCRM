@@ -1,6 +1,5 @@
 package com.CRM.product;
 
-import weibo4j.http.ImageItem;
 import weibo4j.model.WeiboException;
 
 import com.CRM.BizUserMgr;

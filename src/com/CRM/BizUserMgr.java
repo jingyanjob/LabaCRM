@@ -23,7 +23,7 @@ public class BizUserMgr {
 		sRD = com.config.DataApiInstance.instanceScoreRoleDao();
 	}
 
-	public void init(String at, String expire, String uid) throws Exception{
+	public String init(String at, String expire, String uid) throws Exception{
 		BizUser bu = this.getBizUser(uid);//new BizUser();
 		if( bu == null){
 			bu = new BizUser();
@@ -32,10 +32,10 @@ public class BizUserMgr {
 		}
 		bu.setAtoken(at);
 		bu.setExpirein(expire);
-		this.refreshBizUser(bu, at);
+		return this.refreshBizUser(bu, at);
 	}
 	
-	public ScoreRole refreshBizUser(BizUser bu, String at) throws Exception{
+	public String refreshBizUser(BizUser bu, String at) throws Exception{
 		ScoreRole sr = null;
 		if(bu.getUsername().equals("NEW")){
 			bu.setRepsinceid("1");
@@ -47,14 +47,13 @@ public class BizUserMgr {
 			sr = GlobalStaticData.getDefaultSR();
 			sr.setUid(bu.getUid());
 			sRD.insert(sr);
+			
 		}else{
 			bizUD.update(bu);
 		}
-		//new vip initial
-		BUInitTask.run(bu);
 		//initial current bu cache
 		//CacheFactory.getCache(bu.getUid());
-		return sr;
+		return BUInitTask.run(bu);
 	}
 	public BizUser getBizUser(String uid){
 		return bizUD.getBizUser(uid);

@@ -4,15 +4,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>LabaCRM Main</title>
-<link type="text/css" href="css/start/jquery-ui-1.8.23.custom.css"
-	rel="stylesheet" />
+<link type="text/css" href="css/start/jquery-ui-1.8.23.custom.css" rel="stylesheet" /><base>
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="js/masonry.js"></script>
+<script type="text/javascript" src="js/mainpage.js"></script>
 
+<script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520"
+	type="text/javascript" charset="utf-8"></script>
+<title>LabaCRM Main</title>
 </head>
 <body style="font-size: 13px;">
-	<div id="tabs" style="min-width: 800px">
+	<div id="tabs" style="min-width: 900px;border: 1px solid #bbbbee;">
 		<ul>
 			<li><a href="#tabs-1">在线预定</a></li>
 			<li><a href="#tabs-2" onclick="initVipUserSearch();">会员和积分</a></li>
@@ -20,13 +23,11 @@
 			<li><a href="#tabs-3" onclick="initSalesCase();">团购中心</a></li>
 			<%-- li><a href="#tabs-5">系统设置和帮助</a></li> --%>
 		</ul>
-		<div id="tabs-1" style="width: 99%">
-			<div
-				style="min-height: 400px; max-height: 800px; overflow-y: scroll;">
+		<div id="tabs-1" style="width: 100%; overflow-y: scroll;height: 500px;">
 				<table cellpadding="0" cellspacing="0" width="99%">
 					<tr>
-						<td align="left" valign="middle"><font size=2>@本店微博
-								新微博、转发微博、评论等 ，输入：预定 + 预定内容(例如：预定 今晚6点2人桌，联系人老张 电话1888 8888)</font> <a
+						<td align="left" valign="middle"><font size=2>
+						如何预定：任何微博用户   @本店微博，输入：预定 + 预定内容(例如：预定 今晚6点2人桌，联系人老张 电话186xxxxxxxx) 即可</font> <a
 							id="publishtoweibo" style="border: 0px white;"><img
 								src="img/publish_button_16.gif" /></a> <br />
 						<br /></td>
@@ -47,8 +48,9 @@
 					</tr>
 					<tr>
 						<td>
-							<div style="width: 100%" id="refreshresStatus">
-								<font size=2>网站每分钟会自动刷新，确保您不会错过任何新预订；</font>
+							<div style="width: 100%" id="refreshresStatus" style="float:center;">
+								<br />
+								<font size=2> 网站会自动刷新，确保您不会错过任何新预订</font>
 								<%--
 								<input type=button
 									id="getclientmsgbtn" onclick="getReservation();" value="刷新预定列表"
@@ -58,15 +60,13 @@
 					</tr>
 
 				</table>
-			</div>
 		</div>
-		<div id="tabs-2" style="min-height: 400px;  overflow-y: scroll;">
-			<div id="t2-tabs" style="min-height: 400px; max-height: 800px; ">
-				<ul style="min-height: 400px; max-height: 600px; ">
+		<div id="tabs-2" style="overflow-y: scroll;height: 500px;">
+			<div id="t2-tabs" >
+				<ul id="tabs2ul" style="height: 500px;">
 					<li><a href="#t2-tabs-1" onclick="initVipUserSearch()"> 会员积分 </a></li>
-					<li><a href="#t2-tabs-2" onclick="getVIPUserList()"> 会员列表
-					</a></li>
 					<li><a href="#t2-tabs-3"> 寻找新会员 </a></li>
+					<li><a href="#t2-tabs-2" onclick="getVIPUserList()"> 会员列表</a></li>
 				</ul>
 				<div id="t2-tabs-1" style="text-align: left;border:1px solid #eeeeee；">
 					<table cellpadding="0" cellspacing="0" Style="width:600px;border:1px solid #eeeeee" >
@@ -94,17 +94,16 @@
 				</div>
 			</div>
 		</div>
-		<div id="tabs-3"
-			style="min-height: 400px;overflow-y: scroll;">
-			<div id="t3-tabs" style="min-height: 400px; max-height: 800px; ">
-				<ul style="min-height: 400px; max-height: 600px; ">
-					<li><a href="#t3-tabs-1" onclick="initSalesCase();"> 发起团购</a></li>
-					<li><a href="#t3-tabs-2" onclick="getSalesCases();"> 我的团购</a></li>
-					<li><a href="#t3-tabs-3"> 团购报告</a></li>
+		<div id="tabs-3" style="overflow-y: scroll;height: 500px;">
+			<div id="t3-tabs">
+				<ul id="tabs3ul" style="height: 500px;">
+				<li><a href="#t3-tabs-3" onclick="initTuan();"> 使用团购</a></li>
+					<li><a href="#t3-tabs-1" onclick="initSalesCase();"> 发起团购 </a></li>
+					<li><a href="#t3-tabs-2" onclick="getSalesCases();"> 团购列表 </a></li>
 				</ul>
 				<div id="t3-tabs-1"
 					style="text-align: left; width: 600px;">
-					<table cellpadding="0" cellspacing="0" width="99%" style="border: 1px solid #eeeeee;">
+					<table cellpadding="1" cellspacing="2" width="99%" style="border: 1px solid #eeeeee;">
 						
 						<tr>
 							<td>结束日期：<input id="tuanenddate"/>
@@ -129,6 +128,7 @@
 								团购折扣:<input disabled id="tuandiscount" style="width:80px"/>
 							</td>
 						</tr>
+						<%-- 
 						<tr>
 							<td id="targetfilter_td"  style="border-top:1px solid #eeeeee;">
 							团购地点 <input id="targetlocation"
@@ -138,6 +138,7 @@
 								onclick="salestargethide();" />
 							</td>
 						</tr>
+						--%>
 						<tr>
 							<td style="background-color:#eeeeee;">
 								<input type=hidden id="finalsalestargetids" />
@@ -167,21 +168,35 @@
 							<td>总互动次数(估算)</td>
 							<td>总成交次数(估算)</td>
 						</tr>
-					</table --%>
-					<font size=5 color=green>报表引擎升级中，敬请期待</font>
+					</table 
+					
+					<div style="border: 1px solid #eeeeee; width:98%">
+					<center>
+						团购代码 
+						<br />
+						<input id="tuancodeuse"/>
+						<br />
+						消费者名称/微博 
+						<br />
+						<input id="tuanuseruse"/>
+						<br />
+						<input type=button onclick="useTuan()" value=提交 />
+						</center>
+						<br/><br/>
+						<div id="tuanusemsg" ></div>
+					</div>--%>
 				</div>
 			</div>
 		</div>
-		<div id="tabs-4"
-			style="min-height: 400px;overflow-y: scroll;">
-			<div id="t4-tabs" style="min-height: 400px; max-height: 800px; ">
-				<ul style="min-height:400px; ">
+		<div id="tabs-4" style="overflow-y:scroll;height: 500px;">
+			<div id="t4-tabs">
+				<ul id="tabs4ul" style="height: 500px;">
 					<li><a href="#t4-tabs-1" onclick="initProduct()"> 添加菜品 </a></li>
 					<li><a href="#t4-tabs-2" onclick="productList()"> 菜单和发布 </a></li>
 					<%-- li><a href="#t4-tabs-3"> 菜单发布 </a></li>--%>
 				</ul>
 				<div id="t4-tabs-1" style="text-align: left;width:600px">
-							<table cellpadding="0" cellspacing="0" width="99%" style="border: 1px solid #eeeeee;">
+							<table cellpadding="2" cellspacing="1" width="99%" style="border: 1px solid #eeeeee;">
 									<tr>
 										<td align=left>名称 <input id="productname" /> 分类 
 										<select	id="productcat">
@@ -222,7 +237,7 @@
 								</table>
 				</div>
 				<div id="t4-tabs-2">
-					<div id="productlistshow" style="float: left;">数据加载中....</div>
+					<div id="productlistshow" style="float: left;max-width: 700px;max-height:600px; ">数据加载中....</div>
 				</div>
 				<%-- div id="t4-tabs-3">
 					客户打开网址： <a href="http://labacrm.com/CRM/productshow/">
@@ -316,8 +331,7 @@
 	WB2.anyWhere(function(W) {
 				if (document.getElementById("hiduname") != null) {
 					var _screenname = document.getElementById("hiduname").value;
-					var _textreserve = ' 发新微博 或 转发微博或评论,#预定# + 预定内容， 例如：#预定# 今晚6点2人桌，联系人老张 18688888888 并 @'
-							+ _screenname + ' 即可实现预定，本店将在第一时间回复并与您确认；';
+					var _textreserve = '您只要  @'+ _screenname + ' 输入：预定 + 预定内容(例如：预定 今晚6点2人桌，联系人老张 电话186xxxxxxxx) ,预定即送会员积分；';
 					W.widget.publish({
 						'id' : 'publishtoweibo',
 						//button_text : 自定义button文字，默认为“发布到微博”
@@ -325,5 +339,87 @@
 					});
 				}
 			});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+		
+	$(function(){
+		//mainframe1 page initial
+		// Tabs
+		$('#tabs').tabs();
+		//subtabs
+		$( "#t2-tabs" ).tabs();
+	    $( "#t2-tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+	    $( "#t2-tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-center" );
+	    $( "#t3-tabs" ).tabs();
+	    $( "#t3-tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+	    $( "#t3-tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-center" );
+	    //in tabs3
+	    $( "#salescaselistshow" ).accordion({heightStyle: "content"});
+	    $( "#t4-tabs" ).tabs();
+	    $( "#t4-tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+	    $( "#t4-tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-center" );
+	
+	//    $( "#t5-tabs" ).tabs();
+	 //   $( "#t5-tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+	//    $( "#t5-tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-center" );
+	    
+	    var maxh = window.screen.height;
+		var divheight = 620 ;
+		if(maxh >1000){
+			divheight = 750;
+		}
+		if( 800 < maxh && maxh <= 1000){
+			divheight = 620;
+		}
+		if(maxh<800){
+			divheight = 520;
+		}
+		/*
+		document.getElementById("tabs-1").style.height = divheight;
+		document.getElementById("tabs-2").style.height = divheight;
+		document.getElementById("tabs2ul").style.height = divheight;
+		document.getElementById("tabs-3").style.height = divheight;
+		document.getElementById("tabs3ul").style.height = divheight;
+		document.getElementById("tabs-4").style.height = divheight;
+		document.getElementById("tabs4ul").style.height = divheight;
+		*/
+	});	
+	
+	function getReservation(){
+		//alert("get client msg");
+		$("#reservationStatus").html("<font size='4'>正在更新预定列表，请稍后.</font>");
+		var posturl = baseurl + '/crm.dc?action=getReservation';
+    	var dataxml = "data=<data>";
+    	dataxml = dataxml+ "<currentUID>" + $("#hiduid").val() + "</currentUID>";
+    	dataxml = dataxml+ "<currentATStr>" +  $("#hidatstr").val() + "</currentATStr>";
+    	dataxml = dataxml+ "</data>";
+   		var xmlRequest =  $.ajax({ 
+			type:"POST",
+			url: posturl, 
+			processData: false,
+			data: dataxml,
+			success:function(d){ $("#reservationStatus").html(""+d +"");},
+			error:function(){ $("#reservationStatus").html("<b><font>对不起，更新出错了，请您稍后再试！</font></b>");}
+		});
+	}
+	$(function(){
+		getReservation();
+        setInterval(getReservation,reserChkTime);//
+	});
+	//营销页面  默认营销地址设定
+	function setLocation_(){
+		document.getElementById("targetlocation").value = document.getElementById("bulocation").value;
+	}
+	setLocation_();
+	$("#getclientmsgbtn").click(function() {//for testing use
+		getReservation();
+	});
+	
+	$(function() {
+	    $("#tuanenddate").datepicker();
+	});
+});
 </script>
 </html>

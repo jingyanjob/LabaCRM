@@ -3,9 +3,11 @@ package com.CRM;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 
@@ -113,21 +115,17 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 		}
 		rs = rvm.getReservations(buid, 2);
 		rsconf = rvm.getReservations(buid, 0);
-		
 		if(rs == null || rs.length == 0){
 			rs = new Reservation[1];
 			rs[0] = new Reservation();
-			rs[0].setText("还没有客户在线预订过，亲快去宣传阿！");
+			rs[0].setText("没有新的客户预定了，亲，咱发微博宣传去！");
 			rs[0].setCreatedat(new Date());
 			rs[0].setUsername("");
 			rs[0].setResstatus(1);
 			ma.addObject("msgs",rs);
-		}else{
-			ma.addObject("rss",rs);
-			ma.addObject("rsconfs",rsconf);
 		}
-		//initial the cache
-		//CacheFactory.getCache(buid);
+		ma.addObject("rss",rs);
+		ma.addObject("rsconfs",rsconf);
 		return ma;
 	}
 	public ModelAndView saveScoreRole(HttpServletRequest req,
@@ -233,18 +231,6 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 		String buid = util.getXmlContent(xml, "currentUID");
 		try {
 			VIPUser[] vips = CacheFactory.getCache(buid).getVips();//vum.getVUsers(buid);
-		//	StringBuffer html
-			/*
-		  	<div style="margin: 3px 3px 3px 0; background-color:#dddddd;padding: 1px; float: left; width: 90px; font-size:12px; text-align: center;">
-				<img src="${vip.profileImageUrl}" style="width:82px;" />
-				<br />
-				<a href="http://www.weibo.com/u/${vip.uid}" target="_new"><c:out value="${vip.username}"></c:out></a>
-				<br />
-				<c:out value="${vip.location}"></c:out>
-			</div>
-		 */
-		//sb.append("<a target=_new href=\"http://weibo.com/u/"+vs[j]+"\">"+vs[j]+"</a> ");
-			
 			ma.addObject("vips", vips);
 			ma.addObject("lastitem", vips[vips.length-1]);
 		} catch (Exception e) {
@@ -364,8 +350,8 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 		String buid = util.getXmlContent(xml, "currentUID");
 		String at = util.getXmlContent(xml, "currentATStr");
 		String viplist = util.getXmlContent(xml, "viplist");
-		String tuanenddate = util.getXmlContent(xml, "viplist");
-		String tuancode = util.getXmlContent(xml, "viplist");
+		String tuanenddate = util.getXmlContent(xml, "tuanenddate");
+		String tuancode = util.getXmlContent(xml, "tuancode");
 		String content = util.getXmlContent(xml, "content");
 		//String imgurl = util.getXmlContent(xml, "imgurl"
 		String productids = util.getXmlContent(xml, "productids");
@@ -394,6 +380,11 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 		sc.setBeuid(buid);
 		sc.setUsername(buid);
 		sc.setSourcesite(1);
+		String _date = tuanenddate.split("/")[2]
+					+"-" + tuanenddate.split("/")[0]
+					+"-" + tuanenddate.split("/")[1] + " 23:59:59";
+		Timestamp t  = Timestamp.valueOf(_date);
+		sc.setCaseend(t);
 		try {
 			se.newSalesCase(sc, at);
 			SalesCase[] scs =se.getSalesCaseList(buid);
@@ -498,9 +489,16 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 					StringBuffer sb = new StringBuffer();
 					int rown = 6;
 					for(int j=0; j<vs.length;j++){
-						sb.append(vs[j]+" &nbsp; ");
+						sb.append(vs[j]+", ");
 					}
 					scs[i].setVipunamelist(sb.toString());
+					String[] pids = scs[i].getProductids().split(GlobalStaticData.spliter);
+					Hashtable<String, Product> ps = CacheFactory.getCache(buid).getPht();
+					for(int n=0; n<pids.length; n++){
+						if(!pids[n].equals("") && ps.containsKey(pids[n])){
+							scs[i].getProducts().add(ps.get(pids[n]));
+						}
+					}
 				}
 			}
 			ma.addObject("scs", scs);
@@ -522,6 +520,25 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 		String sid = util.getXmlContent(xml, "sid");
 		try {
 			se.delete(buid, sid);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ModelAndView();
+		}
+		return ma;
+	}
+	public ModelAndView useTuan(HttpServletRequest req,
+			HttpServletResponse res) throws UnsupportedEncodingException {
+		res.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
+		ModelAndView ma = new ModelAndView("CRM/actionpage/_successpage");
+		init();
+		String xml = req.getParameter("data");
+		String buid = util.getXmlContent(xml, "currentUID");
+		String tuancode = util.getXmlContent(xml, "tuancode");
+		String tuanuser = util.getXmlContent(xml, "tuanuser");
+		try {
+			se.tuanUse(buid, tuancode, tuanuser);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -30,7 +30,7 @@ public class WeiboConfig {
 	public static String getValue(String key){
 		Hashtable<String, String> ht = new Hashtable<String, String>();
 		ht.put("client_ID", "595918520");
-		ht.put("client_SERCRET", "c1fc8d4df66f920cf999ff310942c30a");
+		ht.put("client_SERCRET", "688ead40fa5a62670e39f3c7ffc0c769");//688ead40fa5a62670e39f3c7ffc0c769
 		ht.put("redirect_URI", "http://labacrm.com/CRM/sinaauthcallback.jsp");
 		ht.put("baseURL", "https://api.weibo.com/2/");
 		ht.put("accessTokenURL", "https://api.weibo.com/oauth2/access_token");

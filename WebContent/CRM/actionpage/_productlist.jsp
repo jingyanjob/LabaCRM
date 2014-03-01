@@ -8,27 +8,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
-<link type="text/css" href="css/start/jquery-ui-1.8.23.custom.css" rel="stylesheet" />
-<script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>
-<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="js/masonry.js"></script>
 </head>
 <body>
-<div style="width:580px;" id="productlistdiv">
+<div style="width:690px;" id="productlistdiv">
 	<c:forEach items="${prods}" var="prod">
-		<div style="border:1px solid #cccccc;margin: 3px 3px 3px 0; background-color:#dddddd;padding: 1px; float: left; height: 130px; font-size:12px; text-align: center;">
-			<a href="javascript:showProductDetail('${prod.id}', '${prod.productname}', '${prod.productdesc}', 'http://100train-img.stor.sinaapp.com/${prod.buid}/prod/${prod.imgurl}');">
+		<div style="border:1px solid #bbbbbb;margin: 3px 3px 3px; background-color:#dddddd;padding: 1px; float: left; height: 130px; font-size:12px; text-align: center;">
+			<a style="text-transform:none;text-decoration:none;" href="javascript:showProductDetail('${prod.id}', '${prod.productname}', '${prod.productdesc}', 'http://100train-img.stor.sinaapp.com/${prod.buid}/prod/${prod.imgurl}');">
 			<img style="height:100px;border: 0px solid ;" src="http://100train-img.stor.sinaapp.com/<c:out value="${prod.buid}"></c:out>/prod/<c:out value="${prod.imgurl}"></c:out>"/>
-			<br />
 			</a>
+			<br />
 			<div style="border:1px solid #cccccc;background-color:white;">
-				<c:out value="${prod.productname}"></c:out> - 
+				<c:out value="${prod.productname}"></c:out>
 				<c:out value="${prod.price}"/>元 - 折扣：<c:out value="${prod.incutoff}"/>
 			</div>
 		</div>
-		<br />
-		<div id="productshow${prod.id}" style="width:600px;position:absolute; border: 1px solid #EEeeee;background-color:white;" id="productshowdiv" >
-			<div title="菜品一览" style="width:100%;position:absolute; margin: 5px 5px 5px; background-color: #EEeeee;" >
+		<div id="productshow${prod.id}" style="width:600px;position:absolute; border: 1px solid #bbbbbb;background-color:white;display:none;" id="productshowdiv" >
+			<div title="菜品一览" style="width:590px; margin: 5px 5px 5px; background-color: #fffff1;" >
 				<table  height="100%">
 					<tr>
 						<td id="productshowimg" width="250px">
@@ -37,29 +32,28 @@
 						<td width="350px">
 							<table height="100%" width="100%"> 
 								<tr>
-									<td style="height:40px" align=left>
-										${prod.productname}
+									<td height="30px" align=center>
+										<b>${prod.productname}</b>
 									</td>
 								</tr>
 								<tr>
-									<td align=left>
+									<td align=left style="border-top: 1px solid #bbbbbb;">
 										${prod.productdesc}
 									</td>
 								</tr>
 								<tr>
-									<td style="height:25px" align=center>
+									<td height="25px" align=center style="background-color:#eeeeee;">
 											<a href="javascript:publishProductToWb();">发到微博</a>
-											&nbsp;&nbsp;&nbsp;
-											<a href="javascript:publishProductToWb();">单品促销</a>
+											<%--&nbsp;&nbsp;&nbsp;
+											<a href="javascript:publishProductToWb();">单品促销</a> --%>
 											&nbsp;&nbsp;&nbsp;
 											<a href="javascript:deleteProduct();">删除</a>
 											&nbsp;&nbsp;&nbsp;
-											<a href="javascript:close__('productshow${prod.id}');">关闭</a>
+											<a href="javascript:closePl__('productshow${prod.id}');">关闭</a>
 									</td>
 								</tr>
 								<tr>
-									<td>
-										<div id="productpublishstatus"></div>
+									<td height="20px" id="productpublishstatus">
 									</td>
 								</tr>
 							</table>
@@ -70,50 +64,10 @@
 			</div>
 	</c:forEach>
 </div>
-<div style="width:600px;position:absolute; border: 1px solid #EEeeee;background-color:white;" id="productshowdiv" >
-<div title="菜品一览" style="width:100%;position:absolute; margin: 5px 5px 5px; background-color: #EEeeee;" >
-	<table  height="100%">
-		<tr>
-			<td id="productshowimg" width="250px">
-				
-			</td>
-			<td width="350px">
-				<table height="100%" width="100%"> 
-					<tr>
-						<td style="height:40px" align=left>
-							<div id="productshowname" ></div>
-						</td>
-					</tr>
-					<tr>
-						<td align=left>
-							<div id="productshowdesc"></div>
-						</td>
-					</tr>
-					<tr>
-						<td style="height:25px" align=center>
-								<a href="javascript:publishProductToWb();">发到微博</a>
-								&nbsp;&nbsp;&nbsp;
-								<a href="javascript:publishProductToWb();">单品促销</a>
-								&nbsp;&nbsp;&nbsp;
-								<a href="javascript:deleteProduct();">删除</a>
-								&nbsp;&nbsp;&nbsp;
-								<a href="javascript:close__();">关闭</a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div id="productpublishstatus"></div>
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>  
-</div>
-</div>
 <script type="text/javascript">
-function close__(id){
-	 $(id).hide();
+function closePl__(id){
+	document.getElementById(id).style.display = "none";
+	// $(id).hide();
 }
 $(document).ready(function() {
 	$(function(){

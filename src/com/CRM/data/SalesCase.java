@@ -1,7 +1,9 @@
 package com.CRM.data;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import weibo4j.model.Status;
 import weibo4j.model.User;
@@ -15,6 +17,7 @@ public class SalesCase{
 	private String content;
 	private String contentshort;//not in db
 	private String productids; ////slipt by GlobalStaticData.spliter
+	private List products = null; //for ui show, not put into DB
 	private String imgurl;
 	private int status;//0: new and not met deadline; 1 finished; 2 regular
 	private String vipuidlist;//slipt by GlobalStaticData.spliter
@@ -24,6 +27,12 @@ public class SalesCase{
 	private String tuancode;
 	private Timestamp casestart;
 	private Timestamp caseend;
+	private String caseendshort;
+	public String getCaseendshort() {
+		caseendshort = caseend.toString().split(" ")[0];
+		return caseendshort;
+	}
+
 	private Timestamp updatetime ;
 	
 	private VIPUser[] vus;//not store in db
@@ -115,7 +124,16 @@ public class SalesCase{
 	public void setVipuidlist(String vipuidlist) {
 		this.vipuidlist = vipuidlist;
 	}
+	public List getProducts() {
+		if(products == null){
+			products = new ArrayList();
+		}
+		return products;
+	}
 
+	public void setProducts(List products) {
+		this.products = products;
+	}
 	public String getVipunamelist() {
 		return vipunamelist;
 	}

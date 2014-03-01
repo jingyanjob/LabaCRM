@@ -12,7 +12,7 @@
 <title></title>
 </head>
 <body>
-	<div id="salestagtnames" style="width:510px">
+	<div id="salestagtnames" style="width:510px; max-height:60; overflow-y:scroll;">
 	 	<c:out value="${names}" escapeXml="false"></c:out>
 	</div>
 	<input type=button onclick="checkAll('salestagtnames');" value="全选"/> 

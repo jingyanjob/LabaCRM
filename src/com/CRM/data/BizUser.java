@@ -102,12 +102,14 @@ public class BizUser{
 		this.expirein = expirein;
 	}
 	public String getRepsinceid() {
+		repsinceid.replaceAll("-", "");
 		return repsinceid;
 	}
 	public void setRepsinceid(String repsinceid) {
 		this.repsinceid = repsinceid;
 	}
 	public String getCmssinceid() {
+		cmssinceid.replaceAll("-", "");
 		return cmssinceid;
 	}
 	public void setCmssinceid(String cmssinceid) {

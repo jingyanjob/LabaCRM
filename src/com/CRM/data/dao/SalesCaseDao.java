@@ -1,5 +1,6 @@
 package com.CRM.data.dao;
 
+import java.sql.Timestamp;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Session;
@@ -37,9 +38,8 @@ public class SalesCaseDao {
 	public SalesCase getSalesCase(String id, int sourcesite){
 		SalesCase[] sc = null;
 		sc = this.runGetHQL("from SalesCase sc " +
-				" where ( sc.sourcesite=" + 
-				sourcesite + " and sc.id='" + id +
-				"')" , 0, 1);
+				" where (  sc.id=" + id +
+				")" , 0, 1);
 		if(sc != null && sc.length >0){
 			return sc[0];
 		}else
@@ -51,6 +51,14 @@ public class SalesCaseDao {
 		ws = this.runGetHQL("from SalesCase sc " +
 				" where ( sc.buid='" + buid + "'" +
 				")  order by sc.updatetime desc" , 0, number);
+		return ws;
+	}
+	public SalesCase[] getActiveSalesCases(String buid, int sourcesite, int number){
+		SalesCase[] ws = null;
+		Timestamp current = new Timestamp(System.currentTimeMillis()); 
+		ws = this.runGetHQL("from SalesCase sc " +
+				" where ( sc.buid='" + buid + "' and sc.caseend > '" + current + 
+				"')  order by sc.updatetime desc" , 0, number);
 		return ws;
 	}
 	/**

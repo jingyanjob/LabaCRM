@@ -11,6 +11,7 @@ import com.CRM.data.VIPUser;
 public class BUCacheData {
 	private Hashtable<String, VIPUser> vht = new Hashtable<String, VIPUser> ();
 	private Hashtable<String, Product> pht = new Hashtable<String, Product> ();
+	
 	private Hashtable<String, SalesCase> sht = new Hashtable<String, SalesCase> ();
 	private VIPUser[] vips ;
 	private Product[] products;
@@ -29,6 +30,26 @@ public class BUCacheData {
 			break;
 		}
 	}
+	
+	public Hashtable<String, VIPUser> getVht() {
+		return vht;
+	}
+	public void setVht(Hashtable<String, VIPUser> vht) {
+		this.vht = vht;
+	}
+	public Hashtable<String, Product> getPht() {
+		return pht;
+	}
+	public void setPht(Hashtable<String, Product> pht) {
+		this.pht = pht;
+	}
+	public Hashtable<String, SalesCase> getSht() {
+		return sht;
+	}
+	public void setSht(Hashtable<String, SalesCase> sht) {
+		this.sht = sht;
+	}
+	
 	public VIPUser[] getVips() {
 		vips = new VIPUser[vht.size()];
 		Set<String> keySet = vht.keySet();

@@ -12,13 +12,16 @@ var errorMsg = "呀，出错了，请您几分钟后再试一下";
 var loadingMsg = "数据加载中，请您稍后...";
 var deleteMsg = "正在删除，请稍后...";
 var gspliter = "#@";
-
 /*----common function--*/
 function deleteConfirm(){
 	return window.confirm("确定删除么");
 }
 function getCheckBoxValue(divid){
+	
  	var div = document.getElementById(divid);
+ 	if(div === null){
+ 		return "";
+ 	}
 	var i = div.childNodes.length;
 	var vs = "";
 	for(var n=0; n<i;n++){
@@ -31,6 +34,9 @@ function getCheckBoxValue(divid){
 }
 function getCheckBoxValueMulDivs(divid){
  	var div = document.getElementById(divid);
+ 	if(div === null){
+ 		return "";
+ 	} 	
 	var i = div.childNodes.length;
 	var vs = "";
 	for(var n=0; n<i;n++){
@@ -63,63 +69,7 @@ function unCheckAll(divid){
 	}
 }
 /*----page 1-------*/
-$(document).ready(function() {
-		
-	$(function(){
-		//mainframe1 page initial
-		// Tabs
-		$('#tabs').tabs();
-		//subtabs
-		$( "#t2-tabs" ).tabs();
-	    $( "#t2-tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
-	    $( "#t2-tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-center" );
-	    $( "#t3-tabs" ).tabs();
-	    $( "#t3-tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
-	    $( "#t3-tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-center" );
-	    //in tabs3
-	    $( "#salescaselistshow" ).accordion({heightStyle: "content"});
-	    $( "#t4-tabs" ).tabs();
-	    $( "#t4-tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
-	    $( "#t4-tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-center" );
-	
-	    $( "#t5-tabs" ).tabs();
-	    $( "#t5-tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
-	    $( "#t5-tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-center" );
-	});	
-	function getReservation(){
-		//alert("get client msg");
-		$("#reservationStatus").html("<font size='4'>正在更新预定列表，请稍后.</font>");
-		var posturl = baseurl + '/crm.dc?action=getReservation';
-    	var dataxml = "data=<data>";
-    	dataxml = dataxml+ "<currentUID>" + $("#hiduid").val() + "</currentUID>";
-    	dataxml = dataxml+ "<currentATStr>" +  $("#hidatstr").val() + "</currentATStr>";
-    	dataxml = dataxml+ "</data>";
-   		var xmlRequest =  $.ajax({ 
-			type:"POST",
-			url: posturl, 
-			processData: false,
-			data: dataxml,
-			success:function(d){ $("#reservationStatus").html(""+d +"");},
-			error:function(){ $("#reservationStatus").html("<b><font>对不起，更新出错了，请您稍后再试！</font></b>");}
-		});
-	}
-	$(function(){
-		getReservation();
-        setInterval(getReservation,reserChkTime);//
-	});
-	//营销页面  默认营销地址设定
-	function setLocation_(){
-		document.getElementById("targetlocation").value = document.getElementById("bulocation").value;
-	}
-	setLocation_();
-	$("#getclientmsgbtn").click(function() {//for testing use
-		getReservation();
-	});
-	
-	$(function() {
-	    $("#tuanenddate").datepicker();
-	});
-});
+
 	
     $("#newbizuserinit").click(function() {
     	$("#newbuinitstatus").html("<b><font>初始化进行中，可能会花费较长时间，谢谢您的耐心等候....</font></b>");
@@ -276,9 +226,10 @@ function selectedVU(name, score, uid){
 	function initSalesCase(){
 		$("#finalsalestarget").html("");
 		var date = new Date();
-		var dynamicTuancode = date.getFullYear()+"" + (date.getMonth()+1)+""
-			+ date.getDay() +""+date.getHours()+""+date.getMinutes()+""+date.getSeconds();
+		var dynamicTuancode = (date.getMonth()+1)+"" //date.getFullYear()+"" + 
+			+ date.getDate() +""+date.getHours()+""+date.getMinutes()+""+date.getSeconds();
 		document.getElementById("tuancode").value = dynamicTuancode;
+		initTuan();
 	}
 	function dynsalestarget(){
 		$("#finalsalestarget").html("正在智能筛选营销目标客户，请您稍后；");
@@ -303,7 +254,11 @@ function selectedVU(name, score, uid){
 	    });
 	}
 	function salestargethide(){
-		document.getElementById("finalsalestarget").style.height = "15px";
+		if(document.getElementById("finalsalestarget").style.height == "15"){
+			document.getElementById("finalsalestarget").style.height = "showProductDetail60";
+		}else{
+			document.getElementById("finalsalestarget").style.height = "15";
+		}
 		//if(document.getElementById("finalsalestarget").style.display == "block")
 		//	$("#finalsalestarget").hide();
 		//else
@@ -312,14 +267,6 @@ function selectedVU(name, score, uid){
 	function newSalesCase(){
 		var dataxml = "data=<data>";
 		var viplist = getCheckBoxValue("salestagtnames");
-		//var img = $("#salestimg").val().split("\\");
-//		var n=img.length;
-//		if(n >0){
-//			n = n-1;
-//		}
-//		var imgname = img[n];
-		//<td>结束日期：<input id="tuanenddate"/>
-		//团购代码： <input id="tuancode" />
 		var productids = checkProdForSales();
 		var oriprice = document.getElementById("originalprice").value;
 		var disprice = document.getElementById("tuanprice").value;
@@ -336,8 +283,6 @@ function selectedVU(name, score, uid){
     	dataxml = dataxml+ "<currentATStr>" +  $("#hidatstr").val() + "</currentATStr>";
     	dataxml = dataxml+ "<content>" +  $("#salescontent").val() + "</content>";
     	dataxml = dataxml+ "</data>";
-    	alert(tuanenddate);
-    	//document.getElementById("salesimgform").submit();
 	    var xmlRequest =  $.ajax({ 
 		    type:"POST",
 		    url: baseurl + '/crm.dc?action=newSalesCase', 
@@ -367,10 +312,13 @@ function selectedVU(name, score, uid){
 		    processData: false,
 		    data: dataxml,
 		    success:function(d){ 
-		    	alert("删除成功");
+		    	//alert("删除成功");
+		    	getSalesCases();
 			},
 			error:function(){
 				alert(errorMsg);
+				$("#scpublishstatus").html("");
+				getSalesCases();
 		    }
 	    });
 	}
@@ -460,15 +408,50 @@ function selectedVU(name, score, uid){
 		    }
 	    });
 	}
-	var scidforpublish;
+	var scidforpublish = "";
 	function showSCDetail(id, name , cont, imgurl){
+		var divid = "";
+		if(scidforpublish != ""){
+			divid= "salescaseshowdiv" + scidforpublish;
+			if(document.getElementById(divid) !=null){
+				document.getElementById(divid).style.display = "none";
+			}
+		}
 		scidforpublish = id;
-		//$("#scshowimg").html("<img style='width:200px' src=" + imgurl+" />");
-		$("#scshownamelist").html( "客户名单：<br/>"+name );
-		$("#scshowcontent").html( "<p>营销内容：<br/>"+cont +"</P>");
-		$("#salescaseshowdiv").show();
+		divid = "salescaseshowdiv" + id;
+		document.getElementById(divid).style.display = "block";
 	}
-	
+	function useTuanFromList(tuancode){
+		document.getElementById("usetuaninlist").style.display = "block";
+		$("#tuancodeuse").val(tuancode);
+	}
+	function closTuanFromList(){
+		document.getElementById("usetuaninlist").style.display = "none";
+	}
+	function useTuan(){
+		var dataxml = "data=<data>";
+    	dataxml = dataxml+ "<currentUID>" + $("#hiduid").val() + "</currentUID>";
+    	dataxml = dataxml+ "<tuancode>" + $("#tuancodeuse").val() + "</tuancode>";
+    	dataxml = dataxml+ "<tuanuser>" + $("#tuanuseruse").val() + "</tuanuser>";
+    	dataxml = dataxml+ "</data>";
+	    var xmlRequest =  $.ajax({ 
+		    type:"POST",
+		    url: baseurl + '/crm.dc?action=useTuan', 
+		    processData: false,
+		    data: dataxml,
+		    success:function(d){ 
+		    	$("#tuanusemsg").html("成功！");
+		    	//alert("成功！");
+			},
+			error:function(){ 
+				$("#tuanusemsg").html("哦，失败了，请检查团购代码是否正确！");
+		    }
+	    });
+	    closTuanFromList();
+	}
+	function initTuan(){
+		$("#tuanusemsg").html("");
+	}
 /*------------product------------*/
 	function initProduct(){
 		//$("#productdesc").value = "";
@@ -520,23 +503,25 @@ function selectedVU(name, score, uid){
 		    data: dataxml,
 		    success:function(d){ 
 		    	$("#productlistshow").html(d);
-		    	
 			},
 			error:function(){
 				alert(errorMsg);
 		    }
 	    });
 	}
+	var productidforpublish = "";
 	function showProductDetail(id, name , desc, imgurl){
-		productidforpublish = "productshow" + id;
-	//	$("#productshowimg").html("<img style='width:250px' src=" + imgurl+" />");
-	//	$("#productshowname").html( "菜名："+name );
-	//	$("#productshowdesc").html( "介绍："+desc );
-		//$("#productshowdiv" ).css("event.clientX");
-		
-	//	document.getElementById("productshowdiv").style.top = window.event.clientY - 150;
-	//	document.getElementById("productshowdiv").style.left = window.event.clientx - 200;
-		$(productidforpublish).show();
+		var divid= "";
+		if(productidforpublish != ""){
+			divid= "productshow" + productidforpublish;
+			if(document.getElementById(divid) != null){
+				document.getElementById(divid).style.display = "none";
+			}
+			
+		}
+		productidforpublish = id;
+		divid = "productshow" + id;
+		document.getElementById(divid).style.display = "block";
 	}
 	function deleteProduct(){
 		if(!deleteConfirm()){
@@ -554,14 +539,15 @@ function selectedVU(name, score, uid){
 		    processData: false,
 		    data: dataxml,
 		    success:function(d){ 
-		    	alert("删除成功");
+		    	//alert("删除成功");
+		    	productList();
 			},
 			error:function(){
 				alert(errorMsg);
+				productList();
 		    }
 	    });
-	}
-	var productidforpublish = "";	
+	}	
 	function publishProductToWb(){
 		var dataxml = "data=<data>";
 		dataxml = dataxml+ "<currentUID>" + $("#hiduid").val() + "</currentUID>";

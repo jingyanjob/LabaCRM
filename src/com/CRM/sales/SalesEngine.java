@@ -4,20 +4,21 @@ import com.CRM.GlobalStaticData;
 import com.CRM.VIPUserMgr;
 import com.CRM.data.BizUser;
 import com.CRM.data.SalesCase;
+import com.CRM.data.TuanUse;
 import com.CRM.data.VIPUser;
-import com.CRM.data.dao.BizUserDao;
 import com.CRM.data.dao.SalesCaseDao;
-import com.CRM.data.dao.ScoreRoleDao;
-import com.CRM.systemtasks.WeiboTask;
+import com.CRM.data.dao.TuanUseDao;
 import com.xp.cache.CacheFactory;
 
 public class SalesEngine {
 	public static int[] g_FindType = {0,1,2};//0:by location; 1 by....
 	public static int defaultSize = 50;
 	private SalesCaseDao scd;
-	private WeiboTask wt = new WeiboTask();
+	private TuanUseDao tud;
+	
 	public SalesEngine() throws Exception{
 		scd = com.config.DataApiInstance.instanceSalesCaseDao();
+		tud = com.config.DataApiInstance.instanceTuanUserDao();
 	}
 	
 	
@@ -95,8 +96,19 @@ public class SalesEngine {
 		}
 		return scs;
 	}
+	
+	public void tuanUse(String buid, String tuancode, String tuanuser){
+		TuanUse tu= new TuanUse();
+		tu.setBuid(buid);
+		tu.setTuancode(tuancode);
+		tu.setTuanuser(tuanuser);
+		tud.insert(tu);		
+	}
+	
 	public void salesCaseStatus(int caseId){
 		
 	}
+	
+	
 	
 }
