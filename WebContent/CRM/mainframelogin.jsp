@@ -27,7 +27,7 @@
 	width: 100%; 
 	left:0px;
 	top: 0px;
-	height:52px;
+	height:60px;
 	background-color:white;
 	position:fixed;
 	left: 0;
@@ -35,7 +35,7 @@
 	border-bottom: 1px #bbbbbb groove;
 }
 .maindiv1 {
-	margin-top:65px;
+	margin-top:75px;
 }
 
 .header-inner{ 
@@ -59,13 +59,12 @@
 					</div>
 				</div>
 		</div>
-		<div class=header-inner></div>
-		<div>
+		<div style="width:990px;">
 			<div id="newbuinit" style="width:50%;float:left;"></div>
 			<div id="logoninfo" style="width:50%;float:right;"></div>
 		</div>
 		<div class=maindiv1 >
-			<jsp:include page="mainframe1v2.jsp"></jsp:include>
+			<jsp:include page="mainframe1.jsp"></jsp:include>
 		</div>
 		<%
 		try{
