@@ -28,7 +28,7 @@
 	 	   %>
 		 	<script>
 	        	function _back(){
-	        		window.open("/CRM/mainframeloginv2.jsp","_self");
+	        		window.open("/CRM/mainframelogin.jsp","_self");
 	        	}
 	        	 _back();
 	        </script>

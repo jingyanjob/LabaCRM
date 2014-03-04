@@ -3,14 +3,15 @@
 <jsp:directive.page import="weibo4j.model.User"/>
 <jsp:directive.page import="weibo4j.Users"/>
 <%@page import="com.CRM.systemtasks.WeiboTask"%>
-<%@page import="com.xp.cache.CacheFactory" %>
 <%@page import="com.CRM.VIPUserMgr" %>
 <%@page import="com.CRM.BizUserMgr"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page language="java" import="weibo4j.*"%>
+
+<%--@ page language="java" import="weibo4j.*"%>
 <%@ page language="java" import="weibo4j.http.*"%>
-<%@ page language="java" import="weibo4j.util.*"%>
+<%@ page language="java" import="weibo4j.util.*"--%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -35,14 +36,16 @@
 	border-bottom: 1px #bbbbbb groove;
 }
 .maindiv1 {
-	margin-top:75px;
+	margin-top:10px;
 }
 
 .header-inner{ 
 	height:6px;
 	background: white url(img/inner-shadow.png) no-repeat 70% 0; 
 }
-
+.logininfo{
+	width:990px;height:20px;border:1px solid #bbbbbb;margin-top:65px;
+}
 </style>
 </head>
 <body style="font-size: 12px;background-color:#eeeeee">
@@ -59,7 +62,7 @@
 					</div>
 				</div>
 		</div>
-		<div style="width:990px;">
+		<div class=logininfo >
 			<div id="newbuinit" style="width:50%;float:left;"></div>
 			<div id="logoninfo" style="width:50%;float:right;"></div>
 		</div>
@@ -88,7 +91,7 @@
 						session.setAttribute("location", u.getLocation());
 					}
 					out.print("<script> function newbuinit(){"
-								+ "document.getElementById(\"newbuinit\").innerHTML=\"进行系统初始化进行中,将很快完成，请稍后: 1. 正在导入新会员......\";"
+								+ "document.getElementById(\"newbuinit\").innerHTML=\"进行系统初始化进行中,将很快完成，请稍后: 1. 正在导入新会员.....\";"
 								+ "}newbuinit();</script>");
 					//BizUser bu = new BizUser();
 					//bu.setUid(uid.toString());
@@ -152,7 +155,6 @@
 							+ sinaatstr + "  />';"
 							+ "}loginsuccess();</script>");
 				} else {
-
 				}
 			}
 		}catch(Exception e){

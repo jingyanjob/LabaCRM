@@ -7,11 +7,9 @@
 <link type="text/css" href="jq104/css/ui-lightness/jquery.ui.menu.css" rel="stylesheet" />
  --%>
 <link type="text/css" href="jq104/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
-
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="jq104/js/jquery-ui-1.10.4.custom.min.js"></script>
-<script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520"
-	type="text/javascript" charset="utf-8"></script>
+<script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520"	type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="js/mainpage.js"></script>
 <title>LabaCRM Main</title>
 <style type="text/css">
@@ -90,7 +88,7 @@
 			<div id="reservationdiv">
 					<table cellpadding="0" width="99%" cellspacing="0">
 						<tr>
-							<td align="left" valign="middle"><font size=1.5>
+							<td align="left" valign="middle"><font size=2>
 							如何预定：任何微博用户   @本店微博，输入：预定 + 预定内容(例如：预定 今晚6点2人桌，联系人老张 电话186xxxxxxxx) 即可</font> <a
 								id="publishtoweibo" style="border: 0px white;"><img
 									src="img/publish_button_16.gif" /></a> <br />
@@ -267,7 +265,7 @@
 		</div> --%>
 </body>
 
-<script type="text/javascript">
+<script type="text/javascript">getSalesCases();
 $(document).ready(function() {
 	$(function() {
 	    $( "#mainmenu" ).menu();
@@ -334,10 +332,10 @@ function leftSelect(id){
 		productList();
 	}
 	if( id === "tuandiv1"){
-		getTuanCode();
+		getSalesCases();
 	}
 	if( id === "tuandiv2"){
-		getSalesCases();
+		getTuanCode();
 	}
 	document.getElementById(id).style.display = "block";
 }
