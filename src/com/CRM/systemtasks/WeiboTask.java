@@ -144,21 +144,32 @@ public class WeiboTask {
 		init(atoken);
 		Comments com = new Comments();
 		List<Comment> statusToMe = null;
-		List<Comment> statusMentions = null;
-		List<Comment> status = new ArrayList(); 
 		try {
 			statusToMe = com.getCommentToMe(page, filter_by_source, filter_by_author);
+		} catch (WeiboException e) {
+			e.printStackTrace();
+		}
+		return statusToMe;
+	}
+	public List<Comment> getCommentAMList(String atoken, long sinamceId){
+		/**	private int page = -1;              //页码。注意：最多返回200条分页内容。
+			private int count = -1;             //指定每页返回的记录条数。
+			private long sinceId = -1;          //若指定此参数，则只返回ID比since_id大（即比since_id发表时间晚的）的微博消息。
+			private long maxId = -1;            //若指定此参数，则返回ID小于或等于max_id的微博消息
+		 */
+		Paging page = new Paging();
+		page.setSinceId(sinamceId);
+		Integer filter_by_author = 0;
+		Integer filter_by_source = 0;
+		init(atoken);
+		Comments com = new Comments();
+		List<Comment> statusMentions = null;
+		try {
 			statusMentions = com.getCommentMentions(page, filter_by_source, filter_by_author);
 		} catch (WeiboException e) {
 			e.printStackTrace();
 		}
-		if(statusToMe != null){
-			status.addAll(statusToMe);
-		}
-		if(statusMentions != null){
-			status.addAll(statusMentions);
-		}
-		return status;
+		return statusMentions;
 	}
 	public void reservationConfirm(String atoken, String cid, String id, String comment) throws WeiboException, UnsupportedEncodingException{
 		init(atoken);

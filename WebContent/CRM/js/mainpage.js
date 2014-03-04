@@ -188,7 +188,7 @@ function selectedVU(name, score, uid){
 	});
 	
 	function getVIPUserList(){
-		$("#t2-tabs-2").html(loadingMsg);
+		$("#vipdiv2").html(loadingMsg);
 		var dataxml = "data=<data>";
 		dataxml = dataxml+ "<currentUID>" + $("#hiduid").val() + "</currentUID>";
 		dataxml = dataxml+ "<currentATStr>" +  $("#hidatstr").val() + "</currentATStr>";
@@ -199,10 +199,10 @@ function selectedVU(name, score, uid){
 		    processData: false,
 		    data: dataxml,
 		    success:function(d){
-		    	$("#t2-tabs-2").html(d);
+		    	$("#vipdiv2").html(d);
 			},
 			error:function(){ 
-				$("#t2-tabs-2").html(errorMsg);
+				$("#vipdiv2").html(errorMsg);
 		    }
 		});
 //		$('#vipuselistdiv').masonry({ 
@@ -225,11 +225,15 @@ function selectedVU(name, score, uid){
 	}
 	function initSalesCase(){
 		$("#finalsalestarget").html("");
+		
+		//initTuan();
+		getSalesCases();
+	}
+	function getTuanCode(){
 		var date = new Date();
 		var dynamicTuancode = (date.getMonth()+1)+"" //date.getFullYear()+"" + 
 			+ date.getDate() +""+date.getHours()+""+date.getMinutes()+""+date.getSeconds();
 		document.getElementById("tuancode").value = dynamicTuancode;
-		initTuan();
 	}
 	function dynsalestarget(){
 		$("#finalsalestarget").html("正在智能筛选营销目标客户，请您稍后；");
@@ -442,12 +446,13 @@ function selectedVU(name, score, uid){
 		    success:function(d){ 
 		    	$("#tuanusemsg").html("成功！");
 		    	//alert("成功！");
+		    	 closTuanFromList();
 			},
 			error:function(){ 
 				$("#tuanusemsg").html("哦，失败了，请检查团购代码是否正确！");
 		    }
 	    });
-	    closTuanFromList();
+	  // 
 	}
 	function initTuan(){
 		$("#tuanusemsg").html("");

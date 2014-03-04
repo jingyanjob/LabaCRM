@@ -15,6 +15,7 @@
 		<property name="atokensecret" column="atokensecret" />
 		<property name="repsinceid" column="repsinceid" />
 		<property name="cmssinceid" column="cmssinceid" />
+		<property name="cmsamsinceid" column="cmsamsinceid" />
 		<property name="updatetime" column="updatetime" />
 	</class>
 </hibernate-mapping>

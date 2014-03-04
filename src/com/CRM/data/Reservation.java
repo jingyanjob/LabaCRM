@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import com.CRM.systemtasks.RepostAndComment;
 
 public class Reservation{
+	private int sid;//序列号，自增
 	private String id;//微博ID
 	private String cid;//评论ID
 	private String buid;//belongs to which biz user
@@ -16,6 +17,12 @@ public class Reservation{
 	private java.util.Date createdat;
 	private Timestamp updatetime;
 
+	public int getSid() {
+		return sid;
+	}
+	public void setSid(int sid) {
+		this.sid = sid;
+	}
 	public String getCid() {
 		return cid;
 	}

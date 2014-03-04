@@ -16,6 +16,20 @@ public class BizUser{
 	private String atoken; //access token
 	private String atokensecret; //access token secret
 	private String location;
+	private int province;                 //省份编码（参考省份编码表）
+	private int city;                     //城市编码（参考城市编码表）
+	private String expirein;
+	private String repsinceid; // last update repost id
+	private String cmssinceid; // last update comments id， 当前登录用户所接收到的评论
+	private String cmsamsinceid; // last update comments id， 最新的提到当前登录用户的评论，即@我的评论   
+	private Timestamp updatetime ; 
+	
+	public String getCmsamsinceid() {
+		return cmsamsinceid;
+	}
+	public void setCmsamsinceid(String cmsamsinceid) {
+		this.cmsamsinceid = cmsamsinceid;
+	}
 	public String getLocation() {
 		return location;
 	}
@@ -34,13 +48,6 @@ public class BizUser{
 	public void setCity(int city) {
 		this.city = city;
 	}
-	private int province;                 //省份编码（参考省份编码表）
-	private int city;                     //城市编码（参考城市编码表）
-	private String expirein;
-	private String repsinceid; // last update repost id
-	private String cmssinceid; // last update comments id
-	private Timestamp updatetime ; 
-	
 	public int getId() {
 		return id;
 	}

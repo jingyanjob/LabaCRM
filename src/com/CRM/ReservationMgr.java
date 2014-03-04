@@ -14,8 +14,8 @@ public class ReservationMgr {
 	public ReservationMgr() throws Exception{
 		rvd = com.config.DataApiInstance.instanceReservationDao();
 	}
-	public void confirmReservation(String atoken, String id) throws UnsupportedEncodingException, WeiboException{
-		Reservation r = this.getReservation(id);
+	public void confirmReservation(String atoken, String id, String cid) throws UnsupportedEncodingException, WeiboException{
+		Reservation r = this.getReservation(id, cid);
 		r.setResstatus(0);
 		rvd.insert(r);
 		WeiboTask wt = new WeiboTask();
@@ -25,7 +25,9 @@ public class ReservationMgr {
 		Reservation[] rs = new Reservation[rac.length];
 		for(int i=0; i<rac.length; i++){
 			rs[i] = new Reservation();
-			if(this.getReservation(rac[i].getId())== null){
+			rs[i] = this.getReservation(rac[i].getId(), rac[i].getCid());
+			if(rs[i] == null){
+				rs[i] = new Reservation();
 				rs[i].setUsername(rac[i].getUser().getScreenName());
 				rs[i].setBuid(buid);
 				rs[i].setUid(rac[i].getUser().getId());
@@ -38,14 +40,14 @@ public class ReservationMgr {
 				rvd.insert(rs[i]);
 				//total++;
 			}else{
-				rs[i] = this.getReservation(rac[i].getId());
+				//rs[i] = this.getReservation(rac[i].getId(), rac[i].getCid());
 			}
 		}
 		return rs;
 	}
 	
-	public Reservation getReservation(String id){
-		return rvd.getReservation(id);
+	public Reservation getReservation(String id, String cid){
+		return rvd.getReservation(id, cid);
 	}
 	public Reservation[] getReservations(String buid, int resstatus){
 		return rvd.getReservations(buid, resstatus);
@@ -53,6 +55,4 @@ public class ReservationMgr {
 	public Reservation[] getUserReservations(String username,String buid){
 		return rvd.getReservationsByUserName(username, buid);
 	}
-	
-	
 }

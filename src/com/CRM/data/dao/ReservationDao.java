@@ -53,19 +53,19 @@ public class ReservationDao {
 		else
 			return null;
 	}
-	public Reservation getReservation(String id){
+	public Reservation getReservation(String id, String cid){
 		Reservation[] rs = null;
 		rs = this.runGetHQL("from Reservation r " +
-				" where ( r.id='" + id + "'" +
-				")" , 0, 1);
+				" where ( r.id='" + id + "' and r.cid='" + cid +
+				"')" , 0, 1);
 		
 		if(rs != null && rs.length >0){
 			return rs[0];
 		}else
 			return null;
 	}
-	public void delete(String id){
-		this.runDelete(this.getReservation(id));
+	public void delete(String id, String cid){
+		this.runDelete(this.getReservation(id, cid));
 	}
 	/**
 	 * get table row number

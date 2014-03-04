@@ -8,10 +8,9 @@
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>
 <script type="text/javascript" src="js/masonry.js"></script>
-<script type="text/javascript" src="js/mainpage.js"></script>
-
 <script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520"
 	type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="js/mainpage.js"></script>
 <title>LabaCRM Main</title>
 </head>
 <body style="font-size: 13px;">
@@ -69,22 +68,28 @@
 					<li><a href="#t2-tabs-2" onclick="getVIPUserList()"> 会员列表</a></li>
 				</ul>
 				<div id="t2-tabs-1" style="text-align: left;border:1px solid #eeeeee；">
-					<table cellpadding="0" cellspacing="0" Style="width:600px;border:1px solid #eeeeee" >
+					<table cellpadding="0" cellspacing="0" Style="width:690px;border:1px solid #eeeeee" >
 						<tr>
-							<td width="120px">VIP会员微博名字</td>
-							<td width="180px"><input id="userwbid" value="" /></td>
-							<td><input id="vipusersearchbtn" value=" 查 询 "
+							<td  align= left>
+							VIP会员微博名字
+							<input id="userwbid" value="" />
+							<input id="vipusersearchbtn" value=" 查 询 "
 								type="button" /></td>
 						</tr>
 						<tr>
-							<td />
 							<td id="vipuserisblank" />
+						</tr>
+						<tr>
 							<td>
 								<div id="vipuserid"></div>
 							</td>
 						</tr>
+						<tr>
+							<td>
+								<div id="vipusersearchstatus"></div>
+							</td>
+						</tr>
 					</table>
-					<div id="vipusersearchstatus"></div>
 				</div>
 				<div id="t2-tabs-2" style="max-height: 400px;max-width:700px">数据加载中....</div>
 				<div id="t2-tabs-3">
@@ -97,9 +102,9 @@
 		<div id="tabs-3" style="overflow-y: scroll;height: 500px;">
 			<div id="t3-tabs">
 				<ul id="tabs3ul" style="height: 500px;">
-				<li><a href="#t3-tabs-3" onclick="initTuan();"> 使用团购</a></li>
-					<li><a href="#t3-tabs-1" onclick="initSalesCase();"> 发起团购 </a></li>
+					<%--<li><a href="#t3-tabs-3" onclick="initTuan();"> 使用团购</a></li> --%>
 					<li><a href="#t3-tabs-2" onclick="getSalesCases();"> 团购列表 </a></li>
+					<li><a href="#t3-tabs-1" onclick="getTuanCode();"> 发起团购 </a></li>
 				</ul>
 				<div id="t3-tabs-1"
 					style="text-align: left; width: 600px;">
@@ -159,8 +164,8 @@
 				<div id="t3-tabs-2">
 					<div id="salescaselistshow" style="float: left;"></div>
 				</div>
-				<div id="t3-tabs-3">
-					<%--table>
+				<%--<div id="t3-tabs-3">
+					 <table>
 						<tr>
 							<td>xx年xx月</td>
 							<td>营销次数</td>
@@ -184,8 +189,8 @@
 						</center>
 						<br/><br/>
 						<div id="tuanusemsg" ></div>
-					</div>--%>
-				</div>
+					</div>
+				</div>--%>
 			</div>
 		</div>
 		<div id="tabs-4" style="overflow-y:scroll;height: 500px;">
@@ -410,7 +415,7 @@ $(document).ready(function() {
 	});
 	//营销页面  默认营销地址设定
 	function setLocation_(){
-		document.getElementById("targetlocation").value = document.getElementById("bulocation").value;
+	//	document.getElementById("targetlocation").value = document.getElementById("bulocation").value;
 	}
 	setLocation_();
 	$("#getclientmsgbtn").click(function() {//for testing use

@@ -9,11 +9,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <script>
-	function confirmReservation(id) {
+	function confirmReservation(id, cid) {
 		if(!window.confirm("预定确认后，状态将无法修改！")){
 			return;
 		}
-		var xmlDocument = "data=<data><id>" + id + "</id>"
+		var xmlDocument = "data=<data><id>" + id + "</id>" + "<cid>" + cid +"</cid>"
 			+ "<currentATStr>" +  $("#hidatstr").val() + "</currentATStr></data>";
 			
 		var xmlRequest = $.ajax({ 
@@ -55,7 +55,7 @@
 					<fmt:formatDate value="${reserve.createdat}" type="both" dateStyle="short" timeStyle="short"/>
 				</td>
 				<td width="150" style="border:1px solid #DDDDDD;">
-					<a href="www.weibo.com/u/${reserve.username}" target="_new">	<c:out value="${reserve.username}"></c:out>  </a>
+					<a href="http://www.weibo.com/u/${reserve.username}" target="_new">	<c:out value="${reserve.username}"></c:out>  </a>
 				</td>
 				<td style="border:1px solid #DDDDDD;"><c:out value="${reserve.text}"></c:out></td>
 				<td width="80" align=right style="border:1px solid #DDDDDD;">
@@ -64,7 +64,7 @@
 							<td id="${reserve.id}">
 							 <%-- c:if test="${reserve.resstatus=='0'}">预定成功</c:if>	--%>
 							 <c:if test="${reserve.resstatus=='2'}">
-							 	<input  title="确定本次预定成功" onClick="confirmReservation(${reserve.id});" type=button value="预定确认"/></c:if>
+							 	<input  title="确定本次预定成功" onClick="confirmReservation(${reserve.id}, ${reserve.cid});" type=button value="预定确认"/></c:if>
 							</td>
 						</tr>
 					</table>
@@ -86,7 +86,9 @@
 				<td width="200" style="border:1px solid #DDDDDD;">
 					<fmt:formatDate value="${resconf.createdat}" type="both" dateStyle="short" timeStyle="short"/>
 				</td>
-				<td width="150" style="border:1px solid #DDDDDD;"><c:out value="${resconf.username}"></c:out>  </td>
+				<td width="150" style="border:1px solid #DDDDDD;">
+					<a href="http://www.weibo.com/u/${resconf.username}" target="_new">	<c:out value="${resconf.username}"></c:out>  </a>				
+			    </td>
 				<td style="border:1px solid #DDDDDD;"><c:out value="${resconf.text}"></c:out></td>
 				<td width=80 align=right style="border:1px solid #DDDDDD;">
 					 预定成功			

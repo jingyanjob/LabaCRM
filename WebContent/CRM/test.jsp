@@ -25,6 +25,8 @@ test
 <br />
 <div style="display:none;border: 1px #bbbbbb solid; width:500px; height: 400px; position:absolute; background-color: #eeeeee" id="testdivd">
 <input type="button" onclick="ctestdivd()" value="aaaacccc"/>
+<br />
+<div style="background-color:white;border-top:1px solid #bbbbbb;position:absolute;bottom:0;width:100%">************</div>
 
 </div>
 <input type="button" onclick="checkAll('chkdiv')" value="67890"/>

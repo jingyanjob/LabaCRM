@@ -14,30 +14,62 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%--
+<script type="text/javascript" src="js/masonry.js"></script>
+ --%>
+<script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520"
+	type="text/javascript" charset="utf-8"></script>
 <title>喇叭CRM</title>
 <meta property="wb:webmaster" content="27304571f6f8edb0" />
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+.maindivtop { 
+	width: 100%; 
+	left:0px;
+	top: 0px;
+	height:52px;
+	background-color:white;
+	position:fixed;
+	left: 0;
+	width: 100%;
+	border-bottom: 1px #bbbbbb groove;
+}
+.maindiv1 {
+	margin-top:65px;
+}
+
+.header-inner{ 
+	height:6px;
+	background: white url(img/inner-shadow.png) no-repeat 70% 0; 
+}
+
+</style>
 </head>
-<body style="font-size: 14px; margin-top: 20px;">
+<body style="font-size: 12px;background-color:#eeeeee">
 <center>
-		<div id="mainfunctions"
-			style="width: 88%; margin-left: 6%; margin-right: 6%;background-color:white;">
-			<table width="100%" cellpadding="0" cellspacing="0">
-				<tr>
-					<td align="left"><img style="" src="img/logofull.jpg" style="height:">
-					</td>
-					<td align="right">
-						<div id="newbuinit"></div>
-						<div id="logoninfo"></div>
-					</td>
-				</tr>
-			</table>
-			<jsp:include page="mainframe1.jsp"></jsp:include>
-			
-			<%
+		<div class=maindivtop>
+				<div style="width:990px;">
+					<div style="width:50%;left:2px;float:left;text-align:left;">
+						<img style="" src="img/logofull.jpg" style="height:50px"/>
+						喇叭CRM，全心全意为中国的饭店服务
+					</div>
+					<div style="height:50px;width:50%;float:right;text-align:center;">
+						<br /><input type=button value="关于喇叭" style="font-size:12; height:30" />
+						<input type=button value="联系我们" />
+					</div>
+				</div>
+		</div>
+		<div class=header-inner></div>
+		<div>
+			<div id="newbuinit" style="width:50%;float:left;"></div>
+			<div id="logoninfo" style="width:50%;float:right;"></div>
+		</div>
+		<div class=maindiv1 >
+			<jsp:include page="mainframe1v2.jsp"></jsp:include>
+		</div>
+		<%
 		try{
-			//AccessToken atoken = (AccessToken)session.getAttribute("sinaaccessToken");
+			//AccessToken atoken = (AccessToken)session.getAttribute("sinaaccessToken"); 
 			Object uid = session.getAttribute("uid");
 			Object sinaatstr = session.getAttribute("sinaatstr");
 			Object expire = session.getAttribute("expire");
@@ -106,8 +138,9 @@
 							+ "document.getElementsByName(\"imgbuid\").item(0).value=" + uid +";"//product pic
 							//+ "document.getElementsByName(\"imgbuid\").item(1).value=" + uid +";"//salescase pic
 							+ "document.getElementById(\"logoninfo\").innerHTML="
-							+ " '<img style=\"height:35px;\" src=\"" + u.getProfileImageURL()
-							+ "\" /><span id=\"businesscard\" href=\"http://weibo.com\" wb_screen_name="
+							//+ " '<img style=\"height:35px;\" src=\"" + u.getProfileImageURL()
+							//+ "\" />"
+							+ "<span id=\"businesscard\" href=\"http://weibo.com\" wb_screen_name="
 							+ u.getScreenName() + " ><u>" + u.getScreenName()
 							+ "</u></span>"
 							+ "<input id=bulocation type=hidden value=\""
@@ -129,9 +162,6 @@
 			e.printStackTrace();
 		}
 		%>
-			
-		</div>
-		
 		<%----%>
 	<script type="text/javascript">
 		WB2.anyWhere(function(W) {
@@ -140,9 +170,11 @@
 				type: '3,2'
 			});
 		});
-	</script>
-	<font size="1">LabaCRM.com Copyright @佰传信息  -津ICP备13005372号 </font>
-	<img src="SAELogo1.png"/>
+
+  $(function() {
+    $( "input[type=button]" ).button();
+  });
+  </script>
 </center>
 </body>
 </html>

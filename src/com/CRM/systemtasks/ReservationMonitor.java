@@ -24,21 +24,23 @@ public class ReservationMonitor {
 	public RepostAndComment[] getReservationList(String atoken, BizUser bu) throws Exception {
 		VIPUserMgr vipmgr = new VIPUserMgr();
 		BizUserMgr bum = new BizUserMgr();
-		List<Comment> coms = wt.getCommentList(atoken, Long.parseLong(bu.getCmssinceid()));
-		List<Comment> comsf = new ArrayList();
 		String newCmssinceid = bu.getCmssinceid();
+		String newCmsamsinceid = bu.getCmsamsinceid();
 		String newRepsinceid = bu.getRepsinceid();
+		List<Comment> coms = wt.getCommentList(atoken, Long.parseLong(bu.getCmssinceid()));
+		List<Comment> comsam = wt.getCommentAMList(atoken, Long.parseLong(bu.getCmsamsinceid()));
+		List<Status> reposts = wt.getRepostList(atoken, Long.parseLong(bu.getRepsinceid()));
+		List<Comment> comsf = new ArrayList();
 		int s = GlobalStaticData.getDefaultSR().getPercommentscore();
 		VIPScore vs= new VIPScore();
-		
-		int size = 0;
+		//直接评论
 		if(coms != null){
 			for(int i=0; i<coms.size();i++){
 				//筛选预定列表
-				String _text = coms.get(i).getText().split("//@")[0];
-				if((_text.indexOf("预定") != -1 || _text.indexOf("预订") != -1 || _text.indexOf("yuding") != -1 )
-						&& coms.get(i).getText().indexOf("#预订成功#") <0
-					){
+				String _s = coms.get(i).getText().toString();
+				String _text = _s.split("//@")[0];
+				if((_text.indexOf("预定") != -1 || _text.indexOf("预订") != -1 || _text.indexOf("yuding") != -1 || _text.indexOf("yu ding") != -1)
+						&& _s.indexOf("#预订成功#") <0 ){
 					comsf.add(coms.get(i));
 				}
 				//评论赠送积分
@@ -55,19 +57,43 @@ public class ReservationMonitor {
 				vipmgr.newVIPScore(vs);
 				newCmssinceid = String.valueOf(coms.get(i).getId());
 			}
-			size = size + comsf.size();
 		}
-		List<Status> reposts = wt.getRepostList(atoken, Long.parseLong(bu.getRepsinceid()));
+		//@我 的评论
+		if(comsam != null){
+			for(int i=0; i<comsam.size();i++){
+				//筛选预定列表
+				String _s = comsam.get(i).getText().toString();
+				String _text = _s.split("//@")[0];
+				if((_text.indexOf("预定") != -1 || _text.indexOf("预订") != -1 || _text.indexOf("yuding") != -1 || _text.indexOf("yu ding") != -1)
+						&& _s.indexOf("#预订成功#") <0 ){
+					comsf.add(comsam.get(i));
+				}
+				//评论赠送积分
+				Comment jo = (Comment)comsam.get(i);
+				vs.setIsplus(0);
+				vs.setPerscore(s);
+			    vs.setUid(jo.getUser().getId());
+				vs.setTotalscore(0);
+				vs.setBuid(bu.getUid());
+				vs.setSourcesite(0);
+				vs.setUsername(jo.getUser().getName());
+				vs.setWeiboid(String.valueOf(jo.getId()));
+				vs.setWeibotime(jo.getCreatedAt());
+				vipmgr.newVIPScore(vs);
+				newCmsamsinceid = String.valueOf(comsam.get(i).getId());
+			}
+		}
 		
+		//@我的
 		List<Status> repostsf = new ArrayList();
 		if(reposts != null){
 			s = GlobalStaticData.getDefaultSR().getPerrepostscore();
 			for(int i=0; i<reposts.size();i++){
 				//筛选预定列表
-				String _text = reposts.get(i).getText().split("//@")[0];
-				if((_text.indexOf("预定") != -1 || _text.indexOf("预订") != -1 || _text.indexOf("yuding") != -1)
-						&& reposts.get(i).getText().indexOf("#预订成功#") <0
-					){
+				String _s = reposts.get(i).getText().toString();
+				String _text = _s.split("//@")[0];
+				if((_text.indexOf("预定") != -1 || _text.indexOf("预订") != -1 || _text.indexOf("yuding") != -1|| _text.indexOf("yu ding") != -1)
+						&& _s.indexOf("#预订成功#") <0){
 					repostsf.add(reposts.get(i));
 				}
 				//转发赠送积分
@@ -84,26 +110,36 @@ public class ReservationMonitor {
 				vipmgr.newVIPScore(vs);
 				newRepsinceid = jo.getId();
 			}
-			size = size + repostsf.size();
 		}
-		RepostAndComment[] ss = new RepostAndComment[size] ;// + reposts.size()coms.size()
-		int i = 0, j = 0;
-		if(coms != null){
+		RepostAndComment[] ss = new RepostAndComment[(comsf.size() + repostsf.size())] ;
+		RepostAndComment[] cmsf = new RepostAndComment[comsf.size()] ;
+		RepostAndComment[] reps = new RepostAndComment[repostsf.size()] ;
+		int i = 0, j = 0;//, k = 0;
+		if(comsf != null){
 			for (i = 0; i < comsf.size(); i++) {
-				ss[i] = parseRepostAndComment(comsf.get(i), null, bu);
+				cmsf[i] = parseRepostAndComment(comsf.get(i), null, bu);
 			}
 		}
-		j = i;
-		if(reposts != null){
-			for (; j < ss.length; j++) {
-				ss[j] = parseRepostAndComment(null, repostsf.get(j-i), bu);
+		if(repostsf != null){
+			for ( j = 0; j < repostsf.size(); j++) {
+				reps[j] = parseRepostAndComment(null, repostsf.get(j), bu);
 			}
 		}
-		
-		if(size == 0)
+		if(comsf.size() >0 || repostsf.size()>0){
+			int n = 0,  m = 0;
+			for(; n < cmsf.length; n++){
+				ss[n] = cmsf[n];
+			}
+			m = 0;
+			for(; m < reps.length; m++){
+				ss[n+m] = reps[m];
+			}
+		}
+		if(i == 0)
 			return null;
 		else{
 			bu.setCmssinceid(newCmssinceid);
+			bu.setCmsamsinceid(newCmsamsinceid);
 			bu.setRepsinceid(newRepsinceid);
 			bum.updateBizUser(bu);
 			return this.sortRL(ss);
@@ -117,7 +153,6 @@ public class ReservationMonitor {
 		if(com != null){
 			rac.setCreatedAt(com.getCreatedAt());
 			rac.setText(com.getText().split("//@")[0].replaceAll("@"+busername,""));
-			rac.setText(com.getText().split("//@")[0].replaceAll(busername,""));
 			rac.setUser(com.getUser());
 			rac.setId(String.valueOf(com.getStatus().getId()));
 			rac.setCid(String.valueOf(com.getId()));
@@ -125,7 +160,6 @@ public class ReservationMonitor {
 		if(status != null){
 			rac.setCreatedAt(status.getCreatedAt());
 			rac.setText(status.getText().split("//@")[0].replaceAll("@"+busername,""));
-			rac.setText(status.getText().split("//@")[0].replaceAll(busername,""));
 			rac.setUser(status.getUser());
 			rac.setId(status.getId());
 			rac.setCid(status.getId());
@@ -157,23 +191,52 @@ public class ReservationMonitor {
 	
 
 	public static void main(String[] str) throws Exception {
-		ReservationMonitor rm = new ReservationMonitor();
-		String atoken = "2.0058jF6B00rTAH89731329c0YCBP2B";
+	    WeiboTask wt = new WeiboTask();
+		
+//		int i = 0;
+//		for(; i<5; i++){
+//			System.out.println( "- "+i);
+//		}
+		//System.out.println(i);
+//		ReservationMonitor rm = new ReservationMonitor();
+		String atoken = "2.0058jF6B0Cd61ee8b59f5822sFLouB";
+		List list = new ArrayList();
 		long sinceid = 1000;
-		BizUser bu = null;
-//		WeiboTask wt = new WeiboTask();
-//		System.out.println(wt.getUser(atoken, "1286907550").getName());
-		RepostAndComment[] ss = rm.getReservationList(atoken, bu);
-		System.out.println("----------共有   "+ss.length +"  条记录");
-		for(int i=0; i< ss.length ; i++){
-			System.out.println(ss[i].getCreatedAt() + "  "
-					+ ss[i].getUser().getName()
-					+ " "
-					+ ss[i].getText()
-					+ " "
-					+ ss[i].getId()
-					);//+ ss[i].get
+		BizUser bu = new BizUser();
+		bu.setCmsamsinceid("1");
+		bu.setCmssinceid("1");
+		bu.setRepsinceid("1");
+		bu.setAtoken(atoken);
+		bu.setUid("1286907550");
+		List<Comment> coms = wt.getCommentList(atoken, Long.parseLong(bu.getCmssinceid()));
+		List<Comment> comsam = wt.getCommentAMList(atoken, Long.parseLong(bu.getCmsamsinceid()));
+		List<Status> reposts = wt.getRepostList(atoken, Long.parseLong(bu.getRepsinceid()));
+		
+		for(int i=0; i<coms.size();i++){
+			list.add(coms.get(i).getText() + "  00000-coms " + coms.get(i).getId() + " - "+ coms.get(i).getStatus().getId());
+			//System.out.println(coms.get(i).getText());
 		}
-
+		for(int i=0; i<comsam.size();i++){
+			list.add(comsam.get(i).getText() + "  11111comsam " + comsam.get(i).getId() + " - "+ comsam.get(i).getStatus().getId());
+			//System.out.println(comsam.get(i).getText());
+		}
+		for(int i=0; i<reposts.size();i++){
+			list.add(reposts.get(i).getText()+ "  22222--reps " + reposts.get(i).getId());
+			//System.out.println(reposts.get(i).getText());
+		}
+		System.out.println("total: " + list.size());
+		int n = 0;
+		for(int i=0; i<list.size();i++){
+			String _text1 = list.get(i).toString();
+			String _text = _text1.split("//@")[0];
+			if((_text.indexOf("预定") != -1 || _text.indexOf("预订") != -1 || _text.indexOf("yuding") != -1)
+					&& _text1.indexOf("#预订成功#") <0){
+				System.out.println(_text1 + " " );
+				n++;
+			}
+			
+		}
+		System.out.println("total: " + n);
+		
 	}
 }

@@ -9,8 +9,7 @@
 <title></title>
 </head>
 <body>
-<div style="width:690px;" id="tuanlistdiv">
-				<div style="border: 1px solid #eeeeee; width:98%;position:absolute; tope:100px; left:120px;" id="usetuaninlist">
+<div style="border: 1px solid #bbbbbb; display:none;width:260px;position:absolute; top:80px; left:180px;background-color:white;" id="usetuaninlist">
 					<center>
 						团购代码 
 						<br/>
@@ -26,29 +25,35 @@
 						<br/><br/>
 						<div id="tuanusemsg"></div>
 					</div>
+<div style="width:690px;" id="tuanlistdiv">
 <c:forEach items="${scs}" var="sc">
-	<div style="border:1px solid #cccccc;margin: 3 3 3;width: 190px;background-color:#eeeeee;">
-			<center>
-				
-				结束时间:<c:out value="${sc.caseendshort}"></c:out> 
-				<br />
-				团购代码:<c:out value="${sc.tuancode}"/>
-				<br />
-				团购价:<c:out value="${sc.disprice}"/>元
-				<br />
-				说明:<c:out value="${sc.contentshort}"></c:out>
-				<a href="javascript:showSCDetail('<c:out value="${sc.id}"/>'
-						,'<c:out value="${sc.vipunamelist}"/>'
-						,'<c:out value="${sc.content}"/>'
-						,'<c:out value="${sc.productids}"/>')" style="text-transform:none;text-decoration:none;">
-					查看详情
-				</a>
-				&nbsp; &nbsp;
-				<a href="javascript:">使用团购</a>
-			</center>
-	</div>
-	
-	
+		<div style="border:1px solid #bbbbbb;margin: 3px 3px 3px; background-color:#dddddd;padding: 1px; float: left; height: 130px; font-size:12px; text-align: center;">
+			<table height=100% width=180px align=center>
+				<tr>
+					<td>
+						结束时间:<c:out value="${sc.caseendshort}"></c:out> 
+						<br />
+						团购代码:<c:out value="${sc.tuancode}"/>
+						<br />
+						团购价:<c:out value="${sc.disprice}"/>元
+						<br />
+						说明:<p> <c:out value="${sc.contentshort}"></c:out> </p>
+					</td>
+				</tr>
+				<tr>
+					<td height=20px style="background-color:white;border-top:1px solid #bbbbbb;">
+						<a href="javascript:showSCDetail('<c:out value="${sc.id}"/>'
+								,'<c:out value="${sc.vipunamelist}"/>'
+								,'<c:out value="${sc.content}"/>'
+								,'<c:out value="${sc.productids}"/>')" style="text-transform:none;">
+							查看详情
+						</a>
+						&nbsp; &nbsp;
+						<a href="javascript:useTuanFromList('${sc.tuancode}')" style="text-transform:none;">使用团购</a>
+					</td>
+				</tr>
+			</table>	
+		</div>
 	<div id="salescaseshowdiv${sc.id}" title="营销方案详情" style="width:600px;min-height:150px;border: 1px solid green;position:absolute; background-color: white;display:none;" >
 	<table  height="100%">
 		<tr>

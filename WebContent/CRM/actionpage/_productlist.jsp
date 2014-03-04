@@ -13,14 +13,25 @@
 <div style="width:690px;" id="productlistdiv">
 	<c:forEach items="${prods}" var="prod">
 		<div style="border:1px solid #bbbbbb;margin: 3px 3px 3px; background-color:#dddddd;padding: 1px; float: left; height: 130px; font-size:12px; text-align: center;">
-			<a style="text-transform:none;text-decoration:none;" href="javascript:showProductDetail('${prod.id}', '${prod.productname}', '${prod.productdesc}', 'http://100train-img.stor.sinaapp.com/${prod.buid}/prod/${prod.imgurl}');">
-			<img style="height:100px;border: 0px solid ;" src="http://100train-img.stor.sinaapp.com/<c:out value="${prod.buid}"></c:out>/prod/<c:out value="${prod.imgurl}"></c:out>"/>
-			</a>
-			<br />
-			<div style="border:1px solid #cccccc;background-color:white;">
-				<c:out value="${prod.productname}"></c:out>
-				<c:out value="${prod.price}"/>元 - 折扣：<c:out value="${prod.incutoff}"/>
-			</div>
+			<table height=100% width=180px align=center>
+				<tr>
+					<td>
+						<a style="text-transform:none;text-decoration:none;" href="javascript:showProductDetail('${prod.id}', '${prod.productname}', '${prod.productdesc}', 'http://100train-img.stor.sinaapp.com/${prod.buid}/prod/${prod.imgurl}');">
+							<img style="height:100px;border: 0px solid ;" src="http://100train-img.stor.sinaapp.com/<c:out value="${prod.buid}"></c:out>/prod/<c:out value="${prod.imgurl}"></c:out>"/>
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td style="min-height:25px;background-color:white;border-top:1px solid #bbbbbb;">
+						<p>
+							<a style="text-transform:none;text-decoration:none;" href="javascript:showProductDetail('${prod.id}', '${prod.productname}', '${prod.productdesc}', 'http://100train-img.stor.sinaapp.com/${prod.buid}/prod/${prod.imgurl}');">
+								<c:out value="${prod.productname}"></c:out> &nbsp;&nbsp;
+								<c:out value="${prod.price}"/>元 - 折扣：<c:out value="${prod.incutoff}"/>
+							</a>
+						</p>
+					</td>
+				</tr>
+			</table>
 		</div>
 		<div id="productshow${prod.id}" style="width:600px;position:absolute; border: 1px solid #bbbbbb;background-color:white;display:none;" id="productshowdiv" >
 			<div title="菜品一览" style="width:590px; margin: 5px 5px 5px; background-color: #fffff1;" >

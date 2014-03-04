@@ -40,6 +40,7 @@ public class BizUserMgr {
 		if(bu.getUsername().equals("NEW")){
 			bu.setRepsinceid("1");
 			bu.setCmssinceid("1");
+			bu.setCmsamsinceid("1");
 			WeiboTask wt = new WeiboTask();
 			User u = wt.getUser(at, bu.getUid());
 			bu.setUsername(u.getName());

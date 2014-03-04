@@ -123,12 +123,11 @@ $(document).ready(function() {
 			</a> &nbsp; &nbsp; 
 		</c:forEach>
 	</div>
-	
-	<div id="vipscorechangestatus"></div>
-	<table style="background-color:#EEEEEE;">
+	<div style="background-color:#eeeeee" id="vipscorechangestatus"></div>
+	<table style="border-top:1px solid #bbbbbb" width:100%>
 		<tr>
 			<td width="80px" >可用积分</td>
-			<td valign="middle" >
+			<td valign="middle" width=150px >
 				<div id="totalscoretxt" style="font-size:10;">
 					<c:out value="${onlyone}"></c:out>
 				</div>

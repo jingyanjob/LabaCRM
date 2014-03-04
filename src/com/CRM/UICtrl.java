@@ -86,9 +86,10 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 		ReservationMonitor rm = new ReservationMonitor();
 		String xml = req.getParameter("data");// util.readXMLFromReq(req);
 		String id = util.getXmlContent(xml, "id");
+		String cid = util.getXmlContent(xml, "cid");
 		String at = util.getXmlContent(xml, "currentATStr");
 		try {
-			rvm.confirmReservation(at, id);
+			rvm.confirmReservation(at, id, cid);
 		} catch (WeiboException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -484,16 +485,16 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 		try {
 			scs = CacheFactory.getCache(buid).getSalesCases();//se.getSalesCaseList(buid);
 			if(scs[0].getId() != 0){
+				Hashtable<String, Product> ps = CacheFactory.getCache(buid).getPht();
 				for(int i=0 ;i <scs.length; i++){
 					String[] vs = scs[i].getVipunamelist().split(GlobalStaticData.spliter);
 					StringBuffer sb = new StringBuffer();
-					int rown = 6;
 					for(int j=0; j<vs.length;j++){
 						sb.append(vs[j]+", ");
 					}
 					scs[i].setVipunamelist(sb.toString());
 					String[] pids = scs[i].getProductids().split(GlobalStaticData.spliter);
-					Hashtable<String, Product> ps = CacheFactory.getCache(buid).getPht();
+					scs[i].setProducts(new ArrayList());
 					for(int n=0; n<pids.length; n++){
 						if(!pids[n].equals("") && ps.containsKey(pids[n])){
 							scs[i].getProducts().add(ps.get(pids[n]));
