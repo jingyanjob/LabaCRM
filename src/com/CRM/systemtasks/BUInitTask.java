@@ -16,7 +16,7 @@ import com.CRM.data.VIPUser;
 import com.CRM.systemtasks.RegularWeiboTask;
 
 public class BUInitTask { 
-	public static String run(BizUser bu) throws Exception {
+	public String run(BizUser bu) throws Exception {
 		//initial business user`s VIP: follows & friends;
 		return newBUInitial(bu);
 	}
@@ -26,7 +26,7 @@ public class BUInitTask {
 	 * @return
 	 * @throws Exception 
 	 */
-	public static String newBUInitial(BizUser bu) throws Exception{
+	public String newBUInitial(BizUser bu) throws Exception{
 		WeiboTask wt = new WeiboTask();
 		VIPUserMgr vum = new VIPUserMgr();
 		List<User> follows = wt.getFollowUps(bu.getAtoken(), bu.getUid());

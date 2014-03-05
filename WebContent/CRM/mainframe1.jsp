@@ -244,7 +244,7 @@
 						</tr>
 						<tr>
 							<td align=center style="border-top:2px solid #eeeeee;">
-							 <input  type="button" onclick="newSalesCase();" value="创 建 并 发 送"></td>
+							 <input  type="button" onclick="newSalesCase();" value="创             建"></td>
 						</tr>
 					</table>
 					<div style="font-size:9">
@@ -265,28 +265,28 @@
 		</div> --%>
 </body>
 
-<script type="text/javascript">getSalesCases();
+<script type="text/javascript">
 $(document).ready(function() {
-	$(function() {
-	    $( "#mainmenu" ).menu();
-	  });
+		$(function() {
+		    $( "#mainmenu" ).menu();
+		});
 	  	function getReservation(){
 		//alert("get client msg");
-		$("#reservationStatus").html("<font size='4'>正在更新预定列表，请稍后.</font>");
-		var posturl = baseurl + '/crm.dc?action=getReservation';
-    	var dataxml = "data=<data>";
-    	dataxml = dataxml+ "<currentUID>" + $("#hiduid").val() + "</currentUID>";
-    	dataxml = dataxml+ "<currentATStr>" +  $("#hidatstr").val() + "</currentATStr>";
-    	dataxml = dataxml+ "</data>";
-   		var xmlRequest =  $.ajax({ 
-			type:"POST",
-			url: posturl, 
-			processData: false,
-			data: dataxml,
-			success:function(d){ $("#reservationStatus").html(""+d +"");},
-			error:function(){ $("#reservationStatus").html("<b><font>对不起，更新出错了，请您稍后再试！</font></b>");}
-		});
-	}
+			$("#reservationStatus").html("<font size='4'>正在更新预定列表，请稍后.</font>");
+			var posturl = baseurl + '/crm.dc?action=getReservation';
+	    	var dataxml = "data=<data>";
+	    	dataxml = dataxml+ "<currentUID>" + $("#hiduid").val() + "</currentUID>";
+	    	dataxml = dataxml+ "<currentATStr>" +  $("#hidatstr").val() + "</currentATStr>";
+	    	dataxml = dataxml+ "</data>";
+	   		var xmlRequest =  $.ajax({ 
+				type:"POST",
+				url: posturl, 
+				processData: false,
+				data: dataxml,
+				success:function(d){ $("#reservationStatus").html(""+d +"");},
+				error:function(){ $("#reservationStatus").html("<b><font>对不起，更新出错了，请您稍后再试！</font></b>");}
+			});
+		}
 	$(function(){
 		getReservation();
         setInterval(getReservation,reserChkTime);//
@@ -303,6 +303,8 @@ $(document).ready(function() {
 	$(function() {
 	    $("#tuanenddate").datepicker();
 	});
+	//新会员加载
+	initBizUser();
 	  
 });
 

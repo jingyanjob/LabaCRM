@@ -824,12 +824,13 @@ body .ui-tooltip {
 	border: 1px solid #cccccc;
 	background: #f6f6f6 url(images/ui-bg_glass_100_f6f6f6_1x400.png) 50% 50% repeat-x;
 	font-weight: bold;
-	color: #1c94c4;
+	color: black;
+	/*color: #1c94c4; */
 }
 .ui-state-default a,
 .ui-state-default a:link,
 .ui-state-default a:visited {
-	color: #1c94c4;
+	color: black;/* #1c94c4; */
 	text-decoration: none;
 }
 .ui-state-hover,

@@ -4,7 +4,7 @@ var currentUID = "";
 var currentATStr = "";
 var second = 1000;
 var minute = 60 * second;
-var reserChkTime = 10 * minute;
+var reserChkTime = 5 * minute;
 //vip search and select
 var currentVIPUserId = "";
 var currentVIPUserScore = 0;
@@ -70,9 +70,8 @@ function unCheckAll(divid){
 }
 /*----page 1-------*/
 
-	
-    $("#newbizuserinit").click(function() {
-    	$("#newbuinitstatus").html("<b><font>初始化进行中，可能会花费较长时间，谢谢您的耐心等候....</font></b>");
+	function initBizUser(){
+		$("#newbuinit").html("<b>正在统计新会员...</b>");
     	//alert(baseurl + '/crm.dc?action=newBizUserInit'); var currentUID = "";
     	//var currentATStr = "";
     	var posturl = baseurl + '/crm.dc?action=newBizUserInit';
@@ -86,9 +85,13 @@ function unCheckAll(divid){
 			url: posturl, 
 			processData: false,
 			data: dataxml,
-			success:function(d){ $("#newbuinitstatus").html(""+d +"");},
-			error:function(){ $("#newbuinitstatus").html("<b><font>失败！</font></b>");}
+			success:function(d){ $("#newbuinit").html(d );},
+			error:function(){ $("#newbuinit").html("<b><font>失败！</font></b>");}
 		});
+		
+	}
+    $("#newbizuserinit").click(function() {
+    	initBizUser();
    	});
 											/*----page 2-------*/
 

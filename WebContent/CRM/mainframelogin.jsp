@@ -18,6 +18,7 @@
 <%--
 <script type="text/javascript" src="js/masonry.js"></script>
  --%>
+ <link type="text/css" href="jq104/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
 <script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520"
 	type="text/javascript" charset="utf-8"></script>
 <title>喇叭CRM</title>
@@ -28,7 +29,7 @@
 	width: 100%; 
 	left:0px;
 	top: 0px;
-	height:60px;
+	height:85px;
 	background-color:white;
 	position:fixed;
 	left: 0;
@@ -36,7 +37,7 @@
 	border-bottom: 1px #bbbbbb groove;
 }
 .maindiv1 {
-	margin-top:10px;
+	margin-top:110px;
 }
 
 .header-inner{ 
@@ -44,7 +45,7 @@
 	background: white url(img/inner-shadow.png) no-repeat 70% 0; 
 }
 .logininfo{
-	width:990px;height:20px;border:1px solid #bbbbbb;margin-top:65px;
+	width:100%;height:20px;margin-top:60px;color:black;text-align:center;left:0px;
 }
 </style>
 </head>
@@ -60,12 +61,18 @@
 						<br /><input type=button value="关于喇叭" style="font-size:12; height:30" />
 						<input type=button value="联系我们" />
 					</div>
+					<br/>
+					<div class="ui-widget-header ui-state-default logininfo">
+							<div id="logoninfo" style="width:445px;float:left;text-align:left">
+								登录信息
+							</div>
+							<div id="newbuinit" style="width:445px;float:right;text-align:right">
+								初始化信息
+							</div>
+					</div>
 				</div>
 		</div>
-		<div class=logininfo >
-			<div id="newbuinit" style="width:50%;float:left;"></div>
-			<div id="logoninfo" style="width:50%;float:right;"></div>
-		</div>
+		
 		<div class=maindiv1 >
 			<jsp:include page="mainframe1.jsp"></jsp:include>
 		</div>
@@ -91,34 +98,15 @@
 						session.setAttribute("location", u.getLocation());
 					}
 					out.print("<script> function newbuinit(){"
-								+ "document.getElementById(\"newbuinit\").innerHTML=\"进行系统初始化进行中,将很快完成，请稍后: 1. 正在导入新会员.....\";"
+								+ "document.getElementById(\"newbuinit\").innerHTML=\"系统正在初始化，马上完成...\";"
 								+ "}newbuinit();</script>");
-					//BizUser bu = new BizUser();
-					//bu.setUid(uid.toString());
-					////bu.setAtoken(sinaatstr.toString());
 					BizUserMgr bum = new BizUserMgr();
 					String re = bum.init(sinaatstr.toString(), expire.toString(), uid.toString());
+					/*
 					out.print("<script> function newbuinitend(){"
 								+ "document.getElementById(\"newbuinit\").innerHTML=\"初始化完成， 共导入VIP客户 "
 								+ re + " 人\";" + "}newbuinitend();</script>");
-					/*out.print("<script> function newbuinit(){"
-								+ "document.getElementById(\"newbuinit\").innerHTML=\"进行系统初始化进行中,将很快完成，请稍后: 1. 正在导入新会员......\";"
-								+ "}newbuinit();</script>");
-					if (isnewbu != null && isnewbu.toString().equals("true")) {
-						BizUser bu = new BizUser();
-						bu.setUid(uid.toString());
-						bu.setAtoken(sinaatstr.toString());
-						out.print("<script> function newbuinit(){"
-								+ "document.getElementById(\"newbuinit\").innerHTML=\"进行系统初始化进行中,将很快完成，请稍后: 1. 正在导入新会员......\";"
-								+ "}newbuinit();</script>");
-						String re = BUInitTask.run(bu);
-						session.setAttribute("isnewbu", "false");
-						out.print("<script> function newbuinitend(){"
-								+ "document.getElementById(\"newbuinit\").innerHTML=\"初始化完成， 共导入VIP客户 "
-								+ re + " 人\";" + "}newbuinitend();</script>");
-					}
 					*/
-					/*initial user info cross front and end*/
 					VIPUserMgr vum = new VIPUserMgr();
 					long vipnumber = vum.getNumber(uid.toString());
 					String buinfo = "<span id=\"businesscard\" href=\"http://weibo.com\" wb_screen_name="
@@ -139,14 +127,14 @@
 							+ "\"; function loginsuccess(){"
 							+ "document.getElementsByName(\"imgbuid\").item(0).value=" + uid +";"//product pic
 							//+ "document.getElementsByName(\"imgbuid\").item(1).value=" + uid +";"//salescase pic
-							+ "document.getElementById(\"logoninfo\").innerHTML="
+							+ "document.getElementById(\"logoninfo\").innerHTML='"
 							//+ " '<img style=\"height:35px;\" src=\"" + u.getProfileImageURL()
 							//+ "\" />"
 							+ "<span id=\"businesscard\" href=\"http://weibo.com\" wb_screen_name="
 							+ u.getScreenName() + " ><u>" + u.getScreenName()
 							+ "</u></span>"
 							+ "<input id=bulocation type=hidden value=\""
-							+ u.getLocation() + "\"/>" + u.getLocation() + "  "
+							+ u.getLocation() + "\"/>" //+ u.getLocation() + "  "
 							+ " 拥有 " + vipnumber + " 位VIP会员"
 							+ "<input id=hiduid type=hidden value=" + uid
 							+ "  />" + "<input id=hiduname type=hidden value="

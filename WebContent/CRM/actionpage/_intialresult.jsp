@@ -10,6 +10,6 @@
 <title></title>
 </head>
 <body>
-	恭喜您，VIP初始化很顺利！此次共有&nbsp;<c:out value="${result}"></c:out>&nbsp;位新VIP会员.
+	有 <c:out value="${result}"></c:out>位新会员加入.
 </body>
 </html>

@@ -736,12 +736,13 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 		ModelAndView ma = new ModelAndView("CRM/actionpage/_intialresult");
 		init();
 		try {
+			BUInitTask bt = new BUInitTask();
 			BizUser bu = new BizUser();
 			bu.setUid(uid);
 			bu.setAtoken(at);
 			bu.setRepsinceid("1");
 			bu.setCmssinceid("1");
-			String re = BUInitTask.run(bu);
+			String re = bt.run(bu);
 			ma.addObject("result",re);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

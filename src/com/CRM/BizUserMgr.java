@@ -1,17 +1,11 @@
 package com.CRM;
-
-import org.hibernate.HibernateException;
-
 import weibo4j.model.User;
-import weibo4j.model.WeiboException;
-
 import com.CRM.data.BizUser;
 import com.CRM.data.ScoreRole;
 import com.CRM.data.dao.BizUserDao;
 import com.CRM.data.dao.ScoreRoleDao;
 import com.CRM.systemtasks.BUInitTask;
 import com.CRM.systemtasks.WeiboTask;
-import com.xp.cache.CacheFactory;
 
 public class BizUserMgr {
 	
@@ -54,7 +48,7 @@ public class BizUserMgr {
 		}
 		//initial current bu cache
 		//CacheFactory.getCache(bu.getUid());
-		return BUInitTask.run(bu);
+		return "";//BUInitTask.run(bu);
 	}
 	public BizUser getBizUser(String uid){
 		return bizUD.getBizUser(uid);

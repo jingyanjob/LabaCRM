@@ -13,7 +13,7 @@
 <title></title>
 </head>
 <body>
-	<div id="salesproducts" style="width:510px">
+	<div id="salesproducts">
 	 	<c:out value="${prods}" escapeXml="false"></c:out>
 	</div>
 	<%--
