@@ -34,10 +34,10 @@
 	position:fixed;
 	left: 0;
 	width: 100%;
-	border-bottom: 1px #bbbbbb groove;
+	border-bottom: 1px #777777 groove;
 }
 .maindiv1 {
-	margin-top:110px;
+	margin-top:100px;
 }
 
 .header-inner{ 
@@ -45,11 +45,12 @@
 	background: white url(img/inner-shadow.png) no-repeat 70% 0; 
 }
 .logininfo{
-	width:100%;height:20px;margin-top:60px;color:black;text-align:center;left:0px;
+	width:990px;height:20px;margin-top:50px;color:white;text-align:center;left:0px;
+	background-color:black;
 }
 </style>
 </head>
-<body style="font-size: 12px;background-color:#eeeeee">
+<body style="font-size: 12px;background-color:#ffffff">
 <center>
 		<div class=maindivtop>
 				<div style="width:990px;">
@@ -57,12 +58,15 @@
 						<img style="" src="img/logofull.jpg" style="height:50px"/>
 						喇叭CRM，全心全意为中国的饭店服务
 					</div>
-					<div style="height:50px;width:50%;float:right;text-align:center;">
+					<div style="height:50px;width:50%;float:right;text-align:right;">
 						<br /><input type=button value="关于喇叭" style="font-size:12; height:30" />
-						<input type=button value="联系我们" />
+						<input type=button value="联系我们" /> &nbsp;&nbsp;&nbsp;
 					</div>
 					<br/>
-					<div class="ui-widget-header ui-state-default logininfo">
+					<div class="logininfo">
+					<%--
+						 class="ui-widget-header ui-state-default logininfo"
+					 --%>
 							<div id="logoninfo" style="width:445px;float:left;text-align:left">
 								登录信息
 							</div>
@@ -107,8 +111,7 @@
 								+ "document.getElementById(\"newbuinit\").innerHTML=\"初始化完成， 共导入VIP客户 "
 								+ re + " 人\";" + "}newbuinitend();</script>");
 					*/
-					VIPUserMgr vum = new VIPUserMgr();
-					long vipnumber = vum.getNumber(uid.toString());
+					
 					String buinfo = "<span id=\"businesscard\" href=\"http://weibo.com\" wb_screen_name="
 							+ u.getScreenName()
 							+ " ><u>"
@@ -127,7 +130,7 @@
 							+ "\"; function loginsuccess(){"
 							+ "document.getElementsByName(\"imgbuid\").item(0).value=" + uid +";"//product pic
 							//+ "document.getElementsByName(\"imgbuid\").item(1).value=" + uid +";"//salescase pic
-							+ "document.getElementById(\"logoninfo\").innerHTML='"
+							+ "document.getElementById(\"logoninfo\").innerHTML=' &nbsp;&nbsp;"
 							//+ " '<img style=\"height:35px;\" src=\"" + u.getProfileImageURL()
 							//+ "\" />"
 							+ "<span id=\"businesscard\" href=\"http://weibo.com\" wb_screen_name="
@@ -135,7 +138,7 @@
 							+ "</u></span>"
 							+ "<input id=bulocation type=hidden value=\""
 							+ u.getLocation() + "\"/>" //+ u.getLocation() + "  "
-							+ " 拥有 " + vipnumber + " 位VIP会员"
+							//+ " 拥有 " + vipnumber + " 位VIP会员"
 							+ "<input id=hiduid type=hidden value=" + uid
 							+ "  />" + "<input id=hiduname type=hidden value="
 							+ u.getScreenName() + "  />"

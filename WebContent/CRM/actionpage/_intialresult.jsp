@@ -10,6 +10,6 @@
 <title></title>
 </head>
 <body>
-	有 <c:out value="${result}"></c:out>位新会员加入.
+	现有 <c:out value="${total}"></c:out>位会员.&nbsp;&nbsp;
 </body>
 </html>

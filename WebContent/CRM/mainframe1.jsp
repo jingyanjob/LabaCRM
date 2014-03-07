@@ -25,7 +25,7 @@
 	width: 860px;
 	float:right;
 	text-algin:center;
-	border:1px solid #dddddd;
+	border:1px solid #bbbbbb;
 	background-color:white;
 }
 .subdivdef{

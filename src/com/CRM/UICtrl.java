@@ -743,7 +743,9 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 			bu.setRepsinceid("1");
 			bu.setCmssinceid("1");
 			String re = bt.run(bu);
+			long vipnumber = vum.getNumber(uid.toString());
 			ma.addObject("result",re);
+			ma.addObject("total",vipnumber);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
