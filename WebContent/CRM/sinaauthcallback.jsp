@@ -24,7 +24,7 @@
 	        session.setAttribute("uid", uid);//atoken.getUid());
 	        session.setAttribute("sinaatstr",at);//atoken.getAccessToken());
 	        session.setAttribute("expire",expire);//atoken.getAccessToken());
-	        out.println("<div style='width:99%;align:center;font:25px;'>正在进行用户系统初始化，将很快完成：1. 正在导入新会员.......</div>");
+	        out.println("<div style='width:99%;align:center;font:25px;'>系统正在初始化，马上完成...</div>");
 	 	   %>
 		 	<script>
 	        	function _back(){

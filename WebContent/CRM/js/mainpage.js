@@ -110,12 +110,14 @@ function selectedVU(name, score, uid){
 	    }
 	});
 	$("#vipusersearchbtn").click(function() {
+		//alert("d");
 		vipUserSearch("0");
 	});
 	function initVipUserSearch(){
 		$("#vipusersearchstatus").html("");
 	}
 	function vipUserSearch(id){
+		//alert("a")
 		var intObj =  $("#userwbid").val();
 		if(id != "0"){
 			intObj = id;

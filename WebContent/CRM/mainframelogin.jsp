@@ -1,17 +1,10 @@
-<%@page import="com.CRM.systemtasks.BUInitTask"%>
-<%@page import="com.CRM.data.BizUser"%>
+<%@ page import="com.CRM.data.BizUser"%>
 <jsp:directive.page import="weibo4j.model.User"/>
 <jsp:directive.page import="weibo4j.Users"/>
-<%@page import="com.CRM.systemtasks.WeiboTask"%>
-<%@page import="com.CRM.VIPUserMgr" %>
-<%@page import="com.CRM.BizUserMgr"%>
+<%@ page import="com.CRM.systemtasks.WeiboTask"%>
+<%@ page import="com.CRM.BizUserMgr"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<%--@ page language="java" import="weibo4j.*"%>
-<%@ page language="java" import="weibo4j.http.*"%>
-<%@ page language="java" import="weibo4j.util.*"--%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,15 +22,16 @@
 	width: 100%; 
 	left:0px;
 	top: 0px;
-	height:85px;
-	background-color:white;
+	height:60px;
+	background-color:#eeeeee;
 	position:fixed;
 	left: 0;
 	width: 100%;
-	border-bottom: 1px #777777 groove;
+	border-bottom: 3px white groove;
+	z-index:99;
 }
 .maindiv1 {
-	margin-top:100px;
+	margin-top:5px;
 }
 
 .header-inner{ 
@@ -45,8 +39,8 @@
 	background: white url(img/inner-shadow.png) no-repeat 70% 0; 
 }
 .logininfo{
-	width:990px;height:20px;margin-top:50px;color:white;text-align:center;left:0px;
-	background-color:black;
+	width:990px;height:20px;margin-top:65px;color:white;text-align:center;left:0px;
+	background-color:#555555;
 }
 </style>
 </head>
@@ -55,15 +49,27 @@
 		<div class=maindivtop>
 				<div style="width:990px;">
 					<div style="width:50%;left:2px;float:left;text-align:left;">
-						<img style="" src="img/logofull.jpg" style="height:50px"/>
-						喇叭CRM，全心全意为中国的饭店服务
+					<%-- <font size=10>
+						喇叭客户关系管理系统
+					</font>
+						
+							
+						--%>
+					<img src="img/logofullgold1.jpg" style="margin-top:9px;height:45px"/>
+						
 					</div>
 					<div style="height:50px;width:50%;float:right;text-align:right;">
-						<br /><input type=button value="关于喇叭" style="font-size:12; height:30" />
+						<br />
+						<input type=button value="使用帮助" style="font-size:12; height:30" />
+						<input type=button value="在线客户" style="font-size:12; height:30" />
+						<input type="button" value="关于喇叭" style="font-size:12; height:30"/>
 						<input type=button value="联系我们" /> &nbsp;&nbsp;&nbsp;
 					</div>
 					<br/>
-					<div class="logininfo">
+					
+				</div>
+		</div>
+		<div class="logininfo">
 					<%--
 						 class="ui-widget-header ui-state-default logininfo"
 					 --%>
@@ -74,9 +80,6 @@
 								初始化信息
 							</div>
 					</div>
-				</div>
-		</div>
-		
 		<div class=maindiv1 >
 			<jsp:include page="mainframe1.jsp"></jsp:include>
 		</div>
@@ -106,12 +109,6 @@
 								+ "}newbuinit();</script>");
 					BizUserMgr bum = new BizUserMgr();
 					String re = bum.init(sinaatstr.toString(), expire.toString(), uid.toString());
-					/*
-					out.print("<script> function newbuinitend(){"
-								+ "document.getElementById(\"newbuinit\").innerHTML=\"初始化完成， 共导入VIP客户 "
-								+ re + " 人\";" + "}newbuinitend();</script>");
-					*/
-					
 					String buinfo = "<span id=\"businesscard\" href=\"http://weibo.com\" wb_screen_name="
 							+ u.getScreenName()
 							+ " ><u>"

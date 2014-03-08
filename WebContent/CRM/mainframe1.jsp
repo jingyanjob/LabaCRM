@@ -17,7 +17,7 @@
 	height:500px;
 }
 .lefttmaindiv{
-	width:120px;left:0px;float:left;height:500px;
+	width:120px;left:0px;float:left;height:500px;z-index:98;
 }
 .rightmaindiv{
 	height:503px;
@@ -25,7 +25,7 @@
 	width: 860px;
 	float:right;
 	text-algin:center;
-	border:1px solid #bbbbbb;
+	border:1px solid #cccccc;
 	background-color:white;
 }
 .subdivdef{
@@ -60,14 +60,13 @@
 				</ul>
 			</li>
 			<li>
-				<a href="javascript:leftSelect('productdiv1')" onclick="initProduct();">本店菜单</a>
+				<a href="javascript:leftSelect('productdiv1')" onclick="productList();">本店菜单</a>
 				<ul>
+					
 					<li>
 					<a href="javascript:leftSelect('productdiv1')">添加</a>
 					</li>
-					<li>
-					<a href="javascript:leftSelect('productdiv2')">菜单和发布</a>
-					</li>
+					
 				</ul>
 			</li>
 			<li>
@@ -125,13 +124,12 @@
 			</div>
 			<div id="vipdiv" >  
 				<div id="vipdiv1" class=subdivdef>
-					<table cellpadding="0" cellspacing="0" >
+					<table cellpadding="0" cellspacing="0" width="99%">
 						<tr>
 							<td  align= left>
 							VIP会员微博名字
 							<input id="userwbid" value="" />
-							<input id="vipusersearchbtn" value=" 查 询 "
-								type="button" /></td>
+							<input id="vipusersearchbtn" value=" 查  询  " type="button" onclick="vipUserSearch('0');" /></td>
 						</tr>
 						<tr>
 							<td id="vipuserisblank" />
@@ -196,7 +194,7 @@
 								</table>
 				</div>
 				<div id="productdiv2" class=subdivdef>
-					<div id="productlistshow" >数据加载中....</div>
+					<div id="productlistshow" style="width:100%">数据加载中....</div>
 				</div>
 			</div>
 			<div id="tuandiv">

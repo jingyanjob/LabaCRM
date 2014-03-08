@@ -112,19 +112,19 @@ $(document).ready(function() {
 </head>
 <body>
 	<br />
-	
 	<c:forEach var="vs" items="${vssm}">
 		<input type=hidden id="${vs.uid}" value="${vs.totalscore}@@${vs.username}" ></input>
 	</c:forEach>
-	<div style="border:1px solid white;padding:3px;width:580px">
+	<div style="border:1px solid white;padding:3px;width:100%">
 		<c:forEach var="vipu" items="${vus}">
 			<a href="javascript:setSc('${vipu.uid}')" >
 				<c:out value="${vipu.username}"></c:out>
 			</a> &nbsp; &nbsp; 
 		</c:forEach>
 	</div>
-	<div style="background-color:#eeeeee" id="vipscorechangestatus"></div>
-	<table style="border-top:1px solid #bbbbbb" width:100%>
+	<div style="background-color:#eeeeee;margin-top:8px" id="vipscorechangestatus"></div>
+	
+	<table style="width:100%;margin-top:8px">
 		<tr>
 			<td width="80px" >可用积分</td>
 			<td valign="middle" width=150px >
