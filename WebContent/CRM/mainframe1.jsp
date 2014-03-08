@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html xmlns:wb="http://open.weibo.com/wb">
 <head>
 <%--
 <link type="text/css" href="jq104/css/ui-lightness/jquery.ui.menu.css" rel="stylesheet" />
@@ -60,11 +60,13 @@
 				</ul>
 			</li>
 			<li>
-				<a href="javascript:leftSelect('productdiv1')" onclick="productList();">本店菜单</a>
+				<a href="javascript:leftSelect('productdiv2')">本店菜单</a>
 				<ul>
-					
 					<li>
-					<a href="javascript:leftSelect('productdiv1')">添加</a>
+					<a href="javascript:leftSelect('productdiv2')">菜单</a>
+					</li>
+					<li>
+					<a href="javascript:leftSelect('productdiv1')">添加菜单</a>
 					</li>
 					
 				</ul>
@@ -88,10 +90,12 @@
 					<table cellpadding="0" width="99%" cellspacing="0">
 						<tr>
 							<td align="left" valign="middle"><font size=2>
-							如何预定：任何微博用户   @本店微博，输入：预定 + 预定内容(例如：预定 今晚6点2人桌，联系人老张 电话186xxxxxxxx) 即可</font> <a
-								id="publishtoweibo" style="border: 0px white;"><img
-									src="img/publish_button_16.gif" /></a> <br />
-							<br /></td>
+							如何预定：任何微博用户   @本店微博，输入：预定 + 预定内容(例如：预定 今晚6点2人桌，联系人老张 电话186xxxxxxxx) 即可</font>
+								<wb:publish button_size="small" 
+									default_text="即日起，您只需 @本微博，输入：预定 + 预定内容(例如：预定 今晚6点2人桌，联系人老张 电话186xxxxxxxx) 即可实现在线预定，快来试试哦 " >
+								</wb:publish>	
+								<br />
+							</td>
 						</tr>
 						<tr>
 							<td>
@@ -174,7 +178,7 @@
 									</tr>
 									<tr align=left>
 										<td>菜品介绍<br />
-										<textarea id=productdesc rows="4" style="width:99%"></textarea>
+										<textarea id=productdesc rows="10" style="width:99%"></textarea>
 										</td>
 									</tr>
 									<tr>
@@ -213,7 +217,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td>团购说明 <textarea rows="4" id="salescontent" style="width:99%"></textarea>
+							<td>团购说明 <textarea rows="10" id="salescontent" style="width:99%"></textarea>
 							</td>
 						</tr>
 						<tr>

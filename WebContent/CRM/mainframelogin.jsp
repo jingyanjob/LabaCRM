@@ -55,7 +55,7 @@
 						
 							
 						--%>
-					<img src="img/logofullgold1.jpg" style="margin-top:9px;height:45px"/>
+					<img src="img/logofullblank.png" style="margin-top:9px;height:45px"/>
 						
 					</div>
 					<div style="height:50px;width:50%;float:right;text-align:right;">

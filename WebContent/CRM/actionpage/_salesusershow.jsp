@@ -6,9 +6,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta property="wb:webmaster" content="27304571f6f8edb0" />
-<script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520"
-	type="text/javascript" charset="utf-8"></script>
 <title></title>
 </head>
 <body>

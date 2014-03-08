@@ -8,8 +8,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
-<%-- script type="text/javascript" src="js/jquery-1.9.1.js"></script>--%>
-<script type="text/javascript" src="js/masonry.js"></script>
 </head>
 <body>
 <div style="100%" id="vipuselistdiv">

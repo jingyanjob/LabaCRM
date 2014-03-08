@@ -134,12 +134,10 @@ public class HttpClient implements java.io.Serializable {
 	public HttpClient() {
 		// change timeout to 2s avoid block thread-pool (Tim)
 		this(150, 2000, 2000, 1024 * 1024);
-		System.out.println("HttpClient HttpClient HttpClient======= +0  " );
 	}
 
 	public HttpClient(int maxConPerHost, int conTimeOutMs, int soTimeOutMs,
 			int maxSize) {
-		System.out.println("HttpClient HttpClient HttpClient======= +1  ");
 		connectionManager = new MultiThreadedHttpConnectionManager();
 		HttpConnectionManagerParams params = connectionManager.getParams();
 		params.setDefaultMaxConnectionsPerHost(maxConPerHost);
@@ -166,7 +164,6 @@ public class HttpClient implements java.io.Serializable {
 			}
 		}
 		iniOk = true;
-		System.out.println("HttpClient HttpClient HttpClient======= +2  " + client.getState().toString());
 	}
 
 	/**

@@ -305,13 +305,13 @@ function selectedVU(name, score, uid){
 		    }
 	    });
 	}
-	function deleteSalesCase(){
+	function deleteSalesCase(id){
 		if(!deleteConfirm()){
 			return;
 		}
 		var dataxml = "data=<data>";
 		dataxml = dataxml+ "<currentUID>" + $("#hiduid").val() + "</currentUID>";
-		dataxml = dataxml+ "<sid>" + scidforpublish + "</sid>";
+		dataxml = dataxml+ "<sid>" +  id+ "</sid>";
 		dataxml = dataxml+ "</data>";
 		//alert(dataxml);
 		$("#scpublishstatus").html(deleteMsg);
@@ -417,19 +417,19 @@ function selectedVU(name, score, uid){
 		    }
 	    });
 	}
-	var scidforpublish = "";
-	function showSCDetail(id, name , cont, imgurl){
-		var divid = "";
-		if(scidforpublish != ""){
-			divid= "salescaseshowdiv" + scidforpublish;
-			if(document.getElementById(divid) !=null){
-				document.getElementById(divid).style.display = "none";
-			}
-		}
-		scidforpublish = id;
-		divid = "salescaseshowdiv" + id;
-		document.getElementById(divid).style.display = "block";
-	}
+//	var scidforpublish = "";
+//	function showSCDetail(id, name , cont, imgurl){
+//		var divid = "";
+//		if(scidforpublish != ""){
+//			divid= "salescaseshowdiv" + scidforpublish;
+//			if(document.getElementById(divid) !=null){
+//				document.getElementById(divid).style.display = "none";
+//			}
+//		}
+//		scidforpublish = id;
+//		divid = "salescaseshowdiv" + id;
+//		document.getElementById(divid).style.display = "block";
+//	}
 	function useTuanFromList(tuancode){
 		document.getElementById("usetuaninlist").style.display = "block";
 		$("#tuancodeuse").val(tuancode);
@@ -519,27 +519,13 @@ function selectedVU(name, score, uid){
 		    }
 	    });
 	}
-	var productidforpublish = "";
-	function showProductDetail(id, name , desc, imgurl){
-		var divid= "";
-		if(productidforpublish != ""){
-			divid= "productshow" + productidforpublish;
-			if(document.getElementById(divid) != null){
-				document.getElementById(divid).style.display = "none";
-			}
-			
-		}
-		productidforpublish = id;
-		divid = "productshow" + id;
-		document.getElementById(divid).style.display = "block";
-	}
-	function deleteProduct(){
+	function deleteProduct(id){
 		if(!deleteConfirm()){
 			return;
 		}
 		var dataxml = "data=<data>";
 		dataxml = dataxml+ "<currentUID>" + $("#hiduid").val() + "</currentUID>";
-		dataxml = dataxml+ "<pid>" + productidforpublish + "</pid>";
+		dataxml = dataxml+ "<pid>" + id + "</pid>";
 		dataxml = dataxml+ "</data>";
 		//alert(dataxml);
 		$("#productpublishstatus").html(deleteMsg);
@@ -558,11 +544,11 @@ function selectedVU(name, score, uid){
 		    }
 	    });
 	}	
-	function publishProductToWb(){
+	function publishProductToWb(id){
 		var dataxml = "data=<data>";
 		dataxml = dataxml+ "<currentUID>" + $("#hiduid").val() + "</currentUID>";
 		dataxml = dataxml+ "<currentATStr>" +  $("#hidatstr").val() + "</currentATStr>";
-		dataxml = dataxml+ "<pid>" + productidforpublish + "</pid>";
+		dataxml = dataxml+ "<pid>" + id + "</pid>";
 		dataxml = dataxml+ "</data>";
 		//alert(dataxml);
 		$("#productpublishstatus").html("<font color=blue>正在发布，请稍后...</font>");
