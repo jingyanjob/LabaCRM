@@ -3,6 +3,8 @@ package com.CRM.data;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import com.CRM.GlobalStaticData;
+
 import weibo4j.model.Status;
 import weibo4j.model.User;
 
@@ -17,7 +19,10 @@ public class Product{
 	private int active;//0 yes, 1 no
 	private String incutoff; 
 	private Timestamp updatetime ;
-	
+	private String catedesc;
+	public String getCatedesc() {
+		return GlobalStaticData.productCatDesc[this.getCategory()];
+	}
 	public int getId() {
 		return id;
 	}

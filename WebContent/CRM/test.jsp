@@ -11,8 +11,11 @@
 <img src="img/labacrm121.jpg" style="border:0px solid" />
 test
 </a>
-
-
+<div cate="1" >a</div>
+<div cate=1 >b</div>
+<div cate=2 >2</div>
+<div cate=2 >2</div>
+<div cate=3 >3</div>
 <div style='width:99%;font:25px;align:center;border: 1px solid #eeeeee;margin: 200px 200px 200px;"'>正在进行新用户初始化，预计在几分钟内完成，请等待！
 <div id="chkdiv" style="background-color:#eeeeee;margin: 2px 2px 00px;">
 <input type="checkbox" value="1" checked="checked"/>test1
@@ -41,7 +44,16 @@ test
 </div>
 
 <input id=newdatedd onclick="getdate()" value='getdate'/>
+
 <script type="text/javascript">
+	function checkdivcate(){
+		var divs = document.getElementsByTagName("div");
+		for(var i=0; i< divs.length;i++){
+			if(divs.item(i).cate === "1"){
+				alert(divs.item(i).innerHTML);
+			}
+		}
+	}checkdivcate();
 	function testdivd(){
 		document.getElementById("testdivd").style.display = "block";
 		var maxh = window.screen.height - 200;

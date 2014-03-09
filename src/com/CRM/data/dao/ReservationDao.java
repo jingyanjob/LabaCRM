@@ -33,12 +33,17 @@ public class ReservationDao {
 		this.runInsert(r);
 	}
 
-	
+	/**
+	 * 最多取50个未确认和已确认
+	 * @param buid
+	 * @param resstatus
+	 * @return
+	 */
 	public Reservation[] getReservations(String buid, int resstatus){
 		Reservation[] ws = null;
 		ws = this.runGetHQL("from Reservation r " +
 				" where ( r.buid='" + buid + "' and r.resstatus=" + resstatus+
-				" ) order by createdat desc" , 0, 0);
+				" ) order by createdat desc" , 0, 50);
 		return ws;
 	}
 	/**

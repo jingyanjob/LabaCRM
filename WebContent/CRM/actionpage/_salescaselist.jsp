@@ -89,7 +89,7 @@ a{
 							发到微博
 						</a>
 						--%>
-						<wb:publish button_size="small" default_text="结束时间:<c:out value="${sc.caseendshort}"></c:out> 团购代码:<c:out value="${sc.tuancode}"/> 团购价:<c:out value="${sc.disprice}"/>元 , 菜单：<c:forEach items="${sc.products}" var="prod"><c:out value="${prod.productname}"/> 原价<c:out value="${prod.price}"/>元   </c:forEach>团购说明<c:out value="${sc.content}"/>" 
+						<wb:publish button_size="small" default_text="开团啦：结束时间:<c:out value="${sc.caseendshort}"></c:out> 团购代码:<c:out value="${sc.tuancode}"/> 团购价:<c:out value="${sc.disprice}"/>元 , 菜单：<c:forEach items="${sc.products}" var="prod"><c:out value="${prod.productname}"/> 原价<c:out value="${prod.price}"/>元   </c:forEach>团购说明<c:out value="${sc.content}"/>" 
 							default_image="">
 							发到微博
 						</wb:publish>

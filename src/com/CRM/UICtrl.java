@@ -447,12 +447,13 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 				"<option value='_all' >全部</option>" +
 				"<option value='prodforsales0' >主厨推荐</option>" +
 				"<option value='prodforsales1' >热菜</option>" +
-				"<option value='prodforsales2' >冷菜</option>" +
-				"<option value='prodforsales3' >汤/煲</option>" +
-				"<option value='prodforsales4' >主食</option>" +
-				"<option value='prodforsales5' >酒水/饮料</option></select>");
+				"<option value='prodforsales2' >时蔬</option>" +
+				"<option value='prodforsales3' >冷菜</option>" +
+				"<option value='prodforsales4' >汤/煲</option>" +
+				"<option value='prodforsales5' >主食</option>" +
+				"<option value='prodforsales6' >酒水/饮料</option></select>");
 		for(int i=0; i<GlobalStaticData.productCatNumber; i++){
-			s_.append("<div id='prodforsales"+i+"'>");
+			s_.append("<div id='prodforsales"+i+"' style='width:100%;'>");
 			for(int j=0; j<prods[i].size(); j++){
 				s_.append("<input onclick='checkProdForSales()' type=checkbox value='"
 							+ prods[i].get(j).getId()+ ";"

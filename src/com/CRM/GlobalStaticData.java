@@ -56,8 +56,8 @@ public class GlobalStaticData {
 	/**
 	 * product
 	 */
-	public final static int productCatNumber = 6;
-	public final static String[] productCatDesc = {"主厨推荐","热菜","冷菜","汤/煲","主食","酒水/饮料"};
+	public final static int productCatNumber = 7;
+	public final static String[] productCatDesc = {"主厨推荐","热菜","时蔬","冷菜","汤/煲","主食","酒水/饮料"};
 	
 	public static void main(String[] str){
 		System.out.print(bus.length);

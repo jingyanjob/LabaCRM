@@ -8,10 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%--
-<script type="text/javascript" src="js/masonry.js"></script>
- --%>
- <link type="text/css" href="jq104/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+<link type="text/css" href="jq104/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
 <script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520"
 	type="text/javascript" charset="utf-8"></script>
 <title>喇叭CRM</title>
@@ -40,7 +37,12 @@
 }
 .logininfo{
 	width:990px;height:20px;margin-top:65px;color:white;text-align:center;left:0px;
-	background-color:#555555;
+	background-color:#888888;
+}
+.companyinfo{
+	width:990px;bottom:0px;margin-top:515px;color:black;text-align:center;left:0px;
+	border-top:1px solid #dddddd;
+	background-color:#eeeeee;
 }
 </style>
 </head>
@@ -61,7 +63,7 @@
 					<div style="height:50px;width:50%;float:right;text-align:right;">
 						<br />
 						<input type=button value="使用帮助" style="font-size:12; height:30" />
-						<input type=button value="在线客户" style="font-size:12; height:30" />
+						<input type=button value="在线客服" style="font-size:12; height:30" />
 						<input type="button" value="关于喇叭" style="font-size:12; height:30"/>
 						<input type=button value="联系我们" /> &nbsp;&nbsp;&nbsp;
 					</div>
@@ -74,7 +76,7 @@
 						 class="ui-widget-header ui-state-default logininfo"
 					 --%>
 							<div id="logoninfo" style="width:445px;float:left;text-align:left">
-								登录信息
+								&nbsp;&nbsp;登录信息
 							</div>
 							<div id="newbuinit" style="width:445px;float:right;text-align:right">
 								初始化信息
@@ -82,6 +84,11 @@
 					</div>
 		<div class=maindiv1 >
 			<jsp:include page="mainframe1.jsp"></jsp:include>
+		</div>
+		<div class=companyinfo >
+			<font size="2">佰传信息技术有限公司 出品  labacrm.com - 津ICP备13005372号 </font>
+			<br>
+			<img style="height:25px;" src="SAELogo1.png"/>
 		</div>
 		<%
 		try{

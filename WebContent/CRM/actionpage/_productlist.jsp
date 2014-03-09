@@ -11,43 +11,58 @@
 <script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520" type="text/javascript" charset="utf-8"></script>
 <style>
 .productdiv { 
-	border-bottom:2px groove #eeeeee;
-	min-height: 98px; 
+	border-bottom:2px groove #dddddd;
+	border-right:2px groove #dddddd;
+	min-height: 98px;
 	font-size:12px; 
 	text-align: center;
 	width:98%;
 	margin-top:8px;
 }
-.productinfodiv{
-	width:100%;height:20%;border-bottom:1px solid #eeeeee;
+.productinfodiv0{
+	width:85%;height:98;float:right;text-align:center;
+}
+.productinfodiv1{
+	width:100%;height:20px;border-bottom:1px solid #eeeeee;
 }
 a{
 	text-decoration: none; border: none; color: black;
 }
 .productbottomdiv{
-	width:100%;height:20%;border-top:1px solid #eeeeee;text-align:center;vertical-align: bottom;
+	width:100%;height:20px;border-top:1px solid #eeeeee;text-align:right;vertical-align: bottom;
 }
 </style>
 </head>
 <body>
 <br />
+<div id="_pcatecheck" style="width:98%">
+<input onclick="showProductByCate()" type=checkbox checked value="0">主厨推荐
+<input onclick="showProductByCate()" type=checkbox checked value="1">热菜
+<input onclick="showProductByCate()" type=checkbox checked value="2">时蔬
+<input onclick="showProductByCate()" type=checkbox checked value="3">冷菜
+<input onclick="showProductByCate()" type=checkbox checked value="4">汤/煲
+<input onclick="showProductByCate()" type=checkbox checked value="5">主食
+<input onclick="showProductByCate()" type=checkbox checked value="6">酒水/饮料
+</div>
+
 <div style="width:98%;" id="productlistdiv">
 	<c:forEach items="${prods}" var="prod">
-		<div class="ui-widget-header ui-state-default  productdiv">
+		<div lang="<c:out value="${prod.category}"></c:out>" class="ui-state-default  productdiv"> <%--ui-widget-header   --%>
 			<div style="width:15%;height:100%;float:left;text-align:left;vertical-align: middle;">
-				<img style="max-height:85px; width:85px;border: 0px solid ;"
+				<img style="max-height:95px; margin-top:2px; width:90px;border: 0px solid ;"
 				src="http://100train-img.stor.sinaapp.com/<c:out value="${prod.buid}"></c:out>/prod/<c:out value="${prod.imgurl}"></c:out>" />
 			</div>
-			<div style="width:85%;height:100%;float:right;text-align:center;">
-				<div class="productinfodiv">
+			<div class="productinfodiv0">
+				<div class="productinfodiv1">
 					<div style="width:50%;float:left; text-align:left">
-						&nbsp;&nbsp;&nbsp;<c:out value="${prod.productname}"></c:out>
+						<c:out value="${prod.productname}"></c:out>
+						&nbsp;&nbsp;&nbsp;<c:out value="${prod.catedesc}"></c:out>
 					</div>
 					<div style="width:50%;float:right;text-align:right;">
 						<c:out value="${prod.price}"/>元 - 折扣：<c:out value="${prod.incutoff}"/>&nbsp;&nbsp;&nbsp;
 					</div>
 				</div>
-				<div style="width:100%;height:60%;text-align:left;">
+				<div style="width:100%;min-height:58px;text-align:left;overflow-y:scroll;">
 					<c:out value="${prod.productdesc}"></c:out>
 				</div>
 				<div class="productbottomdiv">
@@ -59,13 +74,39 @@ a{
 						发到微博
 					</wb:publish>
 					&nbsp;&nbsp;&nbsp;
-					<a href="javascript:deleteProduct(${prod.id});">删除</a> 
+					<a href="javascript:deleteProduct(${prod.id});">删除</a> &nbsp;&nbsp;&nbsp;
 				</div>
 			</div>
 		</div>
 	</c:forEach>
 </div>
 <script type="text/javascript">
+function showProductByCate(){
+	var checks = getCheckBoxValue("_pcatecheck");
+	var chk = checks.split(gspliter);
+	var divs = document.getElementById("productlistdiv").childNodes;
+	for(var i=0; i< divs.length; i++){
+		if(divs.item(i).nodeName =="DIV"){
+			//alert(divs.item(i).title +" --  "+ divs.item(i).nodeName +" --  "+ divs.item(i).attributes );
+		//if(divs.item(i).cate){
+			if(	   divs.item(i).lang === "0" 
+				|| divs.item(i).lang === "1" 
+				|| divs.item(i).lang === "2" 
+				|| divs.item(i).lang === "3" 
+				|| divs.item(i).lang === "4" 
+				|| divs.item(i).lang === "5" 
+				|| divs.item(i).lang === "6" ){
+				divs.item(i).style.display = "none";
+				for(var j=0; j < chk.length; j++){
+					if(divs.item(i).lang === chk[j]){
+						divs.item(i).style.display = "block";
+					}
+				}
+			}
+		}
+	}
+}
+
 /*
 id : 绑定的标签的ID，必填。
 button_type : 按钮样式red/gray，默认为red

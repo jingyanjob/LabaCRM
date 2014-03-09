@@ -164,7 +164,8 @@
 									<tr>
 										<td align=left>名称 <input id="productname" /> 分类 
 										<select	id="productcat">
-												<option value=1>主厨推荐</option>
+												<option value=0>主厨推荐</option>
+												<option value=1>热菜</option>
 												<option value=2>热菜</option>
 												<option value=3>冷菜</option>
 												<option value=4>汤/煲</option>

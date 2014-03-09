@@ -360,6 +360,7 @@ function selectedVU(name, score, uid){
 			$("#prodforsales3").show();
 			$("#prodforsales4").show();
 			$("#prodforsales5").show();
+			$("#prodforsales6").show();
 		}else{
 			$("#prodforsales0").hide();
 			$("#prodforsales1").hide();
@@ -367,6 +368,7 @@ function selectedVU(name, score, uid){
 			$("#prodforsales3").hide();
 			$("#prodforsales4").hide();
 			$("#prodforsales5").hide();
+			$("#prodforsales6").hide();
 			$(id).show();
 		}
 	}

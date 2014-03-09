@@ -51,7 +51,7 @@ public class ProductDao {
 		Product[] ws = null;
 		ws = this.runGetHQL("from Product prod " +
 				" where ( prod.buid='" + buid + "'" +
-				")  order by prod.updatetime desc" , 0, number);
+				")  order by prod.category asc" , 0, number);
 		return ws;
 	}
 	/**

@@ -8,17 +8,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
+<style type="text/css">
+a{
+	text-decoration: none; border: none; color: black;
+}
+</style>
 </head>
 <body>
-<div style="100%" id="vipuselistdiv">
+<div id="vipuselistdiv">
 	<c:forEach items="${vips}" var="vip">
 		<div style="border:1px solid #cccccc;margin: 3px 3px 3px 0; background-color:#eeeeee;padding: 1px; float: left; height: 100px; font-size:12px; text-align: center;">
-			<img src="${vip.profileImageUrl}" style="max-height:70px;" id="vip${vip.id}" />
+			<img src="${vip.profileImageUrl}" style="height:68px;" id="vip${vip.id}" />
 			<br />
 			<div style="border:1px solid #cccccc;background-color:white;">
-				<a href="http://www.weibo.com/u/${vip.uid}" target="_new"><c:out value="${vip.username}"></c:out></a>
+				<a href="http://www.weibo.com/u/${vip.uid}" target="_new"><c:out value="${vip.username}"></c:out>
 				<br />
 				<c:out value="${vip.location}"></c:out>
+				</a>
 			</div>
 		</div>
 	</c:forEach>

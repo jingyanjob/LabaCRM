@@ -50,7 +50,7 @@ public class SalesCaseDao {
 		SalesCase[] ws = null;
 		ws = this.runGetHQL("from SalesCase sc " +
 				" where ( sc.buid='" + buid + "'" +
-				")  order by sc.updatetime desc" , 0, number);
+				")  order by sc.caseend desc" , 0, number);
 		return ws;
 	}
 	public SalesCase[] getActiveSalesCases(String buid, int sourcesite, int number){
