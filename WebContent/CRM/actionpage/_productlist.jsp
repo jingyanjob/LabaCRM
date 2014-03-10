@@ -11,31 +11,35 @@
 <script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520" type="text/javascript" charset="utf-8"></script>
 <style>
 .productdiv { 
-	border-bottom:2px groove #dddddd;
-	border-right:2px groove #dddddd;
+	border-bottom:1px groove #eeeeee;
+	border-right:1px groove #eeeeee;
 	min-height: 98px;
 	font-size:12px; 
 	text-align: center;
 	width:98%;
 	margin-top:8px;
+	background-color: white;
 }
 .productinfodiv0{
 	width:85%;height:98;float:right;text-align:center;
 }
 .productinfodiv1{
-	width:100%;height:20px;border-bottom:1px solid #eeeeee;
+	width:100%;height:20px;border-bottom:1px solid #dddddd;
 }
 a{
 	text-decoration: none; border: none; color: black;
 }
 .productbottomdiv{
-	width:100%;height:20px;border-top:1px solid #eeeeee;text-align:right;vertical-align: bottom;
+	width:100%;height:20px;border-top:1px solid #dddddd;text-align:right;vertical-align: bottom;
+}
+.prodlistbaseback{
+width:98%;font-size:12px;
 }
 </style>
 </head>
-<body>
+<body style=" background-color:#eeeeee;">
 <br />
-<div id="_pcatecheck" style="width:98%">
+<div id="_pcatecheck" class=baseback >
 <input onclick="showProductByCate()" type=checkbox checked value="0">主厨推荐
 <input onclick="showProductByCate()" type=checkbox checked value="1">热菜
 <input onclick="showProductByCate()" type=checkbox checked value="2">时蔬
@@ -44,37 +48,38 @@ a{
 <input onclick="showProductByCate()" type=checkbox checked value="5">主食
 <input onclick="showProductByCate()" type=checkbox checked value="6">酒水/饮料
 </div>
-
-<div style="width:98%;" id="productlistdiv">
+<div class=baseback  id="productlistdiv">
 	<c:forEach items="${prods}" var="prod">
-		<div lang="<c:out value="${prod.category}"></c:out>" class="ui-state-default  productdiv"> <%--ui-widget-header   --%>
+		<div lang="<c:out value="${prod.category}"></c:out>" class="productdiv"> <%--ui-widget-header  ui-state-default  --%>
 			<div style="width:15%;height:100%;float:left;text-align:left;vertical-align: middle;">
 				<img style="max-height:95px; margin-top:2px; width:90px;border: 0px solid ;"
 				src="http://100train-img.stor.sinaapp.com/<c:out value="${prod.buid}"></c:out>/prod/<c:out value="${prod.imgurl}"></c:out>" />
 			</div>
 			<div class="productinfodiv0">
 				<div class="productinfodiv1">
-					<div style="width:50%;float:left; text-align:left">
-						<c:out value="${prod.productname}"></c:out>
-						&nbsp;&nbsp;&nbsp;<c:out value="${prod.catedesc}"></c:out>
-					</div>
-					<div style="width:50%;float:right;text-align:right;">
-						<c:out value="${prod.price}"/>元 - 折扣：<c:out value="${prod.incutoff}"/>&nbsp;&nbsp;&nbsp;
-					</div>
+						<div style="width:50%;float:left; text-align:left">
+							<c:out value="${prod.productname}"></c:out>
+							&nbsp;&nbsp;&nbsp;<c:out value="${prod.catedesc}"></c:out>
+						</div>
+						<div style="width:50%;float:right;text-align:right;">
+							<c:out value="${prod.price}" />元 - 折扣：<c:out value="${prod.incutoff}" />&nbsp;&nbsp;&nbsp;
+						</div>
 				</div>
-				<div style="width:100%;min-height:58px;text-align:left;overflow-y:scroll;">
+				<div style="width:100%;height:58px;text-align:left;overflow-y:auto;">
 					<c:out value="${prod.productdesc}"></c:out>
 				</div>
 				<div class="productbottomdiv">
 					<%--
 					<a href="javascript:publishProductToWb(${prod.id});">发到微博</a>&nbsp;&nbsp;&nbsp;
 					--%>
+					<a href="javascript:initProduct('${prod.id}');">修改</a> 
+					&nbsp;&nbsp;
+					<a href="javascript:deleteProduct(${prod.id});">删除</a> 
+					&nbsp;&nbsp;
 					<wb:publish  button_size="small"  default_text="${prod.productname}， ${prod.price}元， ${prod.productdesc}" 
 						default_image="http://100train-img.stor.sinaapp.com/<c:out value="${prod.buid}"></c:out>/prod/<c:out value="${prod.imgurl}"></c:out>">
 						发到微博
-					</wb:publish>
-					&nbsp;&nbsp;&nbsp;
-					<a href="javascript:deleteProduct(${prod.id});">删除</a> &nbsp;&nbsp;&nbsp;
+					</wb:publish>&nbsp;&nbsp;
 				</div>
 			</div>
 		</div>

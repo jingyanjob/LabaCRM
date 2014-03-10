@@ -42,7 +42,12 @@ test
 <input id="v123" name="v123"/><input id="v123" name="v123"/><input id="v123" name="v123"/>
 </div>
 </div>
+<div style="width: 500px; height: 200px; overflow-y:auto;">
+选用精选肉排.......选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排......选用精选肉排......................
+选用精选肉排.......选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排......选用精选肉排......................
+选用精选肉排.......选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排.....选用精选肉排......选用精选肉排......................
 
+</div>
 <input id=newdatedd onclick="getdate()" value='getdate'/>
 
 <script type="text/javascript">
@@ -53,14 +58,14 @@ test
 				alert(divs.item(i).innerHTML);
 			}
 		}
-	}checkdivcate();
+	}
 	function testdivd(){
 		document.getElementById("testdivd").style.display = "block";
 		var maxh = window.screen.height - 200;
 		var hh;
 		alert(maxh);
 		if(maxh > 1000){
-			hh = "700px";
+			hh = "500px";
 		}
 		if( 800 < maxh && maxh <= 1000){
 			hh = 500;

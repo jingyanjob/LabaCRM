@@ -11,7 +11,6 @@ import com.CRM.data.VIPUser;
 public class BUCacheData {
 	private Hashtable<String, VIPUser> vht = new Hashtable<String, VIPUser> ();
 	private Hashtable<String, Product> pht = new Hashtable<String, Product> ();
-	
 	private Hashtable<String, SalesCase> sht = new Hashtable<String, SalesCase> ();
 	private VIPUser[] vips ;
 	private Product[] products;
@@ -79,6 +78,7 @@ public class BUCacheData {
 			products[i] = new Product();
 			String num = it.next();
 			products[i] = pht.get(num);
+			System.out.println("categary - " + products[i].getCategory() + " desc " + products[i].getCategory() );
 			i++;
 		}
 		return products;
@@ -87,6 +87,7 @@ public class BUCacheData {
 		this.products = products;
 		pht.clear();
 		for(int i=0; i< products.length;i++){
+			System.out.println("categary - " + products[i].getCategory() + " desc " + products[i].getCategory() );
 			pht.put(String.valueOf(products[i].getId()), products[i]);
 		}
 		this.products = products;

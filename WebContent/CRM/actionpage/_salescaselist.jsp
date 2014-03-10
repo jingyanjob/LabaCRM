@@ -13,21 +13,21 @@
 	border: 1px solid #bbbbbb; 
 	display:none;
 	width:700px;
-	height:300px;
+	height:270px;
 	margin-top:20px; 
 	margin-left:20px;
-	background-color:white;
+	background-color:#eeeeee;
 	z-index:99;
 	text-align:center;
 	position:absolute;
 }
 .tuanshowdiv{
-	border: 1px solid #bbbbbb;
+	border: 1px grove #dddddd;
 	margin-top: 3px; 
 	margin-left: 3px; 
-	background-color: #eeeeee;
+	background-color: white;
 	padding: 1px; 
-	min-height: 180px;
+	height: 270px;
 	width: 260px; 
 	font-size: 12px; 
 	text-align: center;
@@ -38,7 +38,7 @@ a{
 }
 </style>
 </head>
-<body>
+<body style="">
 		<div class="usetuandiv" id="usetuaninlist">
 						团购代码 
 						<br/>
@@ -53,32 +53,33 @@ a{
 						<br/><br/>
 						<div id="tuanusemsg"></div>
 				</div>
-<div style="width:99%;" id="tuanlistdiv">
+<div style="width:99%;background-color:#eeeeee" id="tuanlistdiv">
 <c:forEach items="${scs}" var="sc">
 		<div class="tuanshowdiv">
 			<table height=100% width=100% align=center>
 				<tr>
 					<td height=20px>
-						结束时间:<c:out value="${sc.caseendshort}"></c:out> 团购代码:<c:out value="${sc.tuancode}"/>
+						结束时间:<c:out value="${sc.caseendshort}"></c:out> 团购价:<c:out value="${sc.disprice}"/>元
 						<br />
-						团购价:<c:out value="${sc.disprice}"/>元
+						团购代码:<c:out value="${sc.tuancode}"/>
 						<br />
 					</td>
 				</tr>
 				<tr>
-					<td align=left >
+					<td align=left height=60px  valign=top>
+						<div style="overflow-y:auto;height:100%;">
 						菜单：<c:forEach items="${sc.products}" var="prod">
 								<c:out value="${prod.productname}"/>-
 								<c:out value="${prod.price}"/>元   
 							</c:forEach>
+						</div>
 					</td>
 				</tr>
 				<tr>
-					<td>
-						<p><c:out value="${sc.content}"></c:out> </p>
+					<td  align=left valign=top>
+						<div style="overflow-y:auto;height:100%;"><c:out value="${sc.content}"></c:out></div>
 					</td>
 				</tr>
-				
 				<tr>
 					<td height=20px style="background-color:white;border-top:1px solid #bbbbbb;">
 						<%--
@@ -99,52 +100,6 @@ a{
 				</tr>
 			</table>	
 		</div>
-	<%--
-	<div id="salescaseshowdiv${sc.id}" title="营销方案详情" style="width:600px;min-height:150px;border: 1px solid green;position:absolute; background-color: white;display:none;" >
-	<table  height="100%">
-		<tr>
-			<td width="600px">
-				<table height="100%" width="100%"> 
-					<tr>
-						<td align=left style="background-color: #eeeeee;">
-							结束时间<c:out value="${sc.caseendshort}"/>  &nbsp; &nbsp;
-							团购代码 <c:out value="${sc.tuancode}"/> &nbsp; &nbsp;
-							团购价 <c:out value="${sc.disprice}"/>元
-						</td>
-					</tr>
-					<tr>
-						<td align=left >
-							团购说明：<c:out value="${sc.content}"/>
-						</td>
-					</tr>
-					<tr>
-						<td align=left >
-							团购菜单：
-							<c:forEach items="${sc.products}" var="prod">
-								<c:out value="${prod.productname}"/>-
-								<c:out value="${prod.price}"/>元  ,
-							</c:forEach>
-						</td>
-					</tr>
-					<tr>
-						<td height=“25px” align=center style="background-color: #eeeeee;">
-							<a href="javascript:scPublishAgain();">发到微博</a>
-								&nbsp;&nbsp;&nbsp;
-								<a href="javascript:deleteSalesCase();">删除</a>
-								&nbsp;&nbsp;&nbsp;
-								<a href="javascript:closeSc__('salescaseshowdiv${sc.id}');">关闭</a>
-						</td>
-					</tr>
-					<tr>
-						<td height=”20px“ id="scpublishstatus">
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>  
-	</div>
-	--%>
 </c:forEach>
 </div>
 	<script>

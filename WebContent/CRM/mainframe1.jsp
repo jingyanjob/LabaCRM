@@ -66,7 +66,7 @@
 					<a href="javascript:leftSelect('productdiv2')">菜单</a>
 					</li>
 					<li>
-					<a href="javascript:leftSelect('productdiv1')">添加菜单</a>
+					<a href="javascript:initProduct('-1');">添加菜单</a>
 					</li>
 					
 				</ul>
@@ -86,14 +86,15 @@
 		</ul>
 		</div>
 		<div class=rightmaindiv >
+			
 			<div id="reservationdiv">
 					<table cellpadding="0" width="99%" cellspacing="0">
 						<tr>
-							<td align="left" valign="middle"><font size=2>
-							如何预定：任何微博用户   @本店微博，输入：预定 + 预定内容(例如：预定 今晚6点2人桌，联系人老张 电话186xxxxxxxx) 即可</font>
+							<td align="left" valign="middle" style="font-size:10;border-bottom:1px solid #eeeeee;">
 								<wb:publish button_size="small" 
-									default_text="即日起，您只需 @本微博，输入：预定 + 预定内容(例如：预定 今晚6点2人桌，联系人老张 电话186xxxxxxxx) 即可实现在线预定，快来试试哦 " >
-								</wb:publish>	
+									default_text="即日起，您只需 @本微博，输入：预定 + 预定内容(例如：预定 今晚6点2人桌，老张 186...) 即可实现在线预定，快来试试哦 " >
+								</wb:publish>
+								用户只需   @本店微博，输入：预定 + 预定内容(例如：预定 今晚6点 2人桌，老张 186 8888 8888) 即可实现预定
 								<br />
 							</td>
 						</tr>
@@ -104,10 +105,8 @@
 						</tr>
 						<tr>
 							<td>
-								<div style="width: 100%" id="reservationStatus">
-									<br />
-									<br /> <font size=4>正在更新预定列表，请稍后.</font> <br />
-									<br />
+								<div id="reservationupdate"><br/><font size=2>正在更新预定列表，请稍后.</font> <br /></div>
+								<div style="width: 100%;" id="reservationStatus">
 								</div>
 							</td>
 						</tr>
@@ -166,7 +165,7 @@
 										<select	id="productcat">
 												<option value=0>主厨推荐</option>
 												<option value=1>热菜</option>
-												<option value=2>热菜</option>
+												<option value=2>时蔬</option>
 												<option value=3>冷菜</option>
 												<option value=4>汤/煲</option>
 												<option value=5>主食</option>
@@ -194,17 +193,17 @@
 									</tr>
 									<tr align=center>
 										<td><br /> <input id="newproductbtn"
-											onclick="newProduct()" type=button value="确定添加" /></td>
+											onclick="newProduct()" type=button value=" 提 交  " /></td>
 									</tr>
 								</table>
 				</div>
 				<div id="productdiv2" class=subdivdef>
-					<div id="productlistshow" style="width:100%">数据加载中....</div>
+					<div id="productlistshow" style="width:100%;background-color:#eeeeee">数据加载中....</div>
 				</div>
 			</div>
 			<div id="tuandiv">
 				<div id="tuandiv1" class=subdivdef>
-					<div id="salescaselistshow"></div>
+					<div id="salescaselistshow" style="width:100%;background-color:#eeeeee">数据加载中....</div>
 				</div>
 				<div id="tuandiv2" class=subdivdef>
 					<table cellpadding="1" cellspacing="2" width="99%" style="border: 1px solid #eeeeee;">
@@ -275,7 +274,7 @@ $(document).ready(function() {
 		});
 	  	function getReservation(){
 		//alert("get client msg");
-			$("#reservationStatus").html("<font size='4'>正在更新预定列表，请稍后.</font>");
+			$("#reservationupdate").html("<font size='2'>正在更新预定列表，请稍后.</font>");
 			var posturl = baseurl + '/crm.dc?action=getReservation';
 	    	var dataxml = "data=<data>";
 	    	dataxml = dataxml+ "<currentUID>" + $("#hiduid").val() + "</currentUID>";
@@ -286,8 +285,8 @@ $(document).ready(function() {
 				url: posturl, 
 				processData: false,
 				data: dataxml,
-				success:function(d){ $("#reservationStatus").html(""+d +"");},
-				error:function(){ $("#reservationStatus").html("<b><font>对不起，更新出错了，请您稍后再试！</font></b>");}
+				success:function(d){ $("#reservationStatus").html(""+d +"");$("#reservationupdate").html("更新完成");},
+				error:function(){ $("#reservationupdate").html("<b><font>对不起，更新出错了，请您稍后再试！</font></b>");}
 			});
 		}
 	$(function(){
@@ -331,7 +330,7 @@ function leftSelect(id){
 
 	}
 	if( id === "productdiv1"){
-		initProduct();
+		
 	}
 	if( id === "productdiv2"){
 		productList();

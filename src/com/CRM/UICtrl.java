@@ -559,6 +559,7 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 		init();
 		String xml = req.getParameter("data");
 		String buid = util.getXmlContent(xml, "currentUID");
+		String pid = util.getXmlContent(xml, "pid");
 		String category = util.getXmlContent(xml, "category");
 		String productname = util.getXmlContent(xml, "productname");
 		String productdesc = util.getXmlContent(xml, "productdesc");
@@ -576,7 +577,12 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 		prod.setProductdesc(productdesc);
 		prod.setProductname(productname);
 		try {
-			pe.newProduct(prod);
+			if(!pid.equals("-1")){
+				prod.setId(Integer.parseInt(pid));
+				pe.updateProduct(prod);
+			}else{
+				pe.newProduct(prod);
+			}
 			Product[] prods = pe.getActiveProducts(buid);
 			CacheFactory.getCache(buid).setProducts(prods);			
 		} catch (Exception e) {
@@ -606,7 +612,29 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 		}
 		return ma;
 	}
-	
+	public ModelAndView editProduct(HttpServletRequest req,
+			HttpServletResponse res) throws UnsupportedEncodingException {
+		res.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
+		ModelAndView ma = new ModelAndView("CRM/actionpage/_productedit");
+		init();
+		String xml = req.getParameter("data");
+		String pid = util.getXmlContent(xml, "pid");
+		Product product = new Product();
+		try {
+			if(!pid.equals("-1")){
+				product = pe.getProduct(Integer.parseInt(pid));
+			}else{
+				product.setId(-1);
+			}
+			ma.addObject("product", product);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ModelAndView();
+		}
+		return ma;
+	}
 	public ModelAndView getProductsShow(HttpServletRequest req,
 			HttpServletResponse res) throws UnsupportedEncodingException {
 		res.setCharacterEncoding("UTF-8");

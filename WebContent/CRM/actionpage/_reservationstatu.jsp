@@ -10,7 +10,7 @@
 <title></title>
 <script>
 	function confirmReservation(id, cid) {
-		if(!window.confirm("预定确认后，状态将无法修改！")){
+		if(!window.confirm("预定确认后，将立刻通知预定人！")){
 			return;
 		}
 		var xmlDocument = "data=<data><id>" + id + "</id>" + "<cid>" + cid +"</cid>"
@@ -24,7 +24,7 @@
 			success:function(d){
 				var _ = "#"+id;
 				$(_).html("预定成功");
-				alert("已通过微博通知预订客户，本次预定成功！");
+				//alert("已通过微博通知预订客户，本次预定成功！");
 			},
 			error:function(){alert("抱歉，出错了，请刷新页面后再试一次；");}
 		});
@@ -42,7 +42,7 @@
 
 </head>
 <body>
-	<table width="99%" cellpadding="1" cellspacing="0">
+	<table width="99%" cellpadding="1" cellspacing="0" height=300px style="overflow-y:auto;">
 		<tr>
 			<td align=center style="background-color:#DDDDDD;border:1px solid white;"><b>时间/年-月-日</b></td>
 			<td align=center style="background-color:#DDDDDD;border:1px solid white;"><b>预定人</b></td>
@@ -64,7 +64,8 @@
 							<td id="${reserve.id}">
 							 <%-- c:if test="${reserve.resstatus=='0'}">预定成功</c:if>	--%>
 							 <c:if test="${reserve.resstatus=='2'}">
-							 	<input  title="确定本次预定成功" onClick="confirmReservation(${reserve.id}, ${reserve.cid});" type=button value="预定确认"/></c:if>
+							 	<input  title="确定本次预定成功" onClick="confirmReservation('${reserve.id}', '${reserve.cid}');" type=button value="预定确认"/>
+							 </c:if>
 							</td>
 						</tr>
 					</table>
@@ -74,7 +75,7 @@
 	</table>
 	<input type=button value="查看已确认的预订" onclick="showResconfirmed();" id="resconfbtn"></input>
 
-	<table width="99%" id="resconftable" cellpadding="1" cellspacing="0">
+	<table width="99%" id="resconftable" cellpadding="1" cellspacing="0" height=150px style="overflow-y:auto;">
 		<tr>
 			<td align=center style="background-color:#DDDDDD;border:1px solid white;"><b>时间/年-月-日</b></td>
 			<td align=center style="background-color:#DDDDDD;border:1px solid white;"><b>预定人</b></td>

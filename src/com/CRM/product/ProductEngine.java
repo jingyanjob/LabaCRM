@@ -20,6 +20,10 @@ public class ProductEngine {
 	public void newProduct(Product prod){
 		pd.insert(prod);
 	}
+	//新产品
+	public void updateProduct(Product prod){
+		pd.update(prod);
+	}
 	//产品下架
 	public void inactiveProduct(int id){
 		pd.inactive(id);

@@ -58,7 +58,7 @@ public class SalesCaseDao {
 		Timestamp current = new Timestamp(System.currentTimeMillis()); 
 		ws = this.runGetHQL("from SalesCase sc " +
 				" where ( sc.buid='" + buid + "' and sc.caseend > '" + current + 
-				"')  order by sc.updatetime desc" , 0, number);
+				"')  order by sc.caseend desc" , 0, number);
 		return ws;
 	}
 	/**

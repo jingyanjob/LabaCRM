@@ -32,7 +32,9 @@ public class ProductDao {
 	public void insert(Product prod){
 		this.runInsert(prod);
 	}
-	
+	public void update(Product prod){
+		this.runUpdate(prod);
+	}
 	/**
 	 * 
 	 */

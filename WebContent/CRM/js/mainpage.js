@@ -465,11 +465,7 @@ function selectedVU(name, score, uid){
 		$("#tuanusemsg").html("");
 	}
 /*------------product------------*/
-	function initProduct(){
-		//$("#productdesc").value = "";
-		//$("#productname").value = "";
-	}
-	function newProduct(){
+	function newProduct(pid){
 		var dataxml = "data=<data>";
 		var img = $("#productimg").val().split("\\");
 		var n=img.length;
@@ -477,7 +473,10 @@ function selectedVU(name, score, uid){
 			n = n-1;
 		}
 		var imgname = img[n];
-		
+		if(imgname.length >0){
+			document.getElementById("productimgform").submit();
+		}
+		dataxml = dataxml+ "<pid>" + pid + "</pid>";
     	dataxml = dataxml+ "<currentUID>" + $("#hiduid").val() + "</currentUID>";
     	dataxml = dataxml+ "<category>" + $("#productcat").val() + "</category>";
     	dataxml = dataxml+ "<productname>" + $("#productname").val() + "</productname>";
@@ -487,14 +486,40 @@ function selectedVU(name, score, uid){
     	dataxml = dataxml+ "<price>" + $("#productprice").val() + "</price>";
     	dataxml = dataxml+ "<incutoff>" + $("#productdiscount").val() + "</incutoff>";
     	dataxml = dataxml+ "</data>";
-    	document.getElementById("productimgform").submit();
+    	
 	    var xmlRequest =  $.ajax({
 		    type:"POST",
 		    url: baseurl + '/crm.dc?action=newProduct', 
 		    processData: false,
 		    data: dataxml,
 		    success:function(d){ 
-		    	alert("恭喜您，添加成功！");
+		    	alert("恭喜您，成功！");
+			},
+			error:function(e){
+				alert(errorMsg);
+		    }
+	    });
+	    
+	}
+//	function editInit(pid){
+//		leftSelect("productdiv1");
+//		editProduct(pid);
+//	}
+	function initProduct(pid){
+		leftSelect("productdiv1");
+		editProduct(pid);
+	}
+	function editProduct(pid){
+		var dataxml = "data=<data>";
+		dataxml = dataxml+ "<pid>" + pid + "</pid>";
+    	dataxml = dataxml+ "</data>";
+	    var xmlRequest =  $.ajax({
+		    type:"POST",
+		    url: baseurl + '/crm.dc?action=editProduct', 
+		    processData: false,
+		    data: dataxml,
+		    success:function(d){ 
+		    	$("#productdiv1").html(d);
 			},
 			error:function(e){
 				alert(errorMsg);
