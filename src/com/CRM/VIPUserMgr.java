@@ -13,6 +13,7 @@ import com.CRM.data.dao.VIPScoreDao;
 import com.CRM.data.dao.VIPUserDao;
 import com.CRM.systemtasks.WeiboTask;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+import com.xp.cache.CacheFactory;
 
 public class VIPUserMgr {
 	private VIPUserDao vud ;
@@ -53,6 +54,9 @@ public class VIPUserMgr {
 	}
 	
 	public VIPUser[] getVUsersByName(String username, String buid){
+		/**
+		 * not slow for read db direct, so not use CacheFactory.getCache(buid).getVips()
+		 */
 		return vud.getVIPUsersByName(username, buid, 0);
 	}
 	/**
@@ -89,6 +93,13 @@ public class VIPUserMgr {
 	 * @param vu
 	 */
 	public void newVIPScore(VIPScore vs){
+		VIPScore lastest = vsd.getVIPScore(vs.getUid(), vs.getBuid(),  0);
+		if(lastest != null){
+			int newscore = vs.getPerscore() + lastest.getTotalscore();
+			vs.setTotalscore(newscore);
+		}else{
+			vs.setTotalscore(vs.getPerscore());
+		}
 		vsd.insert(vs);
 	}
 	

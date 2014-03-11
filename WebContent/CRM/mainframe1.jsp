@@ -90,11 +90,11 @@
 			<div id="reservationdiv">
 					<table cellpadding="0" width="99%" cellspacing="0">
 						<tr>
-							<td align="left" valign="middle" style="font-size:10;border-bottom:1px solid #eeeeee;">
+							<td align="left" valign="middle" style="font-size:8;border-bottom:1px solid #eeeeee;">
 								<wb:publish button_size="small" 
-									default_text="即日起，您只需 @本微博，输入：预定 + 预定内容(例如：预定 今晚6点2人桌，老张 186...) 即可实现在线预定，快来试试哦 " >
+									default_text="即日起，您只需 @本微博，输入：预定 + 预定内容(例如：预定 今晚6点2人桌，老张 186...) 即可实现在线预定，更可获得会员积分，快来试试哦:) " >
 								</wb:publish>
-								用户只需   @本店微博，输入：预定 + 预定内容(例如：预定 今晚6点 2人桌，老张 186 8888 8888) 即可实现预定
+								用户只需   @本店微博，输入：预定 + 预定内容(例如：预定 今晚6点 2人桌，老张 186 8888 8888) 即可实现预定，更可获得会员积分，快来试试哦:)
 								<br />
 							</td>
 						</tr>
@@ -129,8 +129,11 @@
 				<div id="vipdiv1" class=subdivdef>
 					<table cellpadding="0" cellspacing="0" width="99%">
 						<tr>
-							<td  align= left>
-							VIP会员微博名字
+							<td  align= left >
+							<div  style="width:100%;background-color: #eeeeee;font-size: 15px">
+							<b>会员积分查询</b>
+							</div>
+							会员微博名字
 							<input id="userwbid" value="" />
 							<input id="vipusersearchbtn" value=" 查  询  " type="button" onclick="vipUserSearch('0');" /></td>
 						</tr>
@@ -148,6 +151,14 @@
 							</td>
 						</tr>
 					</table>
+					
+					<div style="width:100%;margin-top:50px">
+						即日起，任意对本店的转发和评论，都将获得会员积分，快点
+							<wb:publish button_size="small" 
+									default_text="即日起，任意对本店的转发和评论，都将获得会员积分，快来试试哦:) " >
+							</wb:publish> 去告诉大家吧：
+					</div>
+					
 				</div> 
 				<div id="vipdiv2"  class=subdivdef>
 					数据加载中....
@@ -183,7 +194,7 @@
 									</tr>
 									<tr>
 										<td>
-											<form id="productimgform" action="/crm.dc?action=fileUpload2"
+											<form id="productimgform_" action="/crm.dc?action=fileUpload2"
 												method="post" target="_new" enctype="multipart/form-data" align=center>
 												配图<input type="file" id="productimg" name="productimg" /> 
 												<input name="imgbuid" type=hidden />
@@ -223,7 +234,7 @@
 						<tr>
 							<td style="border-top:1px solid #eeeeee;" align=center>
 								<input type=button onclick="selectProdForSales();" value="菜 单 选 菜" />
-								<div id="tuanproducts" style="width:99%;background-color:#eeeeee;">
+								<div id="tuanproducts" style="width:99%;border:1 solid #eeeeee;">
 								</div>
 							</td>
 						</tr>
@@ -250,9 +261,7 @@
 						</tr>
 					</table>
 					<div style="font-size:9">
-						<br>说明 ：<br> 团购活动，都将新建微博并 @您的会员. <br>
-						为避免大量发送为您带来的负面影响，并确保营销效果，建议合理选择营销地点.<br>
-						如果筛选到的会员不多，建议您先主动增加您的会员(微博关注等)；
+						<br>说明 ：<br> 团购活动创建后，您就可以通过微博等进行宣传，并批量通知您的粉丝啦；
 					</div>
 				</div>
 			</div>

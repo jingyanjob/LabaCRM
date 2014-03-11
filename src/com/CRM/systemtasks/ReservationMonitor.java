@@ -45,6 +45,7 @@ public class ReservationMonitor {
 				}
 				//评论赠送积分
 				Comment jo = (Comment)coms.get(i);
+				vs = new VIPScore();
 				vs.setIsplus(0);
 				vs.setPerscore(s);
 			    vs.setUid(jo.getUser().getId());
@@ -70,6 +71,7 @@ public class ReservationMonitor {
 				}
 				//评论赠送积分
 				Comment jo = (Comment)comsam.get(i);
+				vs = new VIPScore();
 				vs.setIsplus(0);
 				vs.setPerscore(s);
 			    vs.setUid(jo.getUser().getId());
@@ -98,6 +100,7 @@ public class ReservationMonitor {
 				}
 				//转发赠送积分
 				Status jo = (Status)reposts.get(i);
+				vs = new VIPScore();
 				vs.setIsplus(0);
 				vs.setPerscore(s);
 			    vs.setUid(jo.getUser().getId());
@@ -171,7 +174,7 @@ public class ReservationMonitor {
 		return compareLoop(ss);
 		//return s;
 	}
-	//sort all status by tiem desc 
+	//sort all status by time desc 
 	public RepostAndComment[] compareLoop(RepostAndComment[] ss){
 		int n = ss.length;
 		RepostAndComment temp = new RepostAndComment();

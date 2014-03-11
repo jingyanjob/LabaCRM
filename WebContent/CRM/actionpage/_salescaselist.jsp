@@ -12,7 +12,7 @@
 .usetuandiv{
 	border: 1px solid #bbbbbb; 
 	display:none;
-	width:700px;
+	width:600px;
 	height:270px;
 	margin-top:20px; 
 	margin-left:20px;
@@ -20,11 +20,13 @@
 	z-index:99;
 	text-align:center;
 	position:absolute;
+	vertical-align:middle;
 }
 .tuanshowdiv{
-	border: 1px grove #dddddd;
-	margin-top: 3px; 
-	margin-left: 3px; 
+	border: 1px solid #cccccc;
+	margin-top: 8px; 
+	margin-left: 8px; 
+	margin-right: 8px; 
 	background-color: white;
 	padding: 1px; 
 	height: 270px;
@@ -38,8 +40,9 @@ a{
 }
 </style>
 </head>
-<body style="">
+<body>
 		<div class="usetuandiv" id="usetuaninlist">
+			<br /><br /><br/><br/>
 						团购代码 
 						<br/>
 						<input id="tuancodeuse"/>
@@ -53,12 +56,12 @@ a{
 						<br/><br/>
 						<div id="tuanusemsg"></div>
 				</div>
-<div style="width:99%;background-color:#eeeeee" id="tuanlistdiv">
+<div style="width:99%;" id="tuanlistdiv">
 <c:forEach items="${scs}" var="sc">
 		<div class="tuanshowdiv">
-			<table height=100% width=100% align=center>
+			<table height=98% width=98% align=center cellpadding="0" cellspacing="0">
 				<tr>
-					<td height=20px>
+					<td height=20px style="border:1px solid #dddddd; background-color: #eeeeee;">
 						结束时间:<c:out value="${sc.caseendshort}"></c:out> 团购价:<c:out value="${sc.disprice}"/>元
 						<br />
 						团购代码:<c:out value="${sc.tuancode}"/>
@@ -66,7 +69,7 @@ a{
 					</td>
 				</tr>
 				<tr>
-					<td align=left height=60px  valign=top>
+					<td align=left height=60px  valign=top style="border-bottom:1px solid #dddddd">
 						<div style="overflow-y:auto;height:100%;">
 						菜单：<c:forEach items="${sc.products}" var="prod">
 								<c:out value="${prod.productname}"/>-

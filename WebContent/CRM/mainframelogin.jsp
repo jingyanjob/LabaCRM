@@ -62,10 +62,10 @@
 					</div>
 					<div style="height:50px;width:50%;float:right;text-align:right;">
 						<br />
-						<input type=button value="使用帮助" style="font-size:12; height:30" />
-						<input type=button value="在线客服" style="font-size:12; height:30" />
-						<input type="button" value="关于喇叭" style="font-size:12; height:30"/>
-						<input type=button value="联系我们" /> &nbsp;&nbsp;&nbsp;
+						<a id="helplink" href="admin/help.jsp" target="_new" >使用帮助</a>
+						<a id="onlineagentlink" href="admin/onlineagent.jsp" target="_new" >在线客服</a>
+						<a id="aboutuslink" href="admin/aboutus.jsp" target="_new" >关于喇叭</a>
+						<a id="contactuslink" href="admin/contactus.jsp" target="_new" >联系我们</a>
 					</div>
 					<br/>
 					
@@ -168,7 +168,11 @@
 		});
 
   $(function() {
-    $( "input[type=button]" ).button();
+    $("input[type=button]").button();
+    $("#helplink").button();
+    $("#onlineagentlink").button();
+    $("#aboutuslink").button();
+    $("#contactuslink").button();					
   });
   </script>
 </center>

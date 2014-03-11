@@ -39,7 +39,7 @@ width:98%;font-size:12px;
 </head>
 <body style=" background-color:#eeeeee;">
 <br />
-<div id="_pcatecheck" class=baseback >
+<div id="_pcatecheck" class=prodlistbaseback >
 <input onclick="showProductByCate()" type=checkbox checked value="0">主厨推荐
 <input onclick="showProductByCate()" type=checkbox checked value="1">热菜
 <input onclick="showProductByCate()" type=checkbox checked value="2">时蔬
@@ -48,7 +48,7 @@ width:98%;font-size:12px;
 <input onclick="showProductByCate()" type=checkbox checked value="5">主食
 <input onclick="showProductByCate()" type=checkbox checked value="6">酒水/饮料
 </div>
-<div class=baseback  id="productlistdiv">
+<div id="productlistdiv">
 	<c:forEach items="${prods}" var="prod">
 		<div lang="<c:out value="${prod.category}"></c:out>" class="productdiv"> <%--ui-widget-header  ui-state-default  --%>
 			<div style="width:15%;height:100%;float:left;text-align:left;vertical-align: middle;">

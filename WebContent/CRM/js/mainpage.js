@@ -473,7 +473,7 @@ function selectedVU(name, score, uid){
 			n = n-1;
 		}
 		var imgname = img[n];
-		if(imgname.length >0){
+		if(imgname != ""){
 			document.getElementById("productimgform").submit();
 		}
 		dataxml = dataxml+ "<pid>" + pid + "</pid>";
@@ -499,7 +499,6 @@ function selectedVU(name, score, uid){
 				alert(errorMsg);
 		    }
 	    });
-	    
 	}
 //	function editInit(pid){
 //		leftSelect("productdiv1");
@@ -716,6 +715,7 @@ function selectedVU(name, score, uid){
 			error:function(){ $("#updatevsstatus").html("<b><font>失败！</font></b>");}
 		});
    	});
+
    	// runing auto
    	
 

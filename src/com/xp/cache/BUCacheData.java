@@ -66,7 +66,7 @@ public class BUCacheData {
 		this.vips = vips;
 		vht.clear();
 		for(int i=0; i< vips.length;i++){
-			vht.put(String.valueOf(vips[i].getId()), vips[i]);
+			vht.put(String.valueOf(vips[i].getUsername()), vips[i]);
 		}
 	}
 	public Product[] getProducts() {

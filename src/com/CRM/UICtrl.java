@@ -175,7 +175,7 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 		init();
 		try {
 			String xml = req.getParameter("data");
-			String username = util.getXmlContent(xml, "username");
+			String username = util.getXmlContent(xml, "username").trim();
 			String uid = util.getXmlContent(xml, "currentUID");
 			VIPUser[] vipus = vum.getVUsersByName(username, uid);
 			HashMap<String, VIPScore> vss = new HashMap<String, VIPScore>();
@@ -451,9 +451,9 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 				"<option value='prodforsales3' >冷菜</option>" +
 				"<option value='prodforsales4' >汤/煲</option>" +
 				"<option value='prodforsales5' >主食</option>" +
-				"<option value='prodforsales6' >酒水/饮料</option></select>");
+				"<option value='prodforsales6' >酒水/饮料</option></select><div  style='width:100%;'>");
 		for(int i=0; i<GlobalStaticData.productCatNumber; i++){
-			s_.append("<div id='prodforsales"+i+"' style='width:100%;'>");
+			s_.append("<div id='prodforsales"+i+"'>");
 			for(int j=0; j<prods[i].size(); j++){
 				s_.append("<input onclick='checkProdForSales()' type=checkbox value='"
 							+ prods[i].get(j).getId()+ ";"
@@ -465,6 +465,7 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 			s.append(s_.toString());
 			s_ = new StringBuffer();
 		}
+		s_.append("</div>");
 		return s.toString();
 	}
 	/**

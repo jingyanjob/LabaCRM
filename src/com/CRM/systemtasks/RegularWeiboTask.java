@@ -38,15 +38,16 @@ public class RegularWeiboTask {
 		VIPScore vs= new VIPScore();
 		for(int i=0; i<rss.size();i++){
 			jo = (Status)rss.get(i);
-			vs.setIsplus(0);
-			vs.setPerscore(s);
-		    vs.setUid(jo.getUser().getId());
-			vs.setTotalscore(0);
-			vs.setBuid(bu.getUid());
-			vs.setSourcesite(0);
-			vs.setUsername(jo.getUser().getName());
-			vipmgr.newVIPScore(vs);
-			System.out.println("log repost score: " + jo.getUser().getName() + "  " + s);
+			if(jo.getText().indexOf("预订成功")< 0){//预定回复的不参加积分
+				vs.setIsplus(0);
+				vs.setPerscore(s);
+			    vs.setUid(jo.getUser().getId());
+				vs.setTotalscore(0);
+				vs.setBuid(bu.getUid());
+				vs.setSourcesite(0);
+				vs.setUsername(jo.getUser().getName());
+				vipmgr.newVIPScore(vs);
+			}
 			if(sinceId < Long.valueOf((jo.getId())).longValue()){
 				sinceId = Long.valueOf((jo.getId())).longValue();
 			}
@@ -78,17 +79,18 @@ public class RegularWeiboTask {
 		VIPScore vs= new VIPScore();
 		for(int i=0; i<css.size();i++){
 			jo = (Comment)css.get(i);
-			vs.setIsplus(0);
-			vs.setPerscore(s);
-		    vs.setUid(jo.getUser().getId());
-			vs.setTotalscore(0);
-			vs.setBuid(bu.getUid());
-			vs.setSourcesite(0);
-			vs.setUsername(jo.getUser().getName());
-			vs.setWeiboid(String.valueOf(jo.getId()));
-			vs.setWeibotime(jo.getCreatedAt());
-			vipmgr.newVIPScore(vs);
-			System.out.println("log comments score: " + jo.getUser().getName() + "  " + s);
+			if(jo.getText().indexOf("预订成功")< 0){//预定回复的不参加积分
+				vs.setIsplus(0);
+				vs.setPerscore(s);
+			    vs.setUid(jo.getUser().getId());
+				vs.setTotalscore(0);
+				vs.setBuid(bu.getUid());
+				vs.setSourcesite(0);
+				vs.setUsername(jo.getUser().getName());
+				vs.setWeiboid(String.valueOf(jo.getId()));
+				vs.setWeibotime(jo.getCreatedAt());
+				vipmgr.newVIPScore(vs);
+			}
 			if(jo.getId() < 0){
 				if(sinceId < -jo.getId()){
 					sinceId = -jo.getId();
