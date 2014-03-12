@@ -9,7 +9,7 @@
 <link type="text/css" href="jq104/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="jq104/js/jquery-ui-1.10.4.custom.min.js"></script>
-<script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520"	type="text/javascript" charset="utf-8"></script>
+<script id="sinajs" src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="js/mainpage.js"></script>
 <title>LabaCRM Main</title>
 <style type="text/css">
@@ -66,9 +66,12 @@
 					<a href="javascript:leftSelect('productdiv2')">菜单</a>
 					</li>
 					<li>
-					<a href="javascript:initProduct('-1');">添加菜单</a>
+					<a href="javascript:initProduct('-1');">添加菜品</a>
 					</li>
 					
+					<li>
+					<a href="javascript:leftSelect('productdiv3');">菜单发布</a>
+					</li>
 				</ul>
 			</li>
 			<li>
@@ -211,6 +214,9 @@
 				<div id="productdiv2" class=subdivdef>
 					<div id="productlistshow" style="width:100%;background-color:#eeeeee">数据加载中....</div>
 				</div>
+				<div id="productdiv3" class="subdivdef">
+					
+				</div>
 			</div>
 			<div id="tuandiv">
 				<div id="tuandiv1" class=subdivdef>
@@ -327,8 +333,11 @@ function leftSelect(id){
 	document.getElementById("vipdiv3").style.display = "none";
 	document.getElementById("productdiv1").style.display = "none";
 	document.getElementById("productdiv2").style.display = "none";
+	document.getElementById("productdiv3").style.display = "none";
+	
 	document.getElementById("tuandiv1").style.display = "none";
 	document.getElementById("tuandiv2").style.display = "none";
+	
 	if( id === "vipdiv1"){
 		initVipUserSearch();
 	}
@@ -343,6 +352,18 @@ function leftSelect(id){
 	}
 	if( id === "productdiv2"){
 		productList();
+	}
+	if( id === "productdiv3"){
+		var buid = $("#hiduid").val();
+		var _html = "任何人都可以通过访问："
+			+ "<a href='http://labacrm.com/crm.dc?action=menu&id="+buid+"' target='_new'>本店菜单</a>" 
+			+ "查看到您创建的菜单，并且可以直接点菜、在线预定，这么方便的东东，快去告诉大家吧 ->"
+			+ "<wb:publish button_size='small'  default_text='即日起，您只需访问：http://labacrm.com/crm.dc?action=menu&id="+buid
+			+ "， 便可查看本店的菜单，并且可以直接点菜和在线预定，这么方便的东东，快来试试吧:)' ><\/wb:publish>"
+			+ "<script src='http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520' type='text/javascript' charset='utf-8' ><\/script>";
+			
+		document.getElementById("productdiv3").innerHTML = _html;
+		//
 	}
 	if( id === "tuandiv1"){
 		getSalesCases();

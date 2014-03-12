@@ -282,7 +282,7 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 		return ma;
 	}
 	/********************************************************************/
-	/******************************营销API********************************/
+	/******************************团购API********************************/
 	/********************************************************************/
 	/**
 	 * 获取临时营销对象，但不保存到数据库
@@ -605,6 +605,25 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 		Product[] prods = {};
 		try {
 			prods = CacheFactory.getCache(buid).getProducts();//pe.getActiveProducts(buid);
+			ma.addObject("prods", prods);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ModelAndView();
+		}
+		return ma;
+	}
+	public ModelAndView menu(HttpServletRequest req,
+			HttpServletResponse res) throws UnsupportedEncodingException {
+		res.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
+		ModelAndView ma = new ModelAndView("CRM/onlinemenu");
+		init();
+		String buid = req.getParameter("id");
+		Product[] prods = {};
+		try {
+			prods = CacheFactory.getCache(buid).getProducts();//pe.getActiveProducts(buid);.
+			ma.addObject("bu", bum.getBizUser(buid));
 			ma.addObject("prods", prods);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
