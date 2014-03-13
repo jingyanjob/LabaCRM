@@ -9,7 +9,10 @@
 <body>
 <a href="javascript:alert('11')" style="text-transform:none;text-decoration:none;">
 <img src="img/labacrm121.jpg" style="border:0px solid" />
-test
+test <script type="text/javascript">
+	document.write("rrrrrrrrrrrrrrrrrr");
+			new function(){document.write("55555555555555555555555");}
+							</script>
 </a>
 <div cate="1" >a</div>
 <div cate=1 >b</div>

@@ -20,11 +20,11 @@
 	left:0px;
 	top: 0px;
 	height:60px;
-	background-color:#eeeeee;
+	background-color:#F4F5F3;
 	position:fixed;
 	left: 0;
 	width: 100%;
-	border-bottom: 3px white groove;
+	border-bottom: 2px #F4F5F3 groove;
 	z-index:99;
 }
 .maindiv1 {
@@ -51,12 +51,6 @@
 		<div class=maindivtop>
 				<div style="width:990px;">
 					<div style="width:50%;left:2px;float:left;text-align:left;">
-					<%-- <font size=10>
-						喇叭客户关系管理系统
-					</font>
-						
-							
-						--%>
 					<img src="img/logofullblank.png" style="margin-top:9px;height:45px"/>
 						
 					</div>
@@ -75,12 +69,12 @@
 					<%--
 						 class="ui-widget-header ui-state-default logininfo"
 					 --%>
-							<div id="logoninfo" style="width:445px;float:left;text-align:left">
-								&nbsp;&nbsp;登录信息
-							</div>
-							<div id="newbuinit" style="width:445px;float:right;text-align:right">
-								初始化信息
-							</div>
+			<div id="logoninfo" style="width:445px;float:left;text-align:left">
+			&nbsp;&nbsp;登录信息
+			</div>
+			<div id="newbuinit" style="width:445px;float:right;text-align:right">
+				初始化信息
+			</div>
 					</div>
 		<div class=maindiv1 >
 			<jsp:include page="mainframe1.jsp"></jsp:include>

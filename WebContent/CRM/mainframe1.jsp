@@ -9,7 +9,7 @@
 <link type="text/css" href="jq104/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="jq104/js/jquery-ui-1.10.4.custom.min.js"></script>
-<script id="sinajs" src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520" type="text/javascript" charset="utf-8"></script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="js/mainpage.js"></script>
 <title>LabaCRM Main</title>
 <style type="text/css">
@@ -20,9 +20,9 @@
 	width:120px;left:0px;float:left;height:500px;z-index:98;
 }
 .rightmaindiv{
-	height:503px;
+	height:504px;
 	overflow-y:scroll;
-	width: 860px;
+	width: 865px;
 	float:right;
 	text-algin:center;
 	border:1px solid #cccccc;
@@ -42,10 +42,10 @@
 		<div class=lefttmaindiv>
 		<ul id="mainmenu" class=mainheight>
 			<li>
-				<a href="javascript:leftSelect('reservationdiv')">在线预定</a>
+				<a id="menu1a" href="javascript:leftSelect('reservationdiv')">在线预定</a>
 			</li>
 			<li>
-				<a href="javascript:leftSelect('vipdiv1')" >会员和积分</a>			
+				<a  id="menu2a"  href="javascript:leftSelect('vipdiv1')" >会员和积分</a>			
 				<ul>
 					<li>
 					<a href="javascript:leftSelect('vipdiv1')">会员积分</a>
@@ -60,7 +60,7 @@
 				</ul>
 			</li>
 			<li>
-				<a href="javascript:leftSelect('productdiv2')">本店菜单</a>
+				<a  id="menu3a"  href="javascript:leftSelect('productdiv2')">本店菜单</a>
 				<ul>
 					<li>
 					<a href="javascript:leftSelect('productdiv2')">菜单</a>
@@ -75,7 +75,7 @@
 				</ul>
 			</li>
 			<li>
-				<a href="javascript:leftSelect('tuandiv1')" onclick="initSalesCase();">团购中心</a>
+				<a  id="menu4a"  href="javascript:leftSelect('tuandiv1')" onclick="initSalesCase();">团购中心</a>
 				<ul>
 					<li>
 					<a href="javascript:leftSelect('tuandiv1')">团购列表</a>
@@ -85,19 +85,17 @@
 					</li>
 				</ul>
 			</li>
-			
 		</ul>
 		</div>
 		<div class=rightmaindiv >
-			
 			<div id="reservationdiv">
 					<table cellpadding="0" width="99%" cellspacing="0">
 						<tr>
 							<td align="left" valign="middle" style="font-size:8;border-bottom:1px solid #eeeeee;">
+								用户只需   @本店微博，输入：预定 + 预定内容(例如：预定 今晚6点 2人桌，老张 186 8888 8888) 即可实现预定，更可获得会员积分，快来试试哦:)
 								<wb:publish button_size="small" 
 									default_text="即日起，您只需 @本微博，输入：预定 + 预定内容(例如：预定 今晚6点2人桌，老张 186...) 即可实现在线预定，更可获得会员积分，快来试试哦:) " >
 								</wb:publish>
-								用户只需   @本店微博，输入：预定 + 预定内容(例如：预定 今晚6点 2人桌，老张 186 8888 8888) 即可实现预定，更可获得会员积分，快来试试哦:)
 								<br />
 							</td>
 						</tr>
@@ -215,7 +213,13 @@
 					<div id="productlistshow" style="width:100%;background-color:#eeeeee">数据加载中....</div>
 				</div>
 				<div id="productdiv3" class="subdivdef">
-					
+					<br /><br/>
+						<div id="menupublishdiv">
+							<a href='http://labacrm.com/crm.dc?action=menu&id='>
+								http://labacrm.com/crm.dc?action=menu&id=
+							</a>
+						</div>
+						
 				</div>
 			</div>
 			<div id="tuandiv">
@@ -285,7 +289,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 		$(function() {
-		    $( "#mainmenu" ).menu();
+		    $("#mainmenu").menu();
 		});
 	  	function getReservation(){
 		//alert("get client msg");
@@ -325,8 +329,7 @@ $(document).ready(function() {
 	  
 });
 
-function leftSelect(id){
-//reservationdiv vipdiv1  vipdiv2 vipdiv3 productdiv1 productdiv2 tuandiv1 tuandiv2
+function leftSelect(id){	
 	document.getElementById("reservationdiv").style.display = "none";
 	document.getElementById("vipdiv1").style.display = "none";
 	document.getElementById("vipdiv2").style.display = "none";
@@ -337,42 +340,60 @@ function leftSelect(id){
 	
 	document.getElementById("tuandiv1").style.display = "none";
 	document.getElementById("tuandiv2").style.display = "none";
+	document.getElementById("menu1a").style.background = "";
+	document.getElementById("menu2a").style.background = "";
+	document.getElementById("menu3a").style.background = "";
+	document.getElementById("menu4a").style.background = "";
+	if( id === "reservationdiv"){
+		document.getElementById("menu1a").style.background = "white";
+	}
 	
 	if( id === "vipdiv1"){
 		initVipUserSearch();
+		document.getElementById("menu2a").style.background = "white";
 	}
 	if( id === "vipdiv2"){
 		getVIPUserList();
+		document.getElementById("menu2a").style.background = "white";
 	}
 	if( id === "vipdiv3"){
-
+		document.getElementById("menu2a").style.background = "white";
 	}
 	if( id === "productdiv1"){
-		
+		document.getElementById("menu3a").style.background = "white";
 	}
 	if( id === "productdiv2"){
 		productList();
+		document.getElementById("menu3a").style.background = "white";
 	}
 	if( id === "productdiv3"){
+		document.getElementById("menu3a").style.background = "white";
 		var buid = $("#hiduid").val();
-		var _html = "任何人都可以通过访问："
-			+ "<a href='http://labacrm.com/crm.dc?action=menu&id="+buid+"' target='_new'>本店菜单</a>" 
-			+ "查看到您创建的菜单，并且可以直接点菜、在线预定，这么方便的东东，快去告诉大家吧 ->"
-			+ "<wb:publish button_size='small'  default_text='即日起，您只需访问：http://labacrm.com/crm.dc?action=menu&id="+buid
-			+ "， 便可查看本店的菜单，并且可以直接点菜和在线预定，这么方便的东东，快来试试吧:)' ><\/wb:publish>"
-			+ "<script src='http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520' type='text/javascript' charset='utf-8' ><\/script>";
-			
-		document.getElementById("productdiv3").innerHTML = _html;
-		//
-	}
+		document.getElementById("menupublishdiv").innerHTML = "任何人都可以通过访问："
+			+ "<a target=_new href='http://labacrm.com/crm.dc?action=menu&id="+buid+"'>http://labacrm.com/crm.dc?action=menu&id=" + buid
+			+ "</a> <br />即可浏览本店菜单，并且可以直接点菜、在线预定；<br/>这么方便的东东，快去告诉大家吧  >> "
+			+ "<a id='publishproductmenu' href='javascript:;'>发微博告诉大家</a>";
+		WB2.anyWhere(function(W){
+			var text = "即日起，您只需访问：http://labacrm.com/crm.dc?action=menu&id="+buid
+				 + " 便可查看本店的菜单，并且可以直接点菜和在线预定，这么方便的东东，快来试试吧";
+			    W.widget.publish({
+			        'id' : 'publishproductmenu',
+			        'button_size' :  "middle",//big/middle/small，默认为middle
+					'button_text' :  "发微博告诉大家",//自定义button文字，默认为“发布到微博”
+					'default_text' : text//本框内容，默认为空
+			    });
+			});
+		}
 	if( id === "tuandiv1"){
 		getSalesCases();
+		document.getElementById("menu4a").style.background = "white";
 	}
 	if( id === "tuandiv2"){
 		getTuanCode();
+		document.getElementById("menu4a").style.background = "white";
 	}
 	document.getElementById(id).style.display = "block";
 }
-
+	
 </script>
 </html>
