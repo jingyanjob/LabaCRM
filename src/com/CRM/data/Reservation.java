@@ -6,10 +6,10 @@ import com.CRM.systemtasks.RepostAndComment;
 
 public class Reservation{
 	private int sid;//序列号，自增
-	private String id;//微博ID
+	private String id;//微博ID, "0000" 代表从网站menu 直接预定
 	private String cid;//评论ID
 	private String buid;//belongs to which biz user
-	private String uid;//for user banding
+	private String uid;//for user banding, "0000"代表从网站menu 直接预定
 	private String username;
 	private int resstatus;	//0: success; 1: failed; 2: pendding
 	private String resresp;//reservation response

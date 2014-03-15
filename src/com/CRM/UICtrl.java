@@ -698,6 +698,34 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 		}
 		return ma;
 	}
+	/**
+	 * 通过本店菜单预定的
+	 * @param req
+	 * @param res
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
+	public ModelAndView reserveByMenuPage(HttpServletRequest req,
+			HttpServletResponse res) throws UnsupportedEncodingException {
+		res.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
+		ModelAndView ma = new ModelAndView("CRM/actionpage/_successpage");
+		init();
+		String xml = req.getParameter("data");
+		String buid = util.getXmlContent(xml, "buid");
+		String msg = util.getXmlContent(xml, "msg");
+		String user = util.getXmlContent(xml, "user");
+		String[] para = {msg, user};
+		try{
+			rvm.newReservation(para, buid);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ModelAndView();
+		}
+		return ma;
+	}
+	
 	public ModelAndView deleteProduct(HttpServletRequest req,
 			HttpServletResponse res) throws UnsupportedEncodingException {
 		res.setCharacterEncoding("UTF-8");

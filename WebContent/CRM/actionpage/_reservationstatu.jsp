@@ -10,8 +10,14 @@
 <title></title>
 <script>
 	function confirmReservation(id, cid) {
-		if(!window.confirm("预定确认后，将立刻通知预定人！")){
-			return;
+		if(cid != "0000"){
+			if(!window.confirm("预定确认后，网站将马上自动通知预定人.")){
+				return;
+			}
+		}else{
+			if(!window.confirm("这次预定来自网页菜单，请电话与客户确认！")){
+				return;
+			}
 		}
 		var xmlDocument = "data=<data><id>" + id + "</id>" + "<cid>" + cid +"</cid>"
 			+ "<currentATStr>" +  $("#hidatstr").val() + "</currentATStr></data>";
@@ -45,17 +51,31 @@
 	<table width="99%" cellpadding="1" cellspacing="0" height=300px style="overflow-y:auto;">
 		<tr>
 			<td align=center style="background-color:#DDDDDD;border:1px solid white;"><b>时间/年-月-日</b></td>
-			<td align=center style="background-color:#DDDDDD;border:1px solid white;"><b>预定人</b></td>
+			<td align=center style="background-color:#DDDDDD;border:1px solid white;"><b>来自</b></td>
+			<td align=center style="background-color:#DDDDDD;border:1px solid white;"><b>预定人</b></td>			
 			<td align=center style="background-color:#DDDDDD;border:1px solid white;"><b>预定信息</b></td>
 			<td align=right style="background-color:#DDDDDD;border:1px solid white;"><b>预定状态</b></td>
 		</tr>
 		<c:forEach  items="${rss}" var="reserve">
 			<tr >
-				<td width="200" style="border:1px solid #DDDDDD;">
+				<td width="120" style="border:1px solid #DDDDDD;">
 					<fmt:formatDate value="${reserve.createdat}" type="both" dateStyle="short" timeStyle="short"/>
 				</td>
+				<td width="80" style="border:1px solid #DDDDDD;">
+					<c:if test='${reserve.uid == "0000"}'>
+						网页菜单
+					</c:if>
+					<c:if test='${reserve.uid != "0000"}'>
+						微博
+					</c:if>
+				</td>
 				<td width="150" style="border:1px solid #DDDDDD;">
-					<a href="http://www.weibo.com/u/${reserve.username}" target="_new">	<c:out value="${reserve.username}"></c:out>  </a>
+					<c:if test='${reserve.uid == "0000"}'>
+						${reserve.username}
+					</c:if>
+					<c:if test='${reserve.uid != "0000"}'>
+						<a href="http://www.weibo.com/u/${reserve.username}" target="_new">	<c:out value="${reserve.username}"></c:out>  </a>
+					</c:if>
 				</td>
 				<td style="border:1px solid #DDDDDD;"><c:out value="${reserve.text}"></c:out></td>
 				<td width="80" align=right style="border:1px solid #DDDDDD;">

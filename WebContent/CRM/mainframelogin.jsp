@@ -56,10 +56,10 @@
 					</div>
 					<div style="height:50px;width:50%;float:right;text-align:right;">
 						<br />
-						<a id="helplink" href="admin/help.jsp" target="_new" >使用帮助</a>
-						<a id="onlineagentlink" href="admin/onlineagent.jsp" target="_new" >在线客服</a>
-						<a id="aboutuslink" href="admin/aboutus.jsp" target="_new" >关于喇叭</a>
-						<a id="contactuslink" href="admin/contactus.jsp" target="_new" >联系我们</a>
+						<a id="helplink" href="http://labacrm.com/CRM/admin/help.jsp" target="_new" >使用帮助</a>
+						<a id="onlineagentlink" href="http://labacrm.com/CRM/admin/onlineagent.jsp" target="_new" >在线客服</a>
+						<a id="aboutuslink" href="http://labacrm.com/CRM/admin/aboutus.jsp" target="_new" >关于喇叭</a>
+						<a id="contactuslink" href="http://labacrm.com/CRM/admin/contactus.jsp" target="_new" >联系我们</a>
 					</div>
 					<br/>
 					
@@ -153,7 +153,7 @@
 		}
 		%>
 		<%----%>
-	<script type="text/javascript">
+<script type="text/javascript">
 		WB2.anyWhere(function(W) {
 			W.widget.hoverCard({
 				id : "businesscard",
@@ -168,7 +168,7 @@
     $("#aboutuslink").button();
     $("#contactuslink").button();					
   });
-  </script>
+</script>
 </center>
 </body>
 </html>

@@ -4,8 +4,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<link type="text/css" href="../jq104/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+<head>							
+<%--
+<link type="text/css" href="CRM/jq104/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+ --%>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520"
 	type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="CRM/js/jquery-1.9.1.js"></script>
@@ -58,12 +61,11 @@
 					</div>
 					<div style="height:50px;width:50%;float:right;text-align:right;font-size:25px">
 					 	<br />
-					 	<c:out value="${bu.username}"></c:out> 在线菜单
+					 	<c:out value="${bu.username}"></c:out>在线菜单
 					</div>
 					<br/>
 				</div>
 		</div>
-		
 		<div class=maindiv1 >
 			<jsp:include page="actionpage/_productlist4menu.jsp"></jsp:include>
 		</div>

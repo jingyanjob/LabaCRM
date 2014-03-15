@@ -4,9 +4,11 @@
 <html xmlns:wb="http://open.weibo.com/wb">
 <head>
 <%--
-<link type="text/css" href="jq104/css/ui-lightness/jquery.ui.menu.css" rel="stylesheet" />
+
  --%>
-<link type="text/css" href="jq104/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+<%--<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">=
+ --%>
+<link type="text/css" href="jq104/css/ui-lightness/jquery.ui.menu.css" rel="stylesheet" />
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="jq104/js/jquery-ui-1.10.4.custom.min.js"></script>
 <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520" type="text/javascript" charset="utf-8"></script>
@@ -68,10 +70,11 @@
 					<li>
 					<a href="javascript:initProduct('-1');">添加菜品</a>
 					</li>
-					
-					<li>
-					<a href="javascript:leftSelect('productdiv3');">菜单发布</a>
-					</li>
+					<%--
+						<li>
+						<a href="javascript:leftSelect('productdiv3');">菜单发布</a>
+						</li>
+					--%>
 				</ul>
 			</li>
 			<li>
@@ -210,8 +213,14 @@
 								</table>
 				</div>
 				<div id="productdiv2" class=subdivdef>
+					<div id="menupublishdiv">
+							<a href='http://labacrm.com/crm.dc?action=menu&id='>
+								http://labacrm.com/crm.dc?action=menu&id=
+							</a>
+					</div>
 					<div id="productlistshow" style="width:100%;background-color:#eeeeee">数据加载中....</div>
 				</div>
+				<%-- 
 				<div id="productdiv3" class="subdivdef">
 					<br /><br/>
 						<div id="menupublishdiv">
@@ -220,7 +229,7 @@
 							</a>
 						</div>
 						
-				</div>
+				</div>--%>
 			</div>
 			<div id="tuandiv">
 				<div id="tuandiv1" class=subdivdef>
@@ -363,6 +372,22 @@ function leftSelect(id){
 		document.getElementById("menu3a").style.background = "white";
 	}
 	if( id === "productdiv2"){
+		document.getElementById("menu3a").style.background = "white";
+		var buid = $("#hiduid").val();
+		document.getElementById("menupublishdiv").innerHTML = "任何人都可以通过访问："
+			+ "<a target=_new href='http://labacrm.com/crm.dc?action=menu&id="+buid+"'>http://labacrm.com/crm.dc?action=menu&id=" + buid
+			+ "</a> <br />即可浏览本店菜单，并且可以直接点菜、在线预定；<br/>这么方便的东东，快去告诉大家吧  >> "
+			+ "<button id='publishproductmenu' href='javascript:;'>发微博告诉大家</button>";
+		WB2.anyWhere(function(W){
+			var text = "即日起，您只需访问：http://labacrm.com/crm.dc?action=menu&id="+buid
+				 + " 便可查看本店的菜单，并且可以直接点菜和在线预定，这么方便的东东，快来试试吧";
+			    W.widget.publish({
+			        'id' : 'publishproductmenu',
+			        'button_size' :  "middle",//big/middle/small，默认为middle
+					'button_text' :  "发微博告诉大家",//自定义button文字，默认为“发布到微博”
+					'default_text' : text//本框内容，默认为空
+			    });
+		});
 		productList();
 		document.getElementById("menu3a").style.background = "white";
 	}
@@ -382,8 +407,8 @@ function leftSelect(id){
 					'button_text' :  "发微博告诉大家",//自定义button文字，默认为“发布到微博”
 					'default_text' : text//本框内容，默认为空
 			    });
-			});
-		}
+		});
+	}
 	if( id === "tuandiv1"){
 		getSalesCases();
 		document.getElementById("menu4a").style.background = "white";

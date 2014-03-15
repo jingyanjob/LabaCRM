@@ -1,6 +1,7 @@
 package com.CRM;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 
 import weibo4j.model.WeiboException;
 
@@ -18,8 +19,23 @@ public class ReservationMgr {
 		Reservation r = this.getReservation(id, cid);
 		r.setResstatus(0);
 		rvd.insert(r);
-		WeiboTask wt = new WeiboTask();
-		wt.reservationConfirm(atoken, r.getCid(), r.getId(), "#预订成功#" + r.getText());
+		if(!cid.equals("0000")){
+			WeiboTask wt = new WeiboTask();
+			wt.reservationConfirm(atoken, r.getCid(), r.getId(), "#预订成功#" + r.getText());
+		}
+	}
+	public void newReservation(String[] text,  String buid){
+		Reservation rs = new Reservation();
+		rs.setBuid(buid);
+		rs.setText(text[0]);
+		rs.setUsername(text[1]);
+		rs.setUid("0000");
+		rs.setCreatedat(new Date());
+		rs.setId("0000");
+		rs.setResstatus(2);
+		rs.setCid("0000");
+		rs.setResresp("");
+		rvd.insert(rs);
 	}
 	public Reservation[] newReservation(RepostAndComment[] rac , String buid){
 		Reservation[] rs = new Reservation[rac.length];
