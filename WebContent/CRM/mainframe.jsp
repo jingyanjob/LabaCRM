@@ -36,13 +36,15 @@
 	z-index:99;
 }
 .introductdiv{
-	height:200px;width:800px;
+	height:200px;width:960px;
 }
 .introductsubdivleft{
-	width:400px;float:left;
+	height:100%;width:480px;float:left;
+	vertical-align:middle;
 }
 .introductsubdivright{
-	width:400px;float:right;
+	height:100%;width:480px;float:right;
+	vertical-align:middle;
 }
 </style>
 </head>
@@ -65,20 +67,22 @@
 					
 				</div>
 		</div>
-		<div style="display:none;background-color: white;" id="wblogon">
+		<div style="display:none;background-color: white;width:990px;" id="wblogon">		
 			<br /><br /><br /><br />
-			<table cellpadding="0" cellspacing="0" width="950px">
+			<a href="https://api.weibo.com/oauth2/authorize?client_id=595918520&response_type=code&redirect_uri=http://labacrm.com/CRM/sinaauthcallback.jsp" style="text-decoration: none; border: none;" target="_self"> 
+				<img style="border: none;" src="http://tjs.sjs.sinajs.cn/t3/style/images/common/card/widget_connect.gif" />
+			</a>
+				<%-- <table cellpadding="0" cellspacing="0" width="950px">
 				<tr>
-					<td align=right>
-						请点击登录： 
-						<a href="https://api.weibo.com/oauth2/authorize?client_id=595918520&response_type=code&redirect_uri=http://labacrm.com/CRM/sinaauthcallback.jsp" style="text-decoration: none; border: none;" target="_self"> <img style="border: none;" src="http://tjs.sjs.sinajs.cn/t3/style/images/common/card/widget_connect.gif" />
-						</a>
+					<td align=cneter width="300">
+						
 					</td>
+				
 					<td align="left">
 						<img style="width:500px" src="img/mainpage.jpg">
 					</td>
 				</tr>
-			</table>
+			</table>--%>
 			<br /><br />
 		</div>
 		<%
@@ -159,6 +163,7 @@
 			<img alt="" style="width:350px" src="img/reservation.png">
 		</div>
 		<div class="introductsubdivright">
+			<br />
 			<p>
 				客户直接在线预定，直接浏览贵店菜单、选菜，简单方便；<br/><br/>
 				在喇叭上您可以实时查看预定并在线回复，简单方便却不会让您漏掉任何一个预定，大大提高预定管理效率和客户满意度；
@@ -172,14 +177,14 @@
 		<font size=5>您的在线菜单</font>
 		<br />
 		<div class="introductsubdivleft">
+			<br />
 				<p>
-					您微博的粉丝和您关注的所有人，都回自动成为您的会员；
-					<br />
-					转发、评论您微博的会员，都将赠送一定的奖励积分，以增加会员对您的宣传积极性；
+					简单的操作，即可拥有一份精美的在线菜单；
+					您的客户可以轻松浏览，并直接选菜、下单，这么好的东东，谁用谁知道。
 				</p>
 		</div>
 		<div class="introductsubdivright">
-			
+			<img alt="" style="width:350px" src="img/menu.png">
 		</div>
 	</div>
 	<div class="splitLine" ></div>
@@ -187,14 +192,13 @@
 		<font size=5>自助式团购</font>
 		<br/>
 		<div class="introductsubdivleft">
-				
+				<img alt="" style="width:350px" src="img/tuan.png">
 		</div>
 		<div class="introductsubdivright">
+			<br />
 			<p>
-					您微博的粉丝和您关注的所有人，都回自动成为您的会员；
-					<br />
-					转发、评论您微博的会员，都将赠送一定的奖励积分，以增加会员对您的宣传积极性；
-				</p>
+				轻松开团，并可实时发布在微博等最热门网络平台，让您的团购不再受制于任何一个团购网站。	
+			</p>
 		</div>
 		
 	</div>

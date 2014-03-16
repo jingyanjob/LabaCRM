@@ -45,10 +45,10 @@
 	background-color:#888888;
 }
 .companyinfo{
-	width:990px;bottom:0px;margin-top:15px;color:black;text-align:center;left:0px;
+	width:990px;bottom:0px;margin-top:5px;color:black;text-align:center;left:0px;
 	border-top:1px solid #dddddd;
 	background-color:#eeeeee;
-	margin-bottom: 105px;
+	margin-bottom: 100px;
 }
 </style>
 </head>
@@ -69,6 +69,7 @@
 		<div class=maindiv1 >
 			<jsp:include page="actionpage/_productlist4menu.jsp"></jsp:include>
 		</div>
+		<br />
 		<div class=companyinfo >
 			<font size="2">佰传信息技术有限公司 出品  labacrm.com - 津ICP备13005372号 </font>
 			<br>

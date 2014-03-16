@@ -17,15 +17,17 @@
 .productdiv { 
 	border-bottom:1px groove #eeeeee;
 	border-right:1px groove #eeeeee;
-	min-height: 98px;
+	height: 130px;
 	font-size:12px; 
 	text-align: center;
-	width:98%;
+	width:110;
 	margin-top:8px;
 	background-color: white;
+	float: left;
 }
+
 .productinfodiv0{
-	width:85%;height:98;float:right;text-align:center;
+	width:50%;height:98;float:right;text-align:center;
 }
 .productinfodiv1{
 	width:100%;height:20px;border-bottom:1px solid #dddddd;
@@ -60,6 +62,7 @@ a{
 	filter:alpha(Opacity=100);
 	-moz-opacity:1;
 	opacity: 1;
+	font-size:20;
 }
 .prodlistbaseback{
 width:98%;font-size:12px;
@@ -96,24 +99,30 @@ height:20px;
 			<c:if test="${prod.category != '0'}" >style="display:none;"</c:if>
 		>
 			<div lang="<c:out value="${prod.category}"></c:out>" class="productdiv"> <%--ui-widget-header  ui-state-default  --%>
-				<div style="width:15%;height:100%;float:left;text-align:left;vertical-align: middle;">
+				<div style="width:110;height:110;float:left;text-align:left;vertical-align: middle;">
 					<img style="max-height:95px; margin-top:2px; width:90px;border: 0px solid ;"
 					src="http://100train-img.stor.sinaapp.com/<c:out value="${prod.buid}"></c:out>/prod/<c:out value="${prod.imgurl}"></c:out>" />
 				</div>
+				<div style="width:110;height:20;float:left;text-align:left;">
+					<c:out value="${prod.productname}"></c:out> &nbsp;&nbsp;&nbsp; <c:out value="${prod.price}" />元  
+				</div>
+				
+				<%-- 
 				<div class="productinfodiv0">
 					<div class="productinfodiv1">
-							<div style="width:50%;float:left; text-align:left">
-								<c:out value="${prod.productname}"></c:out>
+							<div style="width:50%;float:left; text-align:left">								
 								&nbsp;&nbsp;&nbsp;<c:out value="${prod.catedesc}"></c:out>
+								&nbsp;&nbsp;&nbsp;<c:out value="${prod.productname}"></c:out>
 							</div>
 							<div style="width:50%;float:right;text-align:right;">
-								<c:out value="${prod.price}" />元 - 折扣：<c:out value="${prod.incutoff}" />&nbsp;&nbsp;&nbsp;
+								<c:out value="${prod.price}" />元  &nbsp;&nbsp;&nbsp;
 							</div>
 					</div>
 					<div style="width:100%;height:78px;text-align:left;overflow-y:auto;">
 						<c:out value="${prod.productdesc}"></c:out>
 					</div>
 				</div>
+				--%>
 			</div>
 		</a>
 	</c:forEach>
