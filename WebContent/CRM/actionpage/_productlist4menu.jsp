@@ -15,13 +15,13 @@
 	width:990px;
 }
 .productdiv { 
-	border-bottom:1px groove #eeeeee;
-	border-right:1px groove #eeeeee;
-	height: 130px;
+	border:2px groove #eeeeee;
+	padding: 1px; 
+	height: 150px;
+	width:140;
 	font-size:12px; 
 	text-align: center;
-	width:110;
-	margin-top:8px;
+	margin:20 5 5;
 	background-color: white;
 	float: left;
 }
@@ -78,7 +78,7 @@ height:20px;
 }
 </style>
 </head>
-<body style=" background-color:#eeeeee;">
+<body style="background-color:#eeeeee;">
 <input type=hidden id="buid" value="${bu.uid}"/>
 <div id="productlistdiv" class=maindiv>
 <br />
@@ -95,16 +95,17 @@ height:20px;
 	</div>
 	<br />
 	<c:forEach items="${prods}" var="prod">
-		<a name="cateshow${prod.category}" href="javascript:selectThis('${prod.id}','${prod.price}','${prod.productname}');" 
-			<c:if test="${prod.category != '0'}" >style="display:none;"</c:if>
-		>
-			<div lang="<c:out value="${prod.category}"></c:out>" class="productdiv"> <%--ui-widget-header  ui-state-default  --%>
-				<div style="width:110;height:110;float:left;text-align:left;vertical-align: middle;">
-					<img style="max-height:95px; margin-top:2px; width:90px;border: 0px solid ;"
+			<div  name="cateshow${prod.category}"  lang="<c:out value="${prod.category}"></c:out>" class="productdiv"
+				<c:if test="${prod.category != '0'}" >style='display:none;'</c:if>> <%--ui-widget-header  ui-state-default  --%>
+				<div style="width:100%;height:125px;text-align:center;vertical-align: middle;" >
+					<img style="height:108px; margin-top:2px; width:108px;border: 0px solid ;"
 					src="http://100train-img.stor.sinaapp.com/<c:out value="${prod.buid}"></c:out>/prod/<c:out value="${prod.imgurl}"></c:out>" />
 				</div>
-				<div style="width:110;height:20;float:left;text-align:left;">
-					<c:out value="${prod.productname}"></c:out> &nbsp;&nbsp;&nbsp; <c:out value="${prod.price}" />元  
+				<div style="width:100%;height:25px;text-align:center;border-top:1px solid #bbbbbb">
+					<a href="javascript:selectThis('${prod.id}','${prod.price}','${prod.productname}');" >
+						<c:out value="${prod.productname}"></c:out> &nbsp; <c:out value="${prod.price}" />元  
+						
+					</a>
 				</div>
 				
 				<%-- 
@@ -124,7 +125,6 @@ height:20px;
 				</div>
 				--%>
 			</div>
-		</a>
 	</c:forEach>
 	<br/>
 </div>

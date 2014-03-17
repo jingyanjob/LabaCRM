@@ -8,11 +8,7 @@
  --%>
 <%--<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">=
  --%>
-<link type="text/css" href="jq104/css/ui-lightness/jquery.ui.menu.css" rel="stylesheet" />
-<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="jq104/js/jquery-ui-1.10.4.custom.min.js"></script>
-<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="js/mainpage.js"></script>
+
 <title>LabaCRM Main</title>
 <style type="text/css">
 .mainheight{
@@ -345,7 +341,7 @@ function leftSelect(id){
 	document.getElementById("vipdiv3").style.display = "none";
 	document.getElementById("productdiv1").style.display = "none";
 	document.getElementById("productdiv2").style.display = "none";
-	document.getElementById("productdiv3").style.display = "none";
+//	document.getElementById("productdiv3").style.display = "none";
 	
 	document.getElementById("tuandiv1").style.display = "none";
 	document.getElementById("tuandiv2").style.display = "none";

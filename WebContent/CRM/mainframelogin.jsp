@@ -9,8 +9,11 @@
 <html>
 <head>
 <link type="text/css" href="jq104/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
-<script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520"
-	type="text/javascript" charset="utf-8"></script>
+<link type="text/css" href="jq104/css/ui-lightness/jquery.ui.menu.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="jq104/js/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=595918520" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="js/mainpage.js"></script>
 <title>喇叭CRM</title>
 <meta property="wb:webmaster" content="27304571f6f8edb0" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

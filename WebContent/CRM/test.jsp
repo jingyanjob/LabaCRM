@@ -52,13 +52,19 @@ test <script type="text/javascript">
 
 </div>
 <input id=newdatedd onclick="getdate()" value='getdate'/>
-<div style="width:900; height:300px">
-	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white"></div>
-	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white"></div>
-	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white"></div>
-	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white"></div>
-	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white"></div>
-	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white"></div>
+<div style="width:1000; height:300px">
+	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
+	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
+	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
+	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
+	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
+	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
+	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
+	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
+	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
+	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
+	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
+	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
 	
 </div>
 <script type="text/javascript">

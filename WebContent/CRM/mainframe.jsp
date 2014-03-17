@@ -28,7 +28,7 @@
 	left:0px;
 	top: 0px;
 	height:60px;
-	background-color:#F4F5F3;
+	background-color: #fffffe;/*#F4F5F3;*/
 	position:fixed;
 	left: 0;
 	width: 100%;
@@ -53,8 +53,8 @@
 	<div class=maindivtop>
 				<div style="width:990px;">
 					<div style="width:50%;left:2px;float:left;text-align:left;">
+					
 					<img src="img/logofullblank.png" style="margin-top:9px;height:45px"/>
-						
 					</div>
 					<div style="height:50px;width:50%;float:right;text-align:right;">
 						<br />
@@ -67,11 +67,21 @@
 					
 				</div>
 		</div>
-		<div style="display:none;background-color: white;width:990px;" id="wblogon">		
-			<br /><br /><br /><br />
-			<a href="https://api.weibo.com/oauth2/authorize?client_id=595918520&response_type=code&redirect_uri=http://labacrm.com/CRM/sinaauthcallback.jsp" style="text-decoration: none; border: none;" target="_self"> 
-				<img style="border: none;" src="http://tjs.sjs.sinajs.cn/t3/style/images/common/card/widget_connect.gif" />
-			</a>
+		<div style="display:none;background-color: #eeeeee; height:150px;margin-left:5%;margin-top:60px;width:90%;" id="wblogon">		
+			
+			<div style="height:150px; width:40%;float:left;text-align:center;">
+				<br /><br /><br /><br />
+				<a href="https://api.weibo.com/oauth2/authorize?client_id=595918520&response_type=code&redirect_uri=http://labacrm.com/CRM/sinaauthcallback.jsp" style="text-decoration: none; border: none;" target="_self"> 
+					<img style="border: none;" src="http://tjs.sjs.sinajs.cn/t3/style/images/common/card/widget_connect.gif" />
+				</a>
+			</div>
+			<div style="height:150px; width:60%;float:right;text-align:left;vertical-align:middle;">
+				
+				&nbsp;&nbsp;<img style="border: none; height:150px" src="img/labakai1.png" />
+				
+			</div>
+			
+			
 				<%-- <table cellpadding="0" cellspacing="0" width="950px">
 				<tr>
 					<td align=cneter width="300">
