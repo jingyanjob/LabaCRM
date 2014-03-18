@@ -33,16 +33,11 @@
 .maindiv1 {
 	margin-top:5px;
 	width:990px;
-	background-color:#eeeeee;
 }
 
 .header-inner{ 
 	height:6px;
 	background: white url(img/inner-shadow.png) no-repeat 70% 0; 
-}
-.logininfo{
-	width:990px;height:20px;margin-top:65px;color:white;text-align:center;left:0px;
-	background-color:#888888;
 }
 .companyinfo{
 	width:990px;bottom:0px;margin-top:5px;color:black;text-align:center;

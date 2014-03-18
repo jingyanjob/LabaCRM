@@ -5,6 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.productdiv { 
+	background-image: url(img/productback.png);
+	padding: 1px; 
+	height: 100px;
+	width: 405px;
+	font-size:12px; 
+	text-align: center;
+	margin:20 10 10;
+	float: left;
+}
+
+</style>
+
 </head>
 <body>
 <a href="javascript:alert('11')" style="text-transform:none;text-decoration:none;">
@@ -58,15 +72,19 @@ test <script type="text/javascript">
 	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
 	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
 	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
-	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
-	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
-	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
-	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
-	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
-	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
-	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>
-	
+	<div style="width:300; height:100px;float:left;background-color:red; border: 1px solid white; margin: 5 5 5;"></div>	
 </div>
+
+<div style="width:1000; height:300px">
+	<div class=productdiv></div>
+	<div class=productdiv></div>
+	<div class=productdiv></div>
+	<div class=productdiv></div>
+	<div class=productdiv></div>
+	<div class=productdiv></div>
+	<div class=productdiv></div>
+</div>
+
 <script type="text/javascript">
 	function checkdivcate(){
 		var divs = document.getElementsByTagName("div");

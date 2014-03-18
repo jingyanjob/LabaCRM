@@ -12,38 +12,42 @@
 <style>
 .maindiv{
 	margin-top:80px;
-	width:990px;
+	width:900px;
 }
 .productdiv { 
-	background: url(http://labacrm.com/CRM/img/productback.png) no-repeat;
+	background-image: url(../img/productback.png);
 	padding: 1px; 
-	height: 88px;
-	width: 310px;
+	height: 100px;
+	width: 405px;
 	font-size:12px; 
 	text-align: center;
-	margin-top:5px;
-	margin-left:5px;
-	margin-right:5px;
+	margin:20 10 10;
 	float: left;
 }
 .productsubdivleft{
-	width:195px;
-	height:88px;
+	width:103px;
+	height:100px;
 	text-align:center;
 	vertical-align: middle;
-	float:left;
 }
 .productsubdivright{
-	width:215px;
-	height:88px;
+	width:302px;
+	height:100px;
 	text-align:center;
 	vertical-align: middle;
-	float:right;
-	font-size:20px;
-	color:white;
+}
+
+.productinfodiv0{
+	width:50%;height:98;float:right;text-align:center;
+}
+.productinfodiv1{
+	width:100%;height:20px;border-bottom:1px solid #dddddd;
 }
 a{
 	text-decoration: none; border: none; color: black;
+}
+.productbottomdiv{
+	width:100%;height:20px;border-top:1px solid #dddddd;text-align:right;vertical-align: bottom;
 }
 /* select panel*/
 .selecteddiv{
@@ -62,21 +66,18 @@ a{
 .selectedshowdiv{
 	margin-top:3px;
 	margin-left:3px;
-	width:100px;
-	height: 30px;
-	font-size:18px;
+	width:80px;
 	display: none;
-	background-color: #eeeeee;
+	background-color: white;
 	float: left;
 	filter:alpha(Opacity=100);
 	-moz-opacity:1;
 	opacity: 1;
-	float:left;
+	font-size:20;
 }
 .prodlistbaseback{
-	width:98%;
-	font-size:12px;
-	height:20px;
+width:98%;font-size:12px;
+height:20px;
 }
 .reservesubdiv{
 	position: fixed;
@@ -88,7 +89,7 @@ a{
 }
 </style>
 </head>
-<body style="background-color:#ffffff;">
+<body style="background-color:#eeeeee;">
 <input type=hidden id="buid" value="${bu.uid}"/>
 <div id="productlistdiv" class=maindiv>
 <br />
@@ -105,29 +106,35 @@ a{
 	</div>
 	<br />
 	<c:forEach items="${prods}" var="prod">
-			<div  name="cateshow${prod.category}"  lang="<c:out value="${prod.category}"></c:out>" class="productdiv"> <%--ui-widget-header  ui-state-default
-				<c:if test="${prod.category != '0'}" >style='display:none;'</c:if>
-				
-				  --%>
+			<div  name="cateshow${prod.category}"  lang="<c:out value="${prod.category}"></c:out>" class="productdiv"
+				<c:if test="${prod.category != '0'}" >style='display:none;'</c:if>> <%--ui-widget-header  ui-state-default  --%>
 				<div class=productsubdivleft>
-					<img src="http://100train-img.stor.sinaapp.com/<c:out value="${prod.buid}"></c:out>/prod/<c:out value="${prod.imgurl}"></c:out>" 
-							style="width:98px;height:90px; border: 0px solid ;"/>
+					<img style="height:100px; margin-top:2px; width:103px;border: 0px solid ;"
+					src="http://100train-img.stor.sinaapp.com/<c:out value="${prod.buid}"></c:out>/prod/<c:out value="${prod.imgurl}"></c:out>" />
 				</div>
 				<div  class=productsubdivright >
 					<a href="javascript:selectThis('${prod.id}','${prod.price}','${prod.productname}');" >
-						<table width=100% height=100%>
-							<tr>
-								<td valign="middle" align=left >
-									<p><font size=4 color=white ><c:out value="${prod.productname}"></c:out> </font></p>
-								</td>
-								<td width="70px" align=right valign="middle">
-									<p><font size=4 color=white ><c:out value="${prod.price}" />元  </font></p>
-								</td>
-							</tr>
-						</table>
-						
+						<c:out value="${prod.productname}"></c:out> 
+						<br /><c:out value="${prod.price}" />元  
 					</a>
 				</div>
+				
+				<%-- 
+				<div class="productinfodiv0">
+					<div class="productinfodiv1">
+							<div style="width:50%;float:left; text-align:left">								
+								&nbsp;&nbsp;&nbsp;<c:out value="${prod.catedesc}"></c:out>
+								&nbsp;&nbsp;&nbsp;<c:out value="${prod.productname}"></c:out>
+							</div>
+							<div style="width:50%;float:right;text-align:right;">
+								<c:out value="${prod.price}" />元  &nbsp;&nbsp;&nbsp;
+							</div>
+					</div>
+					<div style="width:100%;height:78px;text-align:left;overflow-y:auto;">
+						<c:out value="${prod.productdesc}"></c:out>
+					</div>
+				</div>
+				--%>
 			</div>
 	</c:forEach>
 	<br/>
@@ -147,21 +154,25 @@ a{
   <div id="selectmenu4res"></div>
 </div>
 <div class="selecteddiv">
-	<div id="selectedshow" style="widht:800px;float:left;">
+	<div id="selectedshow" style="widht:100%">
 		<c:forEach items="${prods}" var="prod1">
 			<a href='javascript:unSelectThis("${prod1.id}", "${prod1.price}","${prod1.productname}")'>
 				<div id="${prod1.id}" class=selectedshowdiv >
-					<font size=3> ${prod1.productname} </font>  ${prod1.price} 
+					${prod1.productname}
 				</div>
 			</a>
 		</c:forEach>
 	</div>
-	<div style="width:188px;text-align:left;font-size:22px; height:25px;color:white;float:right" >
-		<div id="totoalprice" style="width:100%;float:left;">
+	<br/>
+	<div style="width:100%;text-align:left;font-size:22px; height:25px;color:white;" >
+		<div id="totoalprice" style="width:500px;float:left;">
 			合计：0 元
 		</div>
-		<div style="float:left;width:100%;">
-			<button id="submitreserve" ><font color=black >我选好了</font></button>
+		<div  style="float:right;margin-right:100px;width:480px;">
+			<%--
+			<a href="javascript:reserved();"><font color=white>亲，选好了,点这儿可直接预定</font> </a>
+			<br />  --%>
+			<button id="submitreserve" ><font color=black >选好了</font></button>
 		</div>
 	</div>
 </div>
@@ -318,8 +329,42 @@ function showProductByCate(id){
 	for(var i=0; i< cates.length; i++){
 		cates.item(i).style.display = "block";
 	}
+	/*
+	var checks = getCheckBoxValue("_pcatecheck");
+	var chk = checks.split(gspliter);
+	var divs = document.getElementById("productlistdiv").childNodes;
+	for(var i=0; i< divs.length; i++){
+		if(divs.item(i).nodeName =="DIV"){
+			//alert(divs.item(i).title +" --  "+ divs.item(i).nodeName +" --  "+ divs.item(i).attributes );
+		//if(divs.item(i).cate){
+			if(	   divs.item(i).lang === "0" 
+				|| divs.item(i).lang === "1" 
+				|| divs.item(i).lang === "2" 
+				|| divs.item(i).lang === "3" 
+				|| divs.item(i).lang === "4" 
+				|| divs.item(i).lang === "5" 
+				|| divs.item(i).lang === "6" ){
+				divs.item(i).style.display = "none";
+				for(var j=0; j < chk.length; j++){
+					if(divs.item(i).lang === chk[j]){
+						divs.item(i).style.display = "block";
+					}
+				}
+			}
+		}
+	}
+	*/
 }
 
+/*
+id : 绑定的标签的ID，必填。
+button_type : 按钮样式red/gray，默认为red
+button_size : big/middle/small，默认为middle
+button_text : 自定义button文字，默认为“发布到微博”
+default_text : 文本框内容，默认为空
+default_image : 预置图片地址，默认为空
+toolbar : 工具栏[表情, 图片, 话题]，默认为'face,image,topic'，可增删工具栏模块和更换按钮位置
+*/
 function publishToWb(id, button_text){
 	W.widget.publish({
         'id' : 'publish'

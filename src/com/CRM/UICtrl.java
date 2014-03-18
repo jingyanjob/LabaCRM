@@ -416,12 +416,13 @@ public class UICtrl extends MultiActionController implements java.io.Serializabl
 			if(prods.length >0 ){
 				for(int i=0; i<prods.length; i++){
 					switch(prods[i].getCategory()){
-						case 1: ps[0].add(prods[i]); break;
-						case 2: ps[1].add(prods[i]); break;
-						case 3: ps[2].add(prods[i]); break;
-						case 4: ps[3].add(prods[i]); break;
-						case 5: ps[4].add(prods[i]); break;
-						case 6: ps[5].add(prods[i]); break;
+						case 0: ps[0].add(prods[i]); break;
+						case 1: ps[1].add(prods[i]); break;
+						case 2: ps[2].add(prods[i]); break;
+						case 3: ps[3].add(prods[i]); break;
+						case 4: ps[4].add(prods[i]); break;
+						case 5: ps[5].add(prods[i]); break;
+						case 6: ps[6].add(prods[i]); break;
 					}
 				}
 				//ma.addObject("prods", getProdsForSalesHTML(ps));

@@ -28,7 +28,7 @@
 	left:0px;
 	top: 0px;
 	height:60px;
-	background-color: #fffffe;/*#F4F5F3;*/
+	background-color: #eeeeee;/*#F4F5F3;*/
 	position:fixed;
 	left: 0;
 	width: 100%;
@@ -48,7 +48,7 @@
 }
 </style>
 </head>
-<body style="font-size: 14px; margin-top: 20px; background-color: #EEEEEE">
+<body style="font-size: 14px; margin-top: 20px; background-color: #ffffff">
 <center>
 	<div class=maindivtop>
 				<div style="width:990px;">
@@ -67,7 +67,7 @@
 					
 				</div>
 		</div>
-		<div style="display:none;background-color: #eeeeee; height:150px;margin-left:5%;margin-top:60px;width:90%;" id="wblogon">		
+		<div style="display:none; height:150px;margin-left:5%;margin-top:60px;width:90%;" id="wblogon">		
 			
 			<div style="height:150px; width:40%;float:left;text-align:center;">
 				<br /><br /><br /><br />

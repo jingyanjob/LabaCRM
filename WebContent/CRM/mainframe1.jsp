@@ -164,6 +164,7 @@
 					数据加载中....
 				</div>
 				<div id="vipdiv3" class=subdivdef>
+					<br /><br /><br />
 					新会员关键字 <input id="vipsearchinput"/> <input type="button" value="开始搜索" onclick="searhVIPinWeibo();"/> <br/>
 					搜索到新会员后，请“关注”他/她的微博，系统会在24小时内自动将他/她加为您的会员；
 				</div>
