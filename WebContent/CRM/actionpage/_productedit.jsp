@@ -46,8 +46,8 @@
 				<form id="productimgform" action="/crm.dc?action=fileUpload2"
 					method="post" target="_new" enctype="multipart/form-data"
 					align=center>
-					配图<input type="file" id="productimg" name="productimg" /> <input
-						name="imgbuid" type=hidden /> <input name="subfolder" type=hidden
+					配图<input type="file" id="productimg" name="productimg" /> <input name="imgbuid" type=hidden value="${product.buid}" />
+						 <input name="subfolder" type=hidden
 						value="prod" />
 				</form>
 			</td>

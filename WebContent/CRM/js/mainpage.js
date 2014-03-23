@@ -473,6 +473,7 @@ function selectedVU(name, score, uid){
 			n = n-1;
 		}
 		var imgname = img[n];
+		alert(imgname);
 		if(imgname != ""){
 			document.getElementById("productimgform").submit();
 		}

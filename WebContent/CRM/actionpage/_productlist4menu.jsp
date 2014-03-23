@@ -17,25 +17,25 @@
 .productdiv { 
 	background: url(http://labacrm.com/CRM/img/productback.png) no-repeat;
 	padding: 1px; 
-	height: 88px;
-	width: 310px;
+	height: 61px;
+	width: 296px;
 	font-size:12px; 
 	text-align: center;
-	margin-top:5px;
+	margin-top:25px;
 	margin-left:5px;
 	margin-right:5px;
 	float: left;
 }
 .productsubdivleft{
-	width:195px;
-	height:88px;
+	width:74px;
+	height:61px;
 	text-align:center;
 	vertical-align: middle;
 	float:left;
 }
 .productsubdivright{
-	width:215px;
-	height:88px;
+	width:222px;
+	height:61px;
 	text-align:center;
 	vertical-align: middle;
 	float:right;
@@ -65,7 +65,7 @@ a{
 	width:100px;
 	height: 30px;
 	font-size:18px;
-	display: none;
+	display: block;
 	background-color: #eeeeee;
 	float: left;
 	filter:alpha(Opacity=100);
@@ -95,6 +95,7 @@ a{
 欢迎浏览 <c:out value="${bu.username}"></c:out> 的菜单，在这儿您可以直接选菜并预定；
 <br/>
 	<div id="_pcatecheck" class=prodlistbaseback >
+		<input type=button onclick="showProductByCate('a')" id="catea" value="全部"/>
 		<input type=button onclick="showProductByCate('0')" id="cate01" value="主厨推荐"/>
 		<input type=button onclick="showProductByCate('1')" id="cate02" value="热菜"/>
 		<input type=button onclick="showProductByCate('2')" id="cate03" value="时蔬"/>
@@ -111,17 +112,17 @@ a{
 				  --%>
 				<div class=productsubdivleft>
 					<img src="http://100train-img.stor.sinaapp.com/<c:out value="${prod.buid}"></c:out>/prod/<c:out value="${prod.imgurl}"></c:out>" 
-							style="width:98px;height:90px; border: 0px solid ;"/>
+							style="width:74px;height:80px; border: 0px solid ;"/>
 				</div>
 				<div  class=productsubdivright >
 					<a href="javascript:selectThis('${prod.id}','${prod.price}','${prod.productname}');" >
 						<table width=100% height=100%>
 							<tr>
-								<td valign="middle" align=left >
-									<p><font size=4 color=white ><c:out value="${prod.productname}"></c:out> </font></p>
+								<td height="61px" valign="middle" align=left >
+									<p><font size=3 color=white ><c:out value="${prod.productname}"></c:out> </font></p>
 								</td>
 								<td width="70px" align=right valign="middle">
-									<p><font size=4 color=white ><c:out value="${prod.price}" />元  </font></p>
+									<p><font size= 3 color=white ><c:out value="${prod.price}" />元  </font></p>
 								</td>
 							</tr>
 						</table>
@@ -206,6 +207,7 @@ function reserveByMenuPage(msg, user){
 	});
 }   
 $(function() {
+    $("#catea").button();
     $("#cate01").button();
     $("#cate02").button();	
     $("#cate03").button();	
@@ -306,18 +308,29 @@ function reserved(){
 function showProductByCate(id){
 	var names;//= "cateshow";
 	var cates;//= document.getElementsByName(names);
-	for(var n=0; n<7; n++){
-		names = "cateshow" + n;
+	if(id === "a"){
+		for(var n=0; n<7; n++){
+			names = "cateshow" + n;
+			cates = document.getElementsByName(names);
+			for(var i=0; i< cates.length; i++){
+				cates.item(i).style.display = "block";
+			}
+		}
+	}else{
+		for(var n=0; n<7; n++){
+			names = "cateshow" + n;
+			cates = document.getElementsByName(names);
+			for(var i=0; i< cates.length; i++){
+				cates.item(i).style.display = "none";
+			}
+		}
+		names = "cateshow" + id;
 		cates = document.getElementsByName(names);
 		for(var i=0; i< cates.length; i++){
-			cates.item(i).style.display = "none";
+			cates.item(i).style.display = "block";
 		}
 	}
-	names = "cateshow" + id;
-	cates = document.getElementsByName(names);
-	for(var i=0; i< cates.length; i++){
-		cates.item(i).style.display = "block";
-	}
+	
 }
 
 function publishToWb(id, button_text){

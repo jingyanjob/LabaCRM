@@ -25,14 +25,14 @@
 <style>
 .maindivtop { 
 	width: 100%; 
-	left:0px;
-	top: 0px;
+	left:0;
+	right:0;
+	top:0;
 	height:60px;
-	background-color: #eeeeee;/*#F4F5F3;*/
+	background-color: white;/*#F4F5F3;*/
 	position:fixed;
-	left: 0;
-	width: 100%;
 	border-bottom: 2px #F4F5F3 groove;
+	border-top: 2px solid #483D8B ;
 	z-index:99;
 }
 .introductdiv{
@@ -48,7 +48,7 @@
 }
 </style>
 </head>
-<body style="font-size: 14px; margin-top: 20px; background-color: #ffffff">
+<body style="font-size: 14px; left:0; right:0;margin-top: 20px; background-color: #ffffff">
 <center>
 	<div class=maindivtop>
 				<div style="width:990px;">
@@ -67,20 +67,23 @@
 					
 				</div>
 		</div>
-		<div style="display:none; height:150px;margin-left:5%;margin-top:60px;width:90%;" id="wblogon">		
-			
-			<div style="height:150px; width:40%;float:left;text-align:center;">
-				<br /><br /><br /><br />
+		<div style="display:none; height:220px;margin-top:60px;width:990px;background: url(img/mainback.png);" id="wblogon">		
+			<%--
+			<div style="height:220px; width:40%;float:left;text-align:right;">
+				<br /><br /><br /><br /><br />
+				
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+			--%>
+			<div style="height:220px; width:100%;float:right;text-align:center;vertical-align:middle;">
+				<br /><br />
+				&nbsp;&nbsp;<img style="border: none; height:100px" src="img/labakai1.png" />
+				<br /><br /><br />
 				<a href="https://api.weibo.com/oauth2/authorize?client_id=595918520&response_type=code&redirect_uri=http://labacrm.com/CRM/sinaauthcallback.jsp" style="text-decoration: none; border: none;" target="_self"> 
 					<img style="border: none;" src="http://tjs.sjs.sinajs.cn/t3/style/images/common/card/widget_connect.gif" />
 				</a>
+				网站正在努力建设中，敬请期待！
 			</div>
-			<div style="height:150px; width:60%;float:right;text-align:left;vertical-align:middle;">
-				
-				&nbsp;&nbsp;<img style="border: none; height:150px" src="img/labakai1.png" />
-				
-			</div>
-			
 			
 				<%-- <table cellpadding="0" cellspacing="0" width="950px">
 				<tr>
@@ -142,9 +145,6 @@
 			});
 		});*/
 	</script>
-	
-	<div class="splitLine" ></div>
-	
 	<div class="introductdiv">
 		<font size=5>会员与积分管理</font>
 		<br />
